@@ -1,0 +1,10 @@
+{{ define "title" }}{{ .Title }}{{ end }}
+
+{{ define "main" }}
+  <div class="mb-8">
+    <article class="prose prose-invert mx-auto p-2 lg:prose-lg">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+    </article>
+  </div>
+{{ end }}

@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Generated Site
+public/
+
+# Generated resources
+assets/dist
+resources/
+
+# Hugo lockfile
+.hugo_build.lock

@@ -1,0 +1,11 @@
+{{ define "title" }}Blog{{ end }}
+
+{{ define "main" }}
+  <div class="mx-auto max-w-3xl p-2">
+    <section class="my-8">
+      <h1 class="mb-4 text-3xl md:text-4xl">Blog</h1>
+    </section>
+
+    {{ partial "paginated-post-list.html" .Paginator }}
+  </div>
+{{ end }}

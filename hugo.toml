@@ -1,0 +1,5 @@
+languageCode = 'en-us'
+title = 'Flight School'
+
+[markup.goldmark.renderer]
+  unsafe = true

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+
+    {{ $style := resources.Get "dist/style.css" | fingerprint }}
+    <link
+      rel="stylesheet"
+      href="{{ $style.RelPermalink }}"
+      integrity="{{ $style.Data.Integrity }}"
+    />
+  </head>
+
+  <body class="h-screen bg-slate-900 pb-8 text-slate-100">
+    <header>
+      {{ block "header" . }}{{ end }}
+    </header>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+  </body>
+</html>
