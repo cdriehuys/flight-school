@@ -1,13 +1,18 @@
 package app
 
-import "log/slog"
+import (
+	"html/template"
+	"log/slog"
+)
 
 type App struct {
-	logger *slog.Logger
+	logger    *slog.Logger
+	templates map[string]*template.Template
 }
 
-func New(logger *slog.Logger) *App {
+func New(logger *slog.Logger, templates map[string]*template.Template) *App {
 	return &App{
-		logger: logger,
+		logger:    logger,
+		templates: templates,
 	}
 }
