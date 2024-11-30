@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"fmt"
 	"io"
+	"io/fs"
 	"log/slog"
 	"net/http"
 	"os"
@@ -13,19 +15,34 @@ import (
 
 	"github.com/cdriehuys/flight-school/html"
 	"github.com/cdriehuys/flight-school/internal/app"
-	"github.com/cdriehuys/flight-school/internal/templates"
 )
+
+var debug bool
 
 const addr = ":8000"
 
 func run(logStream io.Writer) error {
-	logger := slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelInfo}))
-	templates, err := templates.BuildCacheFromFS(html.Files)
-	if err != nil {
-		return fmt.Errorf("failed to build template cache: %v", err)
+	flag.BoolVar(&debug, "debug", false, "enable debug behavior")
+	flag.Parse()
+
+	logLevel := slog.LevelInfo
+	if debug {
+		logLevel = slog.LevelDebug
 	}
 
-	app := app.New(logger, templates)
+	logger := slog.New(slog.NewTextHandler(logStream, &slog.HandlerOptions{Level: logLevel}))
+
+	var templateFiles fs.FS
+	if debug {
+		templateFiles = os.DirFS("./html")
+	} else {
+		templateFiles = html.Files
+	}
+
+	app, err := app.New(logger, templateFiles, &app.Options{Debug: debug, LiveTemplates: debug})
+	if err != nil {
+		return fmt.Errorf("failed to build app: %v", err)
+	}
 
 	logger.Info("Starting server", "address", addr)
 

@@ -3,28 +3,25 @@ package app
 import (
 	"bytes"
 	"fmt"
+	"html/template"
+	"io"
+	"io/fs"
+	"log/slog"
 	"net/http"
+	"path"
+	"path/filepath"
 )
 
 type templateData struct{}
 
 // render executes a template and writes it as the response.
 func (app *App) render(w http.ResponseWriter, r *http.Request, status int, page string, data templateData) {
-	ts, ok := app.templates[page]
-	if !ok {
-		err := fmt.Errorf("the template %s does not exist", page)
-		app.serverError(w, r, err)
-		return
-	}
-
-	// Initialize a new buffer.
+	// Render to a buffer first so that we can write a proper error message if the rendering fails.
+	// If we wrote straight to the response, errors would result in a half-written page.
 	buf := new(bytes.Buffer)
-
-	// Write the template to the buffer, instead of straight to the
-	// http.ResponseWriter. If there's an error, call our serverError() helper
-	// and then return.
-	err := ts.ExecuteTemplate(buf, "base", data)
+	err := app.templates.Render(buf, page, data)
 	if err != nil {
+		app.logger.Error("Failed to render template.", "error", err, "page", page)
 		app.serverError(w, r, err)
 		return
 	}
@@ -37,4 +34,75 @@ func (app *App) render(w http.ResponseWriter, r *http.Request, status int, page 
 	// is another time where we pass our http.ResponseWriter to a function that
 	// takes an io.Writer.
 	buf.WriteTo(w)
+}
+
+type templateEngine interface {
+	Render(w io.Writer, template string, data templateData) error
+}
+
+type templateCache struct {
+	logger    *slog.Logger
+	templates map[string]*template.Template
+}
+
+func newTemplateCache(logger *slog.Logger, files fs.FS) (templateCache, error) {
+	pages, err := fs.Glob(files, "pages/*.html.tmpl")
+	if err != nil {
+		return templateCache{}, fmt.Errorf("failed to gather pages: %v", err)
+	}
+
+	cache := make(map[string]*template.Template)
+	for _, page := range pages {
+		name := filepath.Base(page)
+
+		patterns := []string{
+			"base.html.tmpl",
+			// "partials/*.html.tmpl",
+			page,
+		}
+
+		ts, err := template.New(name).ParseFS(files, patterns...)
+		if err != nil {
+			return templateCache{}, fmt.Errorf("failed to build template for %s: %v", page, err)
+		}
+
+		logger.Info("Compiled page template", "page", page)
+		cache[name] = ts
+	}
+
+	return templateCache{logger, cache}, nil
+}
+
+func (c templateCache) Render(w io.Writer, name string, data templateData) error {
+	template, ok := c.templates[name]
+	if !ok {
+		return fmt.Errorf("cache does not contain a template named %s", name)
+	}
+
+	c.logger.Debug("Executing cached template.", "name", name)
+
+	return template.ExecuteTemplate(w, "base", data)
+}
+
+type liveTemplateLoader struct {
+	logger *slog.Logger
+	files  fs.FS
+}
+
+func (l liveTemplateLoader) Render(w io.Writer, name string, data templateData) error {
+	pagePath := path.Join("pages", name)
+
+	patterns := []string{
+		"base.html.tmpl",
+		pagePath,
+	}
+
+	ts, err := template.New(name).ParseFS(l.files, patterns...)
+	if err != nil {
+		return fmt.Errorf("failed to build template for %s: %v", pagePath, err)
+	}
+
+	l.logger.Info("Parsed template.", "name", name)
+
+	return ts.ExecuteTemplate(w, "base", data)
 }

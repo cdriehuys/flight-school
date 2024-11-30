@@ -1,12 +1,19 @@
 package app
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+	"runtime/debug"
+)
 
-func (a *App) serverError(w http.ResponseWriter, r *http.Request, err error) {
-	method := r.Method
-	uri := r.URL.RequestURI()
+func (a *App) serverError(w http.ResponseWriter, _ *http.Request, err error) {
+	if a.debug {
+		trace := debug.Stack()
+		body := fmt.Sprintf("%s\n%s", err.Error(), trace)
+		http.Error(w, body, http.StatusInternalServerError)
+		return
+	}
 
-	a.logger.Error("Unhandled server error", "error", err, "method", method, "uri", uri)
 	a.genericError(w, http.StatusInternalServerError)
 }
 
