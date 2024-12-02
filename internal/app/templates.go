@@ -10,9 +10,13 @@ import (
 	"net/http"
 	"path"
 	"path/filepath"
+
+	"github.com/cdriehuys/flight-school/internal/models"
 )
 
-type templateData struct{}
+type templateData struct {
+	AreasOfOperation []models.AreaOfOperation
+}
 
 // render executes a template and writes it as the response.
 func (app *App) render(w http.ResponseWriter, r *http.Request, status int, page string, data templateData) {

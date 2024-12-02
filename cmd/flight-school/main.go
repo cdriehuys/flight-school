@@ -16,6 +16,7 @@ import (
 	"github.com/cdriehuys/flight-school/html"
 	"github.com/cdriehuys/flight-school/internal/app"
 	"github.com/cdriehuys/flight-school/static"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 var debug bool
@@ -23,31 +24,51 @@ var debug bool
 const addr = ":8000"
 
 func run(logStream io.Writer) error {
-	flag.BoolVar(&debug, "debug", false, "enable debug behavior")
+	debug := flag.Bool("debug", false, "enable debug behavior")
+	dbDSN := flag.String("dsn", "postgres://localhost", "DSN for connecting to the database")
 	flag.Parse()
 
 	logLevel := slog.LevelInfo
-	if debug {
+	if *debug {
 		logLevel = slog.LevelDebug
 	}
 
 	logger := slog.New(slog.NewTextHandler(logStream, &slog.HandlerOptions{Level: logLevel}))
 
 	var templateFiles fs.FS
-	if debug {
+	if *debug {
 		templateFiles = os.DirFS("./html")
 	} else {
 		templateFiles = html.Files
 	}
 
 	var staticFiles fs.FS
-	if debug {
+	if *debug {
 		staticFiles = os.DirFS("./static")
 	} else {
 		staticFiles = static.Files
 	}
 
-	app, err := app.New(logger, templateFiles, staticFiles, &app.Options{Debug: debug, LiveTemplates: debug})
+	db, err := pgxpool.New(context.Background(), *dbDSN)
+	if err != nil {
+		return fmt.Errorf("failed to connect to database: %v", err)
+	}
+
+	defer db.Close()
+
+	logger.Info("Application sends.", "message", "ping")
+	if err := db.Ping(context.Background()); err != nil {
+		return fmt.Errorf("database did not ping: %v", err)
+	}
+	logger.Info("Database responds.", "message", "pong")
+
+	app, err := app.New(
+		logger,
+		templateFiles,
+		staticFiles,
+		db,
+		&app.Options{Debug: *debug, LiveTemplates: *debug},
+	)
 	if err != nil {
 		return fmt.Errorf("failed to build app: %v", err)
 	}
@@ -81,6 +102,11 @@ func run(logStream io.Writer) error {
 	if err := s.Shutdown(shutdownContext); err != nil {
 		logger.Error("Server did not shut down gracefully.", "error", err)
 	}
+	logger.Info("Web server stopped.")
+
+	logger.Info("Closing database connection.")
+	db.Close()
+	logger.Info("Database connection closed.")
 
 	logger.Info("Shutdown complete.")
 

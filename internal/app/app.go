@@ -1,16 +1,22 @@
 package app
 
 import (
+	"context"
 	"fmt"
 	"html/template"
 	"io/fs"
 	"log/slog"
+
+	"github.com/cdriehuys/flight-school/internal/models"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type App struct {
 	logger      *slog.Logger
 	templates   templateEngine
 	staticfiles staticfiles
+
+	acsModel acsModel
 
 	debug bool
 }
@@ -23,18 +29,22 @@ type Options struct {
 	LiveTemplates bool
 }
 
-func New(logger *slog.Logger, templateFiles fs.FS, staticFiles fs.FS, options *Options) (*App, error) {
+type acsModel interface {
+	ListAreasByACS(context.Context, string) ([]models.AreaOfOperation, error)
+}
+
+func New(
+	logger *slog.Logger,
+	templateFiles fs.FS,
+	staticFiles fs.FS,
+	db *pgxpool.Pool,
+	options *Options,
+) (*App, error) {
 	if options == nil {
 		options = &Options{}
 	}
 
-	var sf staticfiles
-	if options.LiveTemplates {
-		sf = newStaticDir(staticFiles)
-	} else {
-		panic("We should have implemented hashed static files (but we didn't)")
-	}
-
+	sf := newStaticDir(staticFiles)
 	funcMap := template.FuncMap{
 		"static": sf.URL,
 	}
@@ -50,10 +60,13 @@ func New(logger *slog.Logger, templateFiles fs.FS, staticFiles fs.FS, options *O
 		}
 	}
 
+	acsModel := models.NewACSModel(logger, db)
+
 	app := &App{
 		logger:      logger,
 		templates:   templates,
 		staticfiles: sf,
+		acsModel:    acsModel,
 		debug:       options.Debug,
 	}
 
