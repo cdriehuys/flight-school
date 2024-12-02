@@ -15,6 +15,7 @@ import (
 
 	"github.com/cdriehuys/flight-school/html"
 	"github.com/cdriehuys/flight-school/internal/app"
+	"github.com/cdriehuys/flight-school/static"
 )
 
 var debug bool
@@ -39,7 +40,14 @@ func run(logStream io.Writer) error {
 		templateFiles = html.Files
 	}
 
-	app, err := app.New(logger, templateFiles, &app.Options{Debug: debug, LiveTemplates: debug})
+	var staticFiles fs.FS
+	if debug {
+		staticFiles = os.DirFS("./static")
+	} else {
+		staticFiles = static.Files
+	}
+
+	app, err := app.New(logger, templateFiles, staticFiles, &app.Options{Debug: debug, LiveTemplates: debug})
 	if err != nil {
 		return fmt.Errorf("failed to build app: %v", err)
 	}

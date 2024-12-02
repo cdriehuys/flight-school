@@ -45,7 +45,7 @@ type templateCache struct {
 	templates map[string]*template.Template
 }
 
-func newTemplateCache(logger *slog.Logger, files fs.FS) (templateCache, error) {
+func newTemplateCache(logger *slog.Logger, files fs.FS, funcs template.FuncMap) (templateCache, error) {
 	pages, err := fs.Glob(files, "pages/*.html.tmpl")
 	if err != nil {
 		return templateCache{}, fmt.Errorf("failed to gather pages: %v", err)
@@ -61,7 +61,7 @@ func newTemplateCache(logger *slog.Logger, files fs.FS) (templateCache, error) {
 			page,
 		}
 
-		ts, err := template.New(name).ParseFS(files, patterns...)
+		ts, err := template.New(name).Funcs(funcs).ParseFS(files, patterns...)
 		if err != nil {
 			return templateCache{}, fmt.Errorf("failed to build template for %s: %v", page, err)
 		}
@@ -87,6 +87,7 @@ func (c templateCache) Render(w io.Writer, name string, data templateData) error
 type liveTemplateLoader struct {
 	logger *slog.Logger
 	files  fs.FS
+	funcs  template.FuncMap
 }
 
 func (l liveTemplateLoader) Render(w io.Writer, name string, data templateData) error {
@@ -97,7 +98,7 @@ func (l liveTemplateLoader) Render(w io.Writer, name string, data templateData) 
 		pagePath,
 	}
 
-	ts, err := template.New(name).ParseFS(l.files, patterns...)
+	ts, err := template.New(name).Funcs(l.funcs).ParseFS(l.files, patterns...)
 	if err != nil {
 		return fmt.Errorf("failed to build template for %s: %v", pagePath, err)
 	}

@@ -2,13 +2,15 @@ package app
 
 import (
 	"fmt"
+	"html/template"
 	"io/fs"
 	"log/slog"
 )
 
 type App struct {
-	logger    *slog.Logger
-	templates templateEngine
+	logger      *slog.Logger
+	templates   templateEngine
+	staticfiles staticfiles
 
 	debug bool
 }
@@ -21,26 +23,38 @@ type Options struct {
 	LiveTemplates bool
 }
 
-func New(logger *slog.Logger, templateFiles fs.FS, options *Options) (*App, error) {
+func New(logger *slog.Logger, templateFiles fs.FS, staticFiles fs.FS, options *Options) (*App, error) {
 	if options == nil {
 		options = &Options{}
 	}
 
+	var sf staticfiles
+	if options.LiveTemplates {
+		sf = newStaticDir(staticFiles)
+	} else {
+		panic("We should have implemented hashed static files (but we didn't)")
+	}
+
+	funcMap := template.FuncMap{
+		"static": sf.URL,
+	}
+
 	var templates templateEngine
 	if options.LiveTemplates {
-		templates = liveTemplateLoader{logger, templateFiles}
+		templates = liveTemplateLoader{logger, templateFiles, funcMap}
 	} else {
 		var err error
-		templates, err = newTemplateCache(logger, templateFiles)
+		templates, err = newTemplateCache(logger, templateFiles, funcMap)
 		if err != nil {
 			return nil, fmt.Errorf("failed to build app templates: %v", err)
 		}
 	}
 
 	app := &App{
-		logger:    logger,
-		templates: templates,
-		debug:     options.Debug,
+		logger:      logger,
+		templates:   templates,
+		staticfiles: sf,
+		debug:       options.Debug,
 	}
 
 	return app, nil

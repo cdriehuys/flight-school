@@ -8,6 +8,7 @@ import (
 
 func (a *App) Routes() http.Handler {
 	mux := http.NewServeMux()
+	mux.Handle("GET /static/", http.StripPrefix("/static/", a.staticfiles))
 	mux.HandleFunc("GET /{$}", a.homepage)
 
 	middleware := alice.New(a.logRequest)
