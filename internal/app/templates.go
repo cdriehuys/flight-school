@@ -15,6 +15,7 @@ import (
 )
 
 type templateData struct {
+	AreaOfOperation  models.AreaOfOperation
 	AreasOfOperation []models.AreaOfOperation
 }
 

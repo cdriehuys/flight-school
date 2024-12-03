@@ -30,6 +30,7 @@ type Options struct {
 }
 
 type acsModel interface {
+	GetAreaByID(context.Context, string) (models.AreaOfOperation, error)
 	ListAreasByACS(context.Context, string) ([]models.AreaOfOperation, error)
 }
 

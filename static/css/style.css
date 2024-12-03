@@ -4,8 +4,22 @@
   padding: 0;
 }
 
+a,
+a:visited {
+  color: rgb(27, 117, 208);
+}
+
+a:hover {
+  color: rgb(21, 92, 162);
+}
+
 ol, ul {
   list-style-position: inside;
+}
+
+.breadcrumb {
+  display: inline-block;
+  margin-bottom: 1em;
 }
 
 .container {

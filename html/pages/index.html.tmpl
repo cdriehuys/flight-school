@@ -3,7 +3,9 @@
   <h1>ACS - Private Pilot Airplane</h1>
   <ul>
     {{ range .AreasOfOperation }}
-    <li>{{ .ID }} &ndash; {{ .Name }}</li>
+    <li>
+      <a href="/{{ .ID }}">{{ .ID }} &ndash; {{ .Name }}</a>
+    </li>
     {{ end }}
   </ul>
 </section>
