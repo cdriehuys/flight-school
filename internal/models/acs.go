@@ -10,8 +10,22 @@ import (
 )
 
 type AreaOfOperation struct {
-	ID   string `db:"id"`
-	Name string `db:"name"`
+	ID     int    `db:"id"`
+	ACS    string `db:"acs_id"`
+	AreaID string `db:"area_id"`
+	Name   string `db:"name"`
+}
+
+func (a AreaOfOperation) FullID() string {
+	return fmt.Sprintf("%s.%s", a.ACS, a.AreaID)
+}
+
+type Task struct {
+	ID        int    `db:"id"`
+	AreaID    int    `db:"area_id"`
+	TaskID    string `db:"task_id"`
+	Name      string `db:"name"`
+	Objective string `db:"objective"`
 }
 
 type ACSModel struct {
@@ -23,19 +37,24 @@ func NewACSModel(logger *slog.Logger, db *pgxpool.Pool) *ACSModel {
 	return &ACSModel{logger, db}
 }
 
-func (m *ACSModel) GetAreaByID(ctx context.Context, id string) (AreaOfOperation, error) {
-	query := `SELECT id, "name" FROM acs_areas WHERE id = $1`
+func (m *ACSModel) GetAreaByID(ctx context.Context, acs string, id string) (AreaOfOperation, error) {
+	query := `SELECT id, acs_id, area_id, "name"
+		FROM acs_areas
+		WHERE acs_id = $1 AND area_id = $2`
 
-	var area AreaOfOperation
-	if err := m.db.QueryRow(ctx, query, id).Scan(&area.ID, &area.Name); err != nil {
-		return area, fmt.Errorf("failed to retrieve area with ID %s: %v", id, err)
+	rows, err := m.db.Query(ctx, query, acs, id)
+	if err != nil {
+		return AreaOfOperation{}, fmt.Errorf("failed to retrieve area with ID %s: %v", id, err)
 	}
 
-	return area, nil
+	return pgx.CollectExactlyOneRow(rows, pgx.RowToStructByName[AreaOfOperation])
 }
 
 func (m *ACSModel) ListAreasByACS(ctx context.Context, acs string) ([]AreaOfOperation, error) {
-	query := `SELECT id, "name" FROM acs_areas WHERE id LIKE $1 || '.%'`
+	query := `SELECT id, acs_id, area_id, "name"
+		FROM acs_areas
+		WHERE acs_id = $1
+		ORDER BY "order" ASC`
 	rows, err := m.db.Query(ctx, query, acs)
 	if err != nil {
 		return nil, fmt.Errorf("failed to query areas in for ACS %s: %v", acs, err)
@@ -47,4 +66,17 @@ func (m *ACSModel) ListAreasByACS(ctx context.Context, acs string) ([]AreaOfOper
 	}
 
 	return areas, nil
+}
+
+func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int) ([]Task, error) {
+	query := `SELECT id, area_id, task_id, name, objective
+		FROM acs_area_tasks
+		WHERE area_id = $1
+		ORDER BY task_id ASC`
+	rows, err := m.db.Query(ctx, query, areaID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to query tasks for area %d: %v", areaID, err)
+	}
+
+	return pgx.CollectRows(rows, pgx.RowToStructByName[Task])
 }

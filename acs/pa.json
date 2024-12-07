@@ -1,0 +1,123 @@
+{
+  "id": "PA",
+  "name": "Private Pilot for Airplane Category",
+  "areas": [
+    {
+      "id": "I",
+      "name": "Preflight Preparation",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Pilot Qualifications",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with airman and medical certificates including privileges, limitations, currency, and operating as pilot-in-command as a private pilot."
+        },
+        {
+          "id": "B",
+          "name": "Airworthiness Requirements",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with airworthiness requirements, including airplane certificates."
+        },
+        {
+          "id": "C",
+          "name": "Weather Information",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with weather information for a flight under VFR."
+        },
+        {
+          "id": "D",
+          "name": "Cross-Country Flight Planning",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with cross-country flights and VFR flight planning"
+        },
+        {
+          "id": "E",
+          "name": "National Airspace System",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with National Airspace System (NAS) operations under VFR as a private pilot."
+        },
+        {
+          "id": "F",
+          "name": "Performance Limitations",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with operating an airplane safely within the parameters of its performance capabilities and limitations."
+        },
+        {
+          "id": "G",
+          "name": "Operation of Systems",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with safe operation of systems on the airplane provided for the flight test."
+        },
+        {
+          "id": "H",
+          "name": "Human Factors",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with personal health, flight physiology, and aeromedical and human factors related to safety of flight."
+        },
+        {
+          "id": "I",
+          "name": "Water and Seaplane Characteristics, Seaplane Bases, Maritime Rules, and Aids to Marine Navigation",
+          "appliesTo": ["ASES", "AMES"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with water and seaplane characteristics, seaplane bases, maritime rules, and aids to marine navigation."
+        }
+      ]
+    },
+    {
+      "id": "II",
+      "name": "Preflight Procedures",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Preflight Assessment",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with preparation for safe flight."
+        },
+        {
+          "id": "B",
+          "name": "Flight Deck Management",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with flight deck management practices."
+        },
+        {
+          "id": "C",
+          "name": "Engine Starting",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with recommended engine starting procedures."
+        },
+        {
+          "id": "D",
+          "name": "Taxiing",
+          "appliesTo": ["ASEL", "AMEL"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with taxi operations, including runway incursion avoidance."
+        },
+        {
+          "id": "E",
+          "name": "Taxiing and Sailing",
+          "appliesTo": ["ASES", "AMES"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with taxiing and sailing operations, including runway incursion avoidance."
+        },
+        {
+          "id": "F",
+          "name": "Before Takeoff Check",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with before takeoff check."
+        }
+      ]
+    },
+    {
+      "id": "III",
+      "name": "Airport and Seaplane Base Operations",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Communications, Light Signals, and Runway Lighting Systems",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with normal and emergency radio communications, air traffic control (ATC) light signals, and runway lighting systems."
+        },
+        {
+          "id": "B",
+          "name": "Traffic Patterns",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with traffic patterns."
+        }
+      ]
+    },
+    {
+      "id": "IV",
+      "name": "Takeoffs, Landings, and Go-Arounds",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Normal Takeoff and Climb",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with normal takeoff, climb operations, and rejected takeoff procedures."
+        }
+      ]
+    }
+  ]
+}

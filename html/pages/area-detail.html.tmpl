@@ -1,6 +1,21 @@
 {{ define "content" }}
 <section class="container">
   <a class="breadcrumb" href="/">Home</a>
-  <h1>{{ .AreaOfOperation.ID }} &ndash; {{ .AreaOfOperation.Name }}</h1>
+  <h1 class="page__title">{{ .AreaOfOperation.FullID }} &ndash; {{ .AreaOfOperation.Name }}</h1>
 </section>
+
+{{ $area := .AreaOfOperation}}
+
+{{ with .Tasks }}
+<section class="container">
+  {{ range . }}
+  <div class="task">
+    <h2 class="task__title">{{ .TaskID }} &ndash; {{ .Name }}</h2>
+    {{ with .Objective }}
+    <p><strong>Objective:</strong> {{ . }}</p>
+    {{ end }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}
 {{ end }}

@@ -30,8 +30,9 @@ type Options struct {
 }
 
 type acsModel interface {
-	GetAreaByID(context.Context, string) (models.AreaOfOperation, error)
-	ListAreasByACS(context.Context, string) ([]models.AreaOfOperation, error)
+	GetAreaByID(ctx context.Context, acs string, areaID string) (models.AreaOfOperation, error)
+	ListAreasByACS(ctx context.Context, acs string) ([]models.AreaOfOperation, error)
+	ListTasksByArea(ctx context.Context, areaID int) ([]models.Task, error)
 }
 
 func New(

@@ -18,15 +18,23 @@ func (a *App) homepage(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) areaDetail(w http.ResponseWriter, r *http.Request) {
+	acs := r.PathValue("acs")
 	areaID := r.PathValue("areaID")
-	area, err := a.acsModel.GetAreaByID(r.Context(), areaID)
+	area, err := a.acsModel.GetAreaByID(r.Context(), acs, areaID)
 	if err != nil {
 		a.logger.Error("Failed to retrieve ACS area.", "error", err)
 		a.serverError(w, r, err)
 		return
 	}
 
-	data := templateData{AreaOfOperation: area}
+	tasks, err := a.acsModel.ListTasksByArea(r.Context(), area.ID)
+	if err != nil {
+		a.logger.Error("Failed to list tasks for area.", "error", err, "acs", acs, "area", area.AreaID)
+		a.serverError(w, r, err)
+		return
+	}
+
+	data := templateData{AreaOfOperation: area, Tasks: tasks}
 
 	a.render(w, r, http.StatusOK, "area-detail.html.tmpl", data)
 }

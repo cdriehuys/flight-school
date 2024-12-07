@@ -17,6 +17,7 @@ import (
 type templateData struct {
 	AreaOfOperation  models.AreaOfOperation
 	AreasOfOperation []models.AreaOfOperation
+	Tasks            []models.Task
 }
 
 // render executes a template and writes it as the response.
