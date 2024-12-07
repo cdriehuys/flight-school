@@ -29,7 +29,7 @@ func (a *App) areaDetail(w http.ResponseWriter, r *http.Request) {
 
 	tasks, err := a.acsModel.ListTasksByArea(r.Context(), area.ID)
 	if err != nil {
-		a.logger.Error("Failed to list tasks for area.", "error", err, "acs", acs, "area", area.AreaID)
+		a.logger.Error("Failed to list tasks for area.", "error", err, "acs", acs, "area", area.PublicID)
 		a.serverError(w, r, err)
 		return
 	}

@@ -10,7 +10,7 @@
 <section class="container">
   {{ range . }}
   <div class="task">
-    <h2 class="task__title">{{ .TaskID }} &ndash; {{ .Name }}</h2>
+    <h2 class="task__title">{{ .PublicID }} &ndash; {{ .Name }}</h2>
     {{ with .Objective }}
     <p><strong>Objective:</strong> {{ . }}</p>
     {{ end }}

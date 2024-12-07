@@ -95,9 +95,9 @@ func insertACS(ctx context.Context, db *pgx.Conn, acs ACS) error {
 }
 
 func upsertArea(ctx context.Context, db *pgx.Conn, acsID string, order int, area Area) error {
-	query := `INSERT INTO acs_areas (acs_id, area_id, name, "order")
+	query := `INSERT INTO acs_areas (acs_id, public_id, name, "order")
 		VALUES ($1, $2, $3, $4)
-		ON CONFLICT (acs_id, area_id) DO UPDATE
+		ON CONFLICT (acs_id, public_id) DO UPDATE
 		SET name = EXCLUDED.name, "order" = EXCLUDED."order"
 		RETURNING id`
 
@@ -119,9 +119,9 @@ func upsertArea(ctx context.Context, db *pgx.Conn, acsID string, order int, area
 }
 
 func upsertTask(ctx context.Context, db *pgx.Conn, areaID string, areaPK int, task Task) error {
-	query := `INSERT INTO acs_area_tasks (area_id, task_id, name, objective)
+	query := `INSERT INTO acs_area_tasks (area_id, public_id, name, objective)
 		VALUES ($1, $2, $3, $4)
-		ON CONFLICT (area_id, task_id) DO UPDATE
+		ON CONFLICT (area_id, public_id) DO UPDATE
 		SET name = EXCLUDED.name, objective = EXCLUDED.objective
 		RETURNING id`
 

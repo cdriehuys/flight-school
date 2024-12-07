@@ -10,20 +10,20 @@ import (
 )
 
 type AreaOfOperation struct {
-	ID     int    `db:"id"`
-	ACS    string `db:"acs_id"`
-	AreaID string `db:"area_id"`
-	Name   string `db:"name"`
+	ID       int    `db:"id"`
+	ACS      string `db:"acs_id"`
+	PublicID string `db:"public_id"`
+	Name     string `db:"name"`
 }
 
 func (a AreaOfOperation) FullID() string {
-	return fmt.Sprintf("%s.%s", a.ACS, a.AreaID)
+	return fmt.Sprintf("%s.%s", a.ACS, a.PublicID)
 }
 
 type Task struct {
 	ID        int    `db:"id"`
 	AreaID    int    `db:"area_id"`
-	TaskID    string `db:"task_id"`
+	PublicID  string `db:"public_id"`
 	Name      string `db:"name"`
 	Objective string `db:"objective"`
 }
@@ -38,9 +38,9 @@ func NewACSModel(logger *slog.Logger, db *pgxpool.Pool) *ACSModel {
 }
 
 func (m *ACSModel) GetAreaByID(ctx context.Context, acs string, id string) (AreaOfOperation, error) {
-	query := `SELECT id, acs_id, area_id, "name"
+	query := `SELECT id, acs_id, public_id, "name"
 		FROM acs_areas
-		WHERE acs_id = $1 AND area_id = $2`
+		WHERE acs_id = $1 AND public_id = $2`
 
 	rows, err := m.db.Query(ctx, query, acs, id)
 	if err != nil {
@@ -51,7 +51,7 @@ func (m *ACSModel) GetAreaByID(ctx context.Context, acs string, id string) (Area
 }
 
 func (m *ACSModel) ListAreasByACS(ctx context.Context, acs string) ([]AreaOfOperation, error) {
-	query := `SELECT id, acs_id, area_id, "name"
+	query := `SELECT id, acs_id, public_id, "name"
 		FROM acs_areas
 		WHERE acs_id = $1
 		ORDER BY "order" ASC`
@@ -69,10 +69,10 @@ func (m *ACSModel) ListAreasByACS(ctx context.Context, acs string) ([]AreaOfOper
 }
 
 func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int) ([]Task, error) {
-	query := `SELECT id, area_id, task_id, name, objective
+	query := `SELECT id, area_id, public_id, name, objective
 		FROM acs_area_tasks
 		WHERE area_id = $1
-		ORDER BY task_id ASC`
+		ORDER BY public_id ASC`
 	rows, err := m.db.Query(ctx, query, areaID)
 	if err != nil {
 		return nil, fmt.Errorf("failed to query tasks for area %d: %v", areaID, err)

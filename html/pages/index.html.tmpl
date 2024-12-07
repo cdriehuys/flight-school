@@ -4,7 +4,7 @@
   <ul>
     {{ range .AreasOfOperation }}
     <li>
-      <a href="/acs/{{ .ACS }}/{{ .AreaID }}">{{ .ACS }}.{{ .AreaID }} &ndash; {{ .Name }}</a>
+      <a href="/acs/{{ .ACS }}/{{ .PublicID }}">{{ .ACS }}.{{ .PublicID }} &ndash; {{ .Name }}</a>
     </li>
     {{ end }}
   </ul>
