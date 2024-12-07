@@ -14,7 +14,8 @@ a:hover {
 }
 
 ol, ul {
-  list-style-position: inside;
+  list-style-position: outside;
+  margin-left: 2em;
 }
 
 .breadcrumb {
@@ -43,6 +44,10 @@ ol, ul {
 
 .task__header {
   margin-bottom: 1em;
+}
+
+.task__subelements {
+  list-style-type: lower-alpha;
 }
 
 .task__title {

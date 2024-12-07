@@ -56,12 +56,6 @@ func run(logStream io.Writer) error {
 
 	defer db.Close()
 
-	logger.Info("Application sends.", "message", "ping")
-	if err := db.Ping(context.Background()); err != nil {
-		return fmt.Errorf("database did not ping: %v", err)
-	}
-	logger.Info("Database responds.", "message", "pong")
-
 	app, err := app.New(
 		logger,
 		templateFiles,

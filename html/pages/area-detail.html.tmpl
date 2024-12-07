@@ -24,7 +24,16 @@
       <p><strong>Knowledge:</strong> The applicant demonstrates understanding of:</p>
       <ul>
         {{ range . }}
-        <li>{{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}</li>
+        <li>
+          {{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}
+          {{ with .SubElements }}
+          <ol class="task__subelements">
+            {{ range . }}
+            <li value="{{ .PublicID }}">{{ .Content }}</li>
+            {{ end }}
+          </ol>
+          {{ end }}
+        </li>
         {{ end }}
       </ul>
     </div>

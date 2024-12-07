@@ -46,6 +46,15 @@ type TaskElement struct {
 	Type     TaskElementType
 	PublicID int    `db:"public_id"`
 	Content  string `db:"content"`
+
+	SubElements []SubElement `db:"-"`
+}
+
+type SubElement struct {
+	ID        int    `db:"id"`
+	ElementID int    `db:"element_id"`
+	PublicID  string `db:"public_id"`
+	Content   string `db:"content"`
 }
 
 type ACSModel struct {
@@ -138,6 +147,7 @@ func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int) (map
 		return nil, fmt.Errorf("failed to query task elements: %v", err)
 	}
 
+	elementIDs := make([]int, 0)
 	elementsByTask := make(map[int]map[TaskElementType][]TaskElement)
 
 	_, err = pgx.CollectRows(rows, func(row pgx.CollectableRow) (struct{}, error) {
@@ -145,6 +155,8 @@ func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int) (map
 		if err != nil {
 			return struct{}{}, err
 		}
+
+		elementIDs = append(elementIDs, el.ID)
 
 		_, taskExists := elementsByTask[el.TaskID]
 		if !taskExists {
@@ -165,5 +177,57 @@ func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int) (map
 		return nil, fmt.Errorf("failed to collect task elements: %v", err)
 	}
 
+	subElements, err := m.listSubElements(ctx, elementIDs)
+	if err != nil {
+		return nil, fmt.Errorf("failed to collect sub-elements: %v", err)
+	}
+
+	for taskID, elementTypes := range elementsByTask {
+		for elementType, elements := range elementTypes {
+			for i, element := range elements {
+				s, exists := subElements[element.ID]
+				if exists {
+					elementsByTask[taskID][elementType][i].SubElements = s
+				}
+			}
+		}
+	}
+
 	return elementsByTask, nil
+}
+
+func (m *ACSModel) listSubElements(ctx context.Context, elementIDs []int) (map[int][]SubElement, error) {
+	query := `SELECT id, element_id, public_id, content
+		FROM acs_subelements
+		WHERE element_id = ANY ($1)
+		ORDER BY public_id ASC`
+
+	rows, err := m.db.Query(ctx, query, elementIDs)
+	if err != nil {
+		return nil, fmt.Errorf("failed to query sub-elements: %v", err)
+	}
+
+	subElements := make(map[int][]SubElement, len(elementIDs))
+
+	_, err = pgx.CollectRows(rows, func(row pgx.CollectableRow) (struct{}, error) {
+		subElement, err := pgx.RowToStructByName[SubElement](row)
+		if err != nil {
+			return struct{}{}, err
+		}
+
+		_, alreadySawElement := subElements[subElement.ElementID]
+		if !alreadySawElement {
+			subElements[subElement.ElementID] = make([]SubElement, 0, 1)
+		}
+
+		subElements[subElement.ElementID] = append(subElements[subElement.ElementID], subElement)
+
+		return struct{}{}, nil
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to collect sub-elements: %v", err)
+	}
+
+	return subElements, nil
 }
