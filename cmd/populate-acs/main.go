@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/cdriehuys/flight-school/internal/models"
 	"github.com/jackc/pgx/v5"
 )
 
@@ -71,6 +72,15 @@ type Task struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
 	Objective string `json:"objective"`
+
+	Knowledge      []Element `json:"knowledge"`
+	RiskManagement []Element `json:"riskManagement"`
+	Skills         []Element `json:"skills"`
+}
+
+type Element struct {
+	ID      int    `json:"id"`
+	Content string `json:"content"`
 }
 
 func insertACS(ctx context.Context, db *pgx.Conn, acs ACS) error {
@@ -130,7 +140,54 @@ func upsertTask(ctx context.Context, db *pgx.Conn, areaID string, areaPK int, ta
 		return fmt.Errorf("failed to update task %s.%s: %v", areaID, task.ID, err)
 	}
 
-	log.Printf("%s.%s - Updated task - %s", areaID, task.ID, task.Name)
+	taskPublicID := fmt.Sprintf("%s.%s", areaID, task.ID)
+	log.Printf("%s - Updated task - %s", taskPublicID, task.Name)
+
+	upsertElements := func(elementType models.TaskElementType, elements []Element) error {
+		for _, element := range elements {
+			if err := upsertElement(ctx, db, taskPublicID, taskPK, elementType, element); err != nil {
+				return fmt.Errorf("failed to update element %s.%s%d: %v", taskPublicID, elementType, element.ID, err)
+			}
+		}
+
+		return nil
+	}
+
+	if err := upsertElements(models.TaskElementTypeKnowledge, task.Knowledge); err != nil {
+		return err
+	}
+
+	if err := upsertElements(models.TaskElementTypeRiskManagement, task.RiskManagement); err != nil {
+		return err
+	}
+
+	if err := upsertElements(models.TaskElementTypeSkills, task.Skills); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func upsertElement(
+	ctx context.Context,
+	db *pgx.Conn,
+	taskPublicID string,
+	taskPK int,
+	elementType models.TaskElementType,
+	element Element,
+) error {
+	query := `INSERT INTO acs_elements (task_id, "type", public_id, content)
+		VALUES ($1, $2, $3, $4)
+		ON CONFLICT (task_id, "type", public_id) DO UPDATE
+		SET content = EXCLUDED.content
+		RETURNING id`
+
+	var elementPK int
+	if err := db.QueryRow(ctx, query, taskPK, elementType, element.ID, element.Content).Scan(&elementPK); err != nil {
+		return fmt.Errorf("failed to update task %s.%s%d: %v", taskPublicID, elementType, element.ID, err)
+	}
+
+	log.Printf("%s.%s%d - Updated element", taskPublicID, elementType, element.ID)
 
 	return nil
 }

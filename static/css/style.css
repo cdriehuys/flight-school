@@ -37,6 +37,14 @@ ol, ul {
   margin-bottom: 2em;
 }
 
+.task__elements {
+  margin-bottom: .5em;
+}
+
+.task__header {
+  margin-bottom: 1em;
+}
+
 .task__title {
   font-size: 1.5rem;
   margin-bottom: .5em;

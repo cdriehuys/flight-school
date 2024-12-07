@@ -26,6 +26,26 @@ type Task struct {
 	PublicID  string `db:"public_id"`
 	Name      string `db:"name"`
 	Objective string `db:"objective"`
+
+	KnowledgeElements      []TaskElement `db:"-"`
+	RiskManagementElements []TaskElement `db:"-"`
+	SkillElements          []TaskElement `db:"-"`
+}
+
+type TaskElementType string
+
+const (
+	TaskElementTypeKnowledge      TaskElementType = "K"
+	TaskElementTypeRiskManagement TaskElementType = "R"
+	TaskElementTypeSkills         TaskElementType = "S"
+)
+
+type TaskElement struct {
+	ID       int `db:"id"`
+	TaskID   int `db:"task_id"`
+	Type     TaskElementType
+	PublicID int    `db:"public_id"`
+	Content  string `db:"content"`
 }
 
 type ACSModel struct {
@@ -78,5 +98,72 @@ func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int) ([]Task, err
 		return nil, fmt.Errorf("failed to query tasks for area %d: %v", areaID, err)
 	}
 
-	return pgx.CollectRows(rows, pgx.RowToStructByName[Task])
+	tasks, err := pgx.CollectRows(rows, pgx.RowToStructByName[Task])
+	if err != nil {
+		return nil, fmt.Errorf("failed to collect tasks: %v", err)
+	}
+
+	taskIDs := make([]int, len(tasks))
+	for _, task := range tasks {
+		taskIDs = append(taskIDs, task.ID)
+	}
+
+	taskElements, err := m.listElementsForTasks(ctx, taskIDs)
+	if err != nil {
+		return nil, fmt.Errorf("failed to list elements for tasks: %v", err)
+	}
+
+	for i, task := range tasks {
+		elements, hasElements := taskElements[task.ID]
+		if !hasElements {
+			continue
+		}
+
+		tasks[i].KnowledgeElements = elements[TaskElementTypeKnowledge]
+		tasks[i].RiskManagementElements = elements[TaskElementTypeRiskManagement]
+		tasks[i].SkillElements = elements[TaskElementTypeSkills]
+	}
+
+	return tasks, nil
+}
+
+func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int) (map[int]map[TaskElementType][]TaskElement, error) {
+	query := `SELECT id, task_id, "type", public_id, content
+		FROM acs_elements
+		WHERE task_id = ANY ($1)
+		ORDER BY public_id ASC`
+
+	rows, err := m.db.Query(ctx, query, taskIDs)
+	if err != nil {
+		return nil, fmt.Errorf("failed to query task elements: %v", err)
+	}
+
+	elementsByTask := make(map[int]map[TaskElementType][]TaskElement)
+
+	_, err = pgx.CollectRows(rows, func(row pgx.CollectableRow) (struct{}, error) {
+		el, err := pgx.RowToStructByName[TaskElement](row)
+		if err != nil {
+			return struct{}{}, err
+		}
+
+		_, taskExists := elementsByTask[el.TaskID]
+		if !taskExists {
+			elementsByTask[el.TaskID] = make(map[TaskElementType][]TaskElement)
+		}
+
+		_, elementTypeExists := elementsByTask[el.TaskID][el.Type]
+		if !elementTypeExists {
+			elementsByTask[el.TaskID][el.Type] = make([]TaskElement, 0, 1)
+		}
+
+		elementsByTask[el.TaskID][el.Type] = append(elementsByTask[el.TaskID][el.Type], el)
+
+		return struct{}{}, nil
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to collect task elements: %v", err)
+	}
+
+	return elementsByTask, nil
 }

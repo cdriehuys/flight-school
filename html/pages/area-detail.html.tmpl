@@ -10,9 +10,46 @@
 <section class="container">
   {{ range . }}
   <div class="task">
-    <h2 class="task__title">{{ .PublicID }} &ndash; {{ .Name }}</h2>
-    {{ with .Objective }}
-    <p><strong>Objective:</strong> {{ . }}</p>
+    <div class="task__header">
+      <h2 class="task__title">{{ .PublicID }} &ndash; {{ .Name }}</h2>
+      {{ with .Objective }}
+      <p><strong>Objective:</strong> {{ . }}</p>
+      {{ end }}
+    </div>
+
+    {{ $task := . }}
+
+    {{ with .KnowledgeElements }}
+    <div class="task__elements">
+      <p><strong>Knowledge:</strong> The applicant demonstrates understanding of:</p>
+      <ul>
+        {{ range . }}
+        <li>{{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{ with .RiskManagementElements }}
+    <div class="task__elements">
+      <p><strong>Risk Management:</strong> The applicant is able to identify, assess, and mitigate risk associated with:</p>
+      <ul>
+        {{ range . }}
+        <li>{{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{ with .SkillElements }}
+    <div class="task__elements">
+      <p><strong>Skills:</strong> The applicant exhibits the skill to:</p>
+      <ul>
+        {{ range . }}
+        <li>{{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}</li>
+        {{ end }}
+      </ul>
+    </div>
     {{ end }}
   </div>
   {{ end }}

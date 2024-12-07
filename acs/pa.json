@@ -9,7 +9,45 @@
         {
           "id": "A",
           "name": "Pilot Qualifications",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with airman and medical certificates including privileges, limitations, currency, and operating as pilot-in-command as a private pilot."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with airman and medical certificates including privileges, limitations, currency, and operating as pilot-in-command as a private pilot.",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Certification requirements, recent flight experience, and recordkeeping."
+            },
+            {
+              "id": 2,
+              "content": "Privileges and limitations."
+            },
+            {
+              "id": 3,
+              "content": "Medical certificates: class, expiration, privileges, temporary disqualifications."
+            },
+            {
+              "id": 4,
+              "content": "Documents required to exercise private pilot privileges."
+            },
+            {
+              "id": 5,
+              "content": "Part 68 BasicMed privileges and limitations."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Proficiency versus currency."
+            },
+            {
+              "id": 2,
+              "content": "Flying unfamiliar aircraft or operating with unfamiliar flight display systems and avionics."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Apply requirements to act as pilot-in-command (PIC) under Visual Flight Rules (VFR) in a scenario given by the evaluator."
+            }
+          ]
         },
         {
           "id": "B",
