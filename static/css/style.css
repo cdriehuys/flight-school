@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
 a,
 a:visited {
   color: rgb(27, 117, 208);
@@ -11,6 +15,11 @@ a:visited {
 
 a:hover {
   color: rgb(21, 92, 162);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
 }
 
 ol, ul {
@@ -30,7 +39,7 @@ ol, ul {
 }
 
 .page__title {
-  font-size: 1.75rem;
+  font-size: 2rem;
   margin-bottom: 2em;
 }
 
@@ -51,6 +60,6 @@ ol, ul {
 }
 
 .task__title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-bottom: .5em;
 }
