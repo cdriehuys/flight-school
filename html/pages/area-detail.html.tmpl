@@ -3,36 +3,34 @@
 {{ define "content" }}
 <section class="container">
   <a class="breadcrumb" href="/">Home</a>
-</section>
 
-<section class="page__header">
-  <h1 class="page__title">{{ .AreaOfOperation.Name }}</h1>
-  <h2 class="page__subtitle text-subtle">{{ .AreaOfOperation.FullID }}</h1>
-</section>
+  <section class="card mb-lg">
+    <h1 class="page__title">{{ .AreaOfOperation.Name }}</h1>
+    <h2 class="page__subtitle text-subtle">{{ .AreaOfOperation.FullID }}</h1>
+  </section>
 
-{{ $area := .AreaOfOperation}}
+  {{ $area := .AreaOfOperation}}
 
-{{ with .Tasks }}
-<section class="container">
-  {{ range . }}
-  <div class="task">
-    <div class="task__header">
-      <h2 class="task__title">
-        <a href="/acs/{{ $area.ACS }}/{{ $area.PublicID }}/{{ .PublicID }}">{{ .Name }}</a>
-      </h2>
-      <h3 class="task__subtitle">{{ $area.FullID }}.{{ .PublicID }}</h3>
+  {{ with .Tasks }}
+    {{ range . }}
+    <div class="mb-lg card card--active-hover">
+      <div class="mb-md">
+        <h2 class="task__title">
+          <a href="/acs/{{ $area.ACS }}/{{ $area.PublicID }}/{{ .PublicID }}">{{ .Name }}</a>
+        </h2>
+        <h3 class="mb-md text-subtle">{{ $area.FullID }}.{{ .PublicID }}</h3>
+      </div>
+
+      {{ with .Objective }}
+      <p class="mb-md"><strong>Objective:</strong> {{ . }}</p>
+      {{ end }}
+
+      <div class="mb-sm">
+        <strong>Elements</strong>
+        <p>{{ len .KnowledgeElements }} Knowledge • {{ len .RiskManagementElements }} Risk • {{ len .SkillElements }} Skill</p>
+      </div>
     </div>
-
-    {{ with .Objective }}
-    <p class="task__objective"><strong>Objective:</strong> {{ . }}</p>
     {{ end }}
-
-    <div class="task__elements">
-      <strong class="task__elements__title">Elements</strong>
-      <p>{{ len .KnowledgeElements }} Knowledge • {{ len .RiskManagementElements }} Risk • {{ len .SkillElements }} Skill</p>
-    </div>
-  </div>
   {{ end }}
 </section>
-{{ end }}
 {{ end }}

@@ -7,6 +7,9 @@
 :root {
   --border-radius: 5px;
 
+  --box-shadow-default: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --box-shadow-active: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
   --color-text-subtle: #777;
 }
 
@@ -42,8 +45,13 @@ ol, ul {
 .card {
   background: white;
   border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-default);
   padding: 1em;
   transition: box-shadow .25s;
+}
+
+.card--active-hover:hover {
+  box-shadow: var(--box-shadow-active);
 }
 
 .container {
@@ -64,13 +72,6 @@ ol, ul {
   margin-bottom: 2em;
 }
 
-.page__header {
-  background: white;
-  margin: 0 auto 2em auto;
-  max-width: 70rem;
-  padding: 1em;
-}
-
 .page__subtitle {
   font-size: 1.5rem;
 }
@@ -81,35 +82,6 @@ ol, ul {
 
 .sub-elements {
   list-style-type: lower-alpha;
-}
-
-.task {
-  background: white;
-  border-radius: var(--border-radius);
-  margin-bottom: 2em;
-  padding: 1em;
-  transition: box-shadow .25s;
-}
-
-.task:hover {
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.task__elements {
-  margin-bottom: .5em;
-}
-
-.task__header {
-  margin-bottom: 1em;
-}
-
-.task__objective {
-  margin-bottom: 1em;
-}
-
-.task__subtitle {
-  color: var(--color-text-subtle);
-  margin-bottom: 1em;
 }
 
 .task__title {

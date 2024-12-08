@@ -8,18 +8,16 @@
       {{ .Task.AreaName }}
     </a>
   </div>
-</section>
 
-<section class="page__header">
-  <h1 class="page__title">{{ .Task.Name }}</h1>
-  <h2 class="page__subtitle text-subtle mb-md">{{ .Task.ACS }}.{{ .Task.AreaPublicID }}.{{ .Task.PublicID }}</h2>
+  <section class="card mb-lg">
+    <h1 class="page__title">{{ .Task.Name }}</h1>
+    <h2 class="page__subtitle text-subtle mb-md">{{ .Task.ACS }}.{{ .Task.AreaPublicID }}.{{ .Task.PublicID }}</h2>
 
-  <p><strong>Objective:</strong> {{ .Task.Objective }}</p>
-</section>
+    <p><strong>Objective:</strong> {{ .Task.Objective }}</p>
+  </section>
 
-<section class="container">
   {{ with .Task.KnowledgeElements }}
-  <div class="card mb-lg">
+  <div class="card mb-md">
     <p class="mb-sm">
       <em>
         <strong>Knowledge:</strong>
@@ -31,7 +29,7 @@
   {{ end }}
 
   {{ with .Task.RiskManagementElements }}
-  <div class="card mb-lg">
+  <div class="card mb-md">
     <p class="mb-sm">
       <em>
         <strong>Risk Management:</strong>
@@ -43,7 +41,7 @@
   {{ end }}
 
   {{ with .Task.SkillElements }}
-  <div class="card mb-lg">
+  <div class="card mb-md">
     <p class="mb-sm">
       <em>
         <strong>Skills:</strong>
