@@ -37,9 +37,26 @@ ol, ul {
   margin-left: 2em;
 }
 
+.bradcrumbs {
+  display: flex;
+}
+
 .breadcrumb {
   display: inline-block;
-  margin-bottom: 1em;
+}
+
+.breadcrumb::before {
+  color: var(--color-text-subtle);
+  content: '/';
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 .5em;
+  text-decoration: none;
+}
+
+.breadcrumb:first-child::before {
+  content: '';
+  margin: 0;
 }
 
 .card {

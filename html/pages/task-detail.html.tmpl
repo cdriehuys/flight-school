@@ -2,11 +2,9 @@
 
 {{ define "content" }}
 <section class="container">
-  <div class="breadcrumbs">
-    <a class="breadcrumb" href="/">Home</a>
-    <a class="breadcrumb" href="/acs/{{ .Task.ACS }}/{{ .Task.AreaPublicID }}">
-      {{ .Task.AreaName }}
-    </a>
+  <div class="breadcrumbs mb-md">
+    <a class="breadcrumb" href="/">Home
+    </a><a class="breadcrumb" href="/acs/{{ .Task.ACS }}/{{ .Task.AreaPublicID }}">{{ .Task.AreaName }}</a>
   </div>
 
   <section class="card mb-lg">
