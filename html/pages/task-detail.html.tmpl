@@ -1,0 +1,57 @@
+{{ define "title" }}{{ .Task.Name }}{{ end }}
+
+{{ define "content" }}
+<section class="container">
+  <div class="breadcrumbs">
+    <a class="breadcrumb" href="/">Home</a>
+    <a class="breadcrumb" href="/acs/{{ .Task.ACS }}/{{ .Task.AreaPublicID }}">
+      {{ .Task.AreaName }}
+    </a>
+  </div>
+</section>
+
+<section class="page__header">
+  <h1 class="page__title">{{ .Task.Name }}</h1>
+  <h2 class="page__subtitle text-subtle mb-md">{{ .Task.ACS }}.{{ .Task.AreaPublicID }}.{{ .Task.PublicID }}</h2>
+
+  <p><strong>Objective:</strong> {{ .Task.Objective }}</p>
+</section>
+
+<section class="container">
+  {{ with .Task.KnowledgeElements }}
+  <div class="card mb-lg">
+    <p class="mb-sm">
+      <em>
+        <strong>Knowledge:</strong>
+        The applicant demonstrates understanding of:
+      </em>
+    </p>
+    {{ template "task-sub-element-list" . }}
+  </div>
+  {{ end }}
+
+  {{ with .Task.RiskManagementElements }}
+  <div class="card mb-lg">
+    <p class="mb-sm">
+      <em>
+        <strong>Risk Management:</strong>
+        The applicant is able to identify, assess, and mitigate risk associated with:
+      </em>
+    </p>
+    {{ template "task-sub-element-list" . }}
+  </div>
+  {{ end }}
+
+  {{ with .Task.SkillElements }}
+  <div class="card mb-lg">
+    <p class="mb-sm">
+      <em>
+        <strong>Skills:</strong>
+        The applicant exhibits the skill to:
+      </em>
+    </p>
+    {{ template "task-sub-element-list" . }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}

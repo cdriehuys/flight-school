@@ -3,7 +3,11 @@
 {{ define "content" }}
 <section class="container">
   <a class="breadcrumb" href="/">Home</a>
-  <h1 class="page__title">{{ .AreaOfOperation.FullID }} &ndash; {{ .AreaOfOperation.Name }}</h1>
+</section>
+
+<section class="page__header">
+  <h1 class="page__title">{{ .AreaOfOperation.Name }}</h1>
+  <h2 class="page__subtitle text-subtle">{{ .AreaOfOperation.FullID }}</h1>
 </section>
 
 {{ $area := .AreaOfOperation}}

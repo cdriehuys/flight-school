@@ -5,6 +5,8 @@
 }
 
 :root {
+  --border-radius: 5px;
+
   --color-text-subtle: #777;
 }
 
@@ -37,20 +39,53 @@ ol, ul {
   margin-bottom: 1em;
 }
 
+.card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 1em;
+  transition: box-shadow .25s;
+}
+
 .container {
   margin: 0 auto;
   max-width: 70rem;
   padding: 0 1rem;
 }
 
+.mb-sm {
+  margin-bottom: .5em;
+}
+
+.mb-md {
+  margin-bottom: 1em;
+}
+
+.mb-lg {
+  margin-bottom: 2em;
+}
+
+.page__header {
+  background: white;
+  margin: 0 auto 2em auto;
+  max-width: 70rem;
+  padding: 1em;
+}
+
+.page__subtitle {
+  font-size: 1.5rem;
+}
+
 .page__title {
   font-size: 2.5rem;
-  margin-bottom: 2em;
+}
+
+.sub-elements {
+  list-style-type: lower-alpha;
 }
 
 .task {
   background: white;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   margin-bottom: 2em;
   padding: 1em;
   transition: box-shadow .25s;
@@ -72,10 +107,6 @@ ol, ul {
   margin-bottom: 1em;
 }
 
-.task__subelements {
-  list-style-type: lower-alpha;
-}
-
 .task__subtitle {
   color: var(--color-text-subtle);
   margin-bottom: 1em;
@@ -84,4 +115,8 @@ ol, ul {
 .task__title {
   font-size: 1.75rem;
   margin-bottom: .25em;
+}
+
+.text-subtle {
+  color: var(--color-text-subtle);
 }

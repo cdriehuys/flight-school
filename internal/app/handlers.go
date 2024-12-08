@@ -45,5 +45,19 @@ func (a *App) taskDetail(w http.ResponseWriter, r *http.Request) {
 	areaID := r.PathValue("areaID")
 	taskID := r.PathValue("taskID")
 
-	fmt.Fprintf(w, "%s.%s.%s", acs, areaID, taskID)
+	task, err := a.acsModel.GetTaskByArea(r.Context(), acs, areaID, taskID)
+	if err != nil {
+		a.logger.ErrorContext(
+			r.Context(),
+			"Failed to retrieve task.",
+			"error", err,
+			"taskPublicID", fmt.Sprintf("%s.%s.%s", acs, areaID, taskID),
+		)
+		a.serverError(w, r, err)
+		return
+	}
+
+	data := templateData{Task: task}
+
+	a.render(w, r, http.StatusOK, "task-detail.html.tmpl", data)
 }

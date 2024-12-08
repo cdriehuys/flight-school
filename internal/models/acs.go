@@ -27,6 +27,10 @@ type Task struct {
 	Name      string `db:"name"`
 	Objective string `db:"objective"`
 
+	ACS          string `db:"acs"`
+	AreaPublicID string `db:"area_public_id"`
+	AreaName     string `db:"area_name"`
+
 	KnowledgeElements      []TaskElement `db:"-"`
 	RiskManagementElements []TaskElement `db:"-"`
 	SkillElements          []TaskElement `db:"-"`
@@ -98,8 +102,17 @@ func (m *ACSModel) ListAreasByACS(ctx context.Context, acs string) ([]AreaOfOper
 }
 
 func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int) ([]Task, error) {
-	query := `SELECT id, area_id, public_id, name, objective
-		FROM acs_area_tasks
+	query := `SELECT
+			t.id,
+			t.area_id,
+			t.public_id,
+			t.name,
+			t.objective,
+			a.acs_id AS acs,
+			a.public_id AS area_public_id,
+			a.name AS area_name
+		FROM acs_area_tasks t
+			LEFT JOIN acs_areas a ON t.area_id = a.id
 		WHERE area_id = $1
 		ORDER BY public_id ASC`
 	rows, err := m.db.Query(ctx, query, areaID)
@@ -134,6 +147,41 @@ func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int) ([]Task, err
 	}
 
 	return tasks, nil
+}
+
+func (m *ACSModel) GetTaskByArea(ctx context.Context, acs string, areaID string, taskID string) (Task, error) {
+	query := `SELECT
+			t.id,
+			t.area_id,
+			t.public_id,
+			t.name,
+			t.objective,
+			a.acs_id AS acs,
+			a.public_id AS area_public_id,
+			a.name AS area_name
+		FROM acs_area_tasks t
+			LEFT JOIN acs_areas a ON t.area_id = a.id
+		WHERE a.acs_id = $1 AND a.public_id = $2 AND t.public_id = $3`
+
+	rows, _ := m.db.Query(ctx, query, acs, areaID, taskID)
+	task, err := pgx.CollectExactlyOneRow(rows, pgx.RowToStructByName[Task])
+	if err != nil {
+		return Task{}, fmt.Errorf("failed to collect task %s.%s.%s: %v", acs, areaID, taskID, err)
+	}
+
+	elements, err := m.listElementsForTasks(ctx, []int{task.ID})
+	if err != nil {
+		return Task{}, fmt.Errorf("failed to list elements for task: %v", err)
+	}
+
+	taskElements, hasElements := elements[task.ID]
+	if hasElements {
+		task.KnowledgeElements = taskElements[TaskElementTypeKnowledge]
+		task.RiskManagementElements = taskElements[TaskElementTypeRiskManagement]
+		task.SkillElements = taskElements[TaskElementTypeSkills]
+	}
+
+	return task, nil
 }
 
 func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int) (map[int]map[TaskElementType][]TaskElement, error) {

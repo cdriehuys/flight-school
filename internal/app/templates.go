@@ -17,6 +17,7 @@ import (
 type templateData struct {
 	AreaOfOperation  models.AreaOfOperation
 	AreasOfOperation []models.AreaOfOperation
+	Task             models.Task
 	Tasks            []models.Task
 }
 
@@ -63,7 +64,7 @@ func newTemplateCache(logger *slog.Logger, files fs.FS, funcs template.FuncMap) 
 
 		patterns := []string{
 			"base.html.tmpl",
-			// "partials/*.html.tmpl",
+			"partials/*.html.tmpl",
 			page,
 		}
 
@@ -101,6 +102,7 @@ func (l liveTemplateLoader) Render(w io.Writer, name string, data templateData) 
 
 	patterns := []string{
 		"base.html.tmpl",
+		"partials/*.html.tmpl",
 		pagePath,
 	}
 
