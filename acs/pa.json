@@ -708,7 +708,43 @@
         {
           "id": "A",
           "name": "Preflight Assessment",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with preparation for safe flight."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with preparation for safe flight.",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Pilot self-assessment."
+            },
+            {
+              "id": 2,
+              "content": "Determining that the airplane to be used is appropriate and airworthy."
+            },
+            {
+              "id": 3,
+              "content": "Airplane preflight inspection, including:",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Which items should be inspected"
+                },
+                {
+                  "id": "b",
+                  "content": "The reasons for checking each item"
+                },
+                {
+                  "id": "c",
+                  "content": "How to detect possible defects"
+                },
+                {
+                  "id": "d",
+                  "content": "The associated regulations"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Environmental factors, including weather, terrain, route selection, and obstructions."
+            }
+          ]
         },
         {
           "id": "B",
