@@ -233,32 +233,465 @@
               "id": 4,
               "content": "Flight deck instrument displays of digital weather and aeronautical information."
             }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Making the go/no-go and continue/divert decisions, including:",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Circumstances that would make diversion prudent"
+                },
+                {
+                  "id": "b",
+                  "content": "Personal weather minimums"
+                },
+                {
+                  "id": "c",
+                  "content": "Hazardous weather conditions, including known or forecast icing or turbulence aloft"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "content": "Use and limitations of:",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Installed onboard weather equipment"
+                },
+                {
+                  "id": "b",
+                  "content": "Aviation weather reports and forecasts"
+                },
+                {
+                  "id": "c",
+                  "content": "Inflight weather resources"
+                }
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Use available aviation weather resources to obtain an adequate weather briefing."
+            },
+            {
+              "id": 2,
+              "content": "Analyze the implications of at least three of the conditions listed in K3a through K3l, using actual weather or weather conditions provided by the evaluator."
+            },
+            {
+              "id": 3,
+              "content": "Correlate weather information to make a go/no-go decision."
+            }
           ]
         },
         {
           "id": "D",
           "name": "Cross-Country Flight Planning",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with cross-country flights and VFR flight planning"
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with cross-country flights and VFR flight planning",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Route planning, including consideration of different classes and special use airspace (SUA) and selection of appropriate and available navigation/communication systems and facilities.",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Use of an electronic flight bag (EFB), if used"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "content": "Altitude selection accounting for terrain and obstacles, glide distance of airplane, VFR cruising altitudes, and effect of wind."
+            },
+            {
+              "id": 3,
+              "content": "Calculating:",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Time, climb and descent rates, course, distance, heading, true airspeed, and groundspeed"
+                },
+                {
+                  "id": "b",
+                  "content": "Estimated time of arrival, including conversion to universal coordinated time (UTC)"
+                },
+                {
+                  "id": "c",
+                  "content": "Fuel requirements, including reserve"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Elements of a VFR flight plan."
+            },
+            {
+              "id": 5,
+              "content": "Procedures for filing, activating, and closing a VFR flight plan."
+            },
+            {
+              "id": 6,
+              "content": "Inflight intercept procedures."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Pilot."
+            },
+            {
+              "id": 2,
+              "content": "Aircraft."
+            },
+            {
+              "id": 3,
+              "content": "Environment (e.g., weather, airports, airspace, terrain, obstacles)."
+            },
+            {
+              "id": 4,
+              "content": "External pressures."
+            },
+            {
+              "id": 5,
+              "content": "Limitations of air traffic control (ATC) services."
+            },
+            {
+              "id": 6,
+              "content": "Fuel planning."
+            },
+            {
+              "id": 7,
+              "content": "Use of an electronic flight bag (EFB), if used."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Prepare, present, and explain a cross-country flight plan assigned by the evaluator, including a risk analysis based on real-time weather, to the first fuel stop."
+            },
+            {
+              "id": 2,
+              "content": "Apply pertinent information from appropriate and current aeronautical charts, Chart Supplements; Notices to Air Missions (NOTAMs) relative to airport, runway and taxiway closures; and other flight publications."
+            },
+            {
+              "id": 3,
+              "content": "Create a navigation plan and simulate filing a VFR flight plan."
+            },
+            {
+              "id": 4,
+              "content": "Recalculate fuel reserves based on a scenario provided by the evaluator."
+            },
+            {
+              "id": 5,
+              "content": "Use an electronic flight bag (EFB), if applicable."
+            }
+          ]
         },
         {
           "id": "E",
           "name": "National Airspace System",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with National Airspace System (NAS) operations under VFR as a private pilot."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with National Airspace System (NAS) operations under VFR as a private pilot.",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Airspace classes and associated requirements and limitations."
+            },
+            {
+              "id": 2,
+              "content": "Chart symbols."
+            },
+            {
+              "id": 3,
+              "content": "Special use airspace (SUA), special flight rules areas (SFRA), temporary flight restrictions (TFR), and other airspace areas."
+            },
+            {
+              "id": 4,
+              "content": "Special visual flight rules (VFR) requirements."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Various classes and types of airspace."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Identify and comply with the requirements for basic VFR weather minimums and flying in particular classes of airspace."
+            },
+            {
+              "id": 2,
+              "content": "Correctly identify airspace and operate in accordance with associated communication and equipment requirements."
+            },
+            {
+              "id": 3,
+              "content": "Identify the requirements for operating in SUA or within a TFR. Identify and comply with special air traffic rules (SATR) and SFRA operations, if applicable."
+            }
+          ]
         },
         {
           "id": "F",
-          "name": "Performance Limitations",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with operating an airplane safely within the parameters of its performance capabilities and limitations."
+          "name": "Performance and Limitations",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with operating an airplane safely within the parameters of its performance capabilities and limitations.",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Elements related to performance and limitations by explaining the use of charts, tables, and data to determine performance."
+            },
+            {
+              "id": 2,
+              "content": "Factors affecting performance, including:",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Atmospheric conditions"
+                },
+                {
+                  "id": "b",
+                  "content": "Pilot technique"
+                },
+                {
+                  "id": "c",
+                  "content": "Airplane configuration"
+                },
+                {
+                  "id": "d",
+                  "content": "Airport environment"
+                },
+                {
+                  "id": "e",
+                  "content": "Loading [e.g., center of gravity (CG)]"
+                },
+                {
+                  "id": "f",
+                  "content": "Weight and balance"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Aerodynamics."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Use of performance charts, tables, and data."
+            },
+            {
+              "id": 2,
+              "content": "Airplane limitations."
+            },
+            {
+              "id": 3,
+              "content": "Possible differences between calculated performance and actual performance."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Compute the weight and balance, correct out-of-CG loading errors and determine if the weight and balance remains within limits during all phases of flight."
+            },
+            {
+              "id": 2,
+              "content": "Use the appropriate airplane performance charts, tables, and data."
+            }
+          ]
         },
         {
           "id": "G",
           "name": "Operation of Systems",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with safe operation of systems on the airplane provided for the flight test."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with safe operation of systems on the airplane provided for the flight test.",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Airplane systems, including:",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Primary flight controls"
+                },
+                {
+                  "id": "b",
+                  "content": "Secondary flight controls"
+                },
+                {
+                  "id": "c",
+                  "content": "Powerplant and propeller"
+                },
+                {
+                  "id": "d",
+                  "content": "Landing gear"
+                },
+                {
+                  "id": "e",
+                  "content": "Fuel, oil, and hydraulic"
+                },
+                {
+                  "id": "f",
+                  "content": "Electrical"
+                },
+                {
+                  "id": "g",
+                  "content": "Avionics"
+                },
+                {
+                  "id": "h",
+                  "content": "Pitot-static, vacuum/pressure, and associated flight instruments"
+                },
+                {
+                  "id": "i",
+                  "content": "Environmental"
+                },
+                {
+                  "id": "j",
+                  "content": "Deicing and anti-icing"
+                },
+                {
+                  "id": "k",
+                  "content": "Water rudders",
+                  "appliesTo": ["ASES", "AMES"]
+                },
+                {
+                  "id": "l",
+                  "content": "Oxygen system"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "content": "Indications of and procedures for managing system abnormalities or failures."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Detection of system malfunctions or failures."
+            },
+            {
+              "id": 2,
+              "content": "Management of a system failure."
+            },
+            {
+              "id": 3,
+              "content": "Monitoring and management of automated systems."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Operate at least three of the systems listed in K1a through K1l appropriately."
+            },
+            {
+              "id": 2,
+              "content": "Complete the appropriate checklist(s)."
+            }
+          ]
         },
         {
           "id": "H",
           "name": "Human Factors",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with personal health, flight physiology, and aeromedical and human factors related to safety of flight."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with personal health, flight physiology, and aeromedical and human factors related to safety of flight.",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Symptoms, recognition, causes, effects, and corrective actions associated with aeromedical and physiological issues, including:",
+              "subElements": [
+                {
+                  "id": "a",
+                  "content": "Hypoxia"
+                },
+                {
+                  "id": "b",
+                  "content": "Hyperventilation"
+                },
+                {
+                  "id": "c",
+                  "content": "Middle ear and sinus problems"
+                },
+                {
+                  "id": "d",
+                  "content": "Spatial disorientation"
+                },
+                {
+                  "id": "e",
+                  "content": "Motion sickness"
+                },
+                {
+                  "id": "f",
+                  "content": "Carbon monoxide poisoning"
+                },
+                {
+                  "id": "g",
+                  "content": "Stress"
+                },
+                {
+                  "id": "h",
+                  "content": "Fatigue"
+                },
+                {
+                  "id": "i",
+                  "content": "Dehydration and nutrition"
+                },
+                {
+                  "id": "j",
+                  "content": "Hypothermia"
+                },
+                {
+                  "id": "k",
+                  "content": "Optical illusions"
+                },
+                {
+                  "id": "l",
+                  "content": "Dissolved nitrogen in the bloodstream after scuba dives"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "content": "Regulations regarding use of alcohol and drugs."
+            },
+            {
+              "id": 3,
+              "content": "Effects of alcohol, drugs, and over-the-counter medications."
+            },
+            {
+              "id": 4,
+              "content": "Aeronautical Decision-Making (ADM) to include using Crew Resource Management (CRM) or Single- Pilot Resource Management (SRM), as appropriate."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Aeromedical and physiological issues."
+            },
+            {
+              "id": 2,
+              "content": "Hazardous attitudes."
+            },
+            {
+              "id": 3,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 4,
+              "content": "Confirmation and expectation bias."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Associate the symptoms and effects for at least three of the conditions listed in K1a through K1l with the cause(s) and corrective action(s)."
+            },
+            {
+              "id": 2,
+              "content": "Perform self-assessment, including fitness for flight and personal minimums, for actual flight or a scenario given by the evaluator."
+            }
+          ]
         },
         {
           "id": "I",
