@@ -77,6 +77,10 @@ ol, ul {
   padding: 0 1rem;
 }
 
+.mb-xs {
+  margin-bottom: .25em;
+}
+
 .mb-sm {
   margin-bottom: .5em;
 }
@@ -104,6 +108,18 @@ ol, ul {
 .task__title {
   font-size: 1.75rem;
   margin-bottom: .25em;
+}
+
+.task-element__form {
+  display: flex;
+  gap: 0 .5em;
+  grid-column: 2 / 3;
+}
+
+.task-element-list {
+  display: grid;
+  gap: 0 1em;
+  grid-template-columns: max-content auto;
 }
 
 .text-subtle {

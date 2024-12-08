@@ -1,0 +1,24 @@
+{{ define "task-element-list" }}
+  {{ with . }}
+  <div class="task-element-list">
+    {{ range . }}
+    <p class="text-subtle">PA.I.A.{{ .Type }}{{ .PublicID }}</p>
+    <div class="mb-xs">
+      {{ .Content }}
+      {{ with .SubElements }}
+      <ol class="sub-elements">
+        {{ range . }}
+        <li>{{ .Content }}</li>
+        {{ end }}
+      </ol>
+      {{ end }}
+    </div>
+    <div class="task-element__form mb-sm">
+      <form action="/task-elements/{{ .ID }}/confidence" method="post"><button name="high" type="submit">Confident</button></form>
+      <form action="/task-elements/{{ .ID }}/confidence" method="post"><button name="medium" type="submit">Meh</button></form>
+      <form action="/task-elements/{{ .ID }}/confidence" method="post"><button name="low" type="submit">Bad</button></form>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+{{ end }}

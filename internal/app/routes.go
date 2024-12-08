@@ -18,6 +18,8 @@ func (a *App) Routes() http.Handler {
 	mux.HandleFunc("GET /acs/{acs}/{areaID}", a.areaDetail)
 	mux.HandleFunc("GET /acs/{acs}/{areaID}/{taskID}", a.taskDetail)
 
+	mux.HandleFunc("POST /task-elements/{elementID}/confidence", a.setElementConfidence)
+
 	middleware := alice.New(a.logRequest)
 
 	return middleware.Then(mux)

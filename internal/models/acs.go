@@ -61,6 +61,14 @@ type SubElement struct {
 	Content   string `db:"content"`
 }
 
+type ElementConfidence int
+
+const (
+	ElementConfidenceLow    ElementConfidence = 1
+	ElementConfidenceMedium ElementConfidence = 2
+	ElementConfidenceHigh   ElementConfidence = 3
+)
+
 type ACSModel struct {
 	logger *slog.Logger
 	db     *pgxpool.Pool
@@ -162,11 +170,34 @@ func (m *ACSModel) GetTaskByArea(ctx context.Context, acs string, areaID string,
 		FROM acs_area_tasks t
 			LEFT JOIN acs_areas a ON t.area_id = a.id
 		WHERE a.acs_id = $1 AND a.public_id = $2 AND t.public_id = $3`
-
 	rows, _ := m.db.Query(ctx, query, acs, areaID, taskID)
+
+	return m.getTaskFromRows(ctx, rows)
+}
+
+func (m *ACSModel) GetTaskByElementID(ctx context.Context, elementID int) (Task, error) {
+	query := `SELECT DISTINCT
+			t.id,
+			t.area_id,
+			t.public_id,
+			t.name,
+			t.objective,
+			a.acs_id AS acs,
+			a.public_id AS area_public_id,
+			a.name AS area_name
+		FROM acs_elements e
+			LEFT JOIN acs_area_tasks t ON e.task_id = t.id
+			LEFT JOIN acs_areas a ON t.area_id = a.id
+		WHERE e.id = $1`
+	rows, _ := m.db.Query(ctx, query, elementID)
+
+	return m.getTaskFromRows(ctx, rows)
+}
+
+func (m *ACSModel) getTaskFromRows(ctx context.Context, rows pgx.Rows) (Task, error) {
 	task, err := pgx.CollectExactlyOneRow(rows, pgx.RowToStructByName[Task])
 	if err != nil {
-		return Task{}, fmt.Errorf("failed to collect task %s.%s.%s: %v", acs, areaID, taskID, err)
+		return Task{}, fmt.Errorf("failed to collect task: %v", err)
 	}
 
 	elements, err := m.listElementsForTasks(ctx, []int{task.ID})
@@ -278,4 +309,19 @@ func (m *ACSModel) listSubElements(ctx context.Context, elementIDs []int) (map[i
 	}
 
 	return subElements, nil
+}
+
+func (m *ACSModel) SetElementConfidence(ctx context.Context, elementID int, confidence ElementConfidence) error {
+	query := `INSERT INTO element_confidence (element_id, vote)
+		VALUES ($1, $2)
+		ON CONFLICT (element_id) DO UPDATE
+		SET vote = EXCLUDED.vote`
+
+	if _, err := m.db.Exec(ctx, query, elementID, confidence); err != nil {
+		return fmt.Errorf("failed to update confidence for element %d: %v", elementID, err)
+	}
+
+	m.logger.InfoContext(ctx, "Set element confidence.", "elementID", elementID, "confidence", confidence)
+
+	return nil
 }
