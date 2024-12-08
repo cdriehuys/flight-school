@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"io/fs"
 	"log/slog"
+	"math"
 
 	"github.com/cdriehuys/flight-school/internal/models"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -33,6 +34,7 @@ type acsModel interface {
 	GetAreaByID(ctx context.Context, acs string, areaID string) (models.AreaOfOperation, error)
 	GetTaskByArea(ctx context.Context, acs string, areaID string, taskID string) (models.Task, error)
 	GetTaskByElementID(ctx context.Context, elementID int) (models.Task, error)
+	GetTaskConfidence(ctx context.Context, taskID int) (models.TaskConfidence, error)
 	ListAreasByACS(ctx context.Context, acs string) ([]models.AreaOfOperation, error)
 	ListTasksByArea(ctx context.Context, areaID int) ([]models.Task, error)
 	SetElementConfidence(ctx context.Context, elementID int, confidence models.ElementConfidence) error
@@ -51,7 +53,8 @@ func New(
 
 	sf := newStaticDir(staticFiles)
 	funcMap := template.FuncMap{
-		"static": sf.URL,
+		"fracAsPercent": fracAsPercent,
+		"static":        sf.URL,
 	}
 
 	var templates templateEngine
@@ -76,4 +79,16 @@ func New(
 	}
 
 	return app, nil
+}
+
+// fracAsPercent computes an integer percentage in the range [0, 100] from a fraction. An undefined
+// fraction is treated as 0%.
+func fracAsPercent(numerator int, denominator int) int {
+	if denominator == 0 {
+		return 0
+	}
+
+	decimal := float64(numerator) / float64(denominator) * 100
+
+	return int(math.Round(decimal))
 }

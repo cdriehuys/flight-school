@@ -11,6 +11,8 @@
     <h1 class="page__title">{{ .Task.Name }}</h1>
     <h2 class="page__subtitle text-subtle mb-md">{{ .Task.ACS }}.{{ .Task.AreaPublicID }}.{{ .Task.PublicID }}</h2>
 
+    <p class="mb-md"><strong>Confidence:</strong> {{ fracAsPercent .TaskConfidence.Votes .TaskConfidence.Possible }}%</p>
+
     <p><strong>Objective:</strong> {{ .Task.Objective }}</p>
   </section>
 

@@ -18,6 +18,7 @@ type templateData struct {
 	AreaOfOperation  models.AreaOfOperation
 	AreasOfOperation []models.AreaOfOperation
 	Task             models.Task
+	TaskConfidence   models.TaskConfidence
 	Tasks            []models.Task
 }
 

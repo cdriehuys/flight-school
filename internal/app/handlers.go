@@ -62,7 +62,19 @@ func (a *App) taskDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := templateData{Task: task}
+	confidence, err := a.acsModel.GetTaskConfidence(r.Context(), task.ID)
+	if err != nil {
+		a.logger.ErrorContext(
+			r.Context(),
+			"Failed to retrieve task confidence.",
+			"error", err,
+			"taskID", task.ID,
+		)
+		a.serverError(w, r, err)
+		return
+	}
+
+	data := templateData{Task: task, TaskConfidence: confidence}
 
 	a.render(w, r, http.StatusOK, "task-detail.html.tmpl", data)
 }

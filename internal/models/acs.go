@@ -325,3 +325,29 @@ func (m *ACSModel) SetElementConfidence(ctx context.Context, elementID int, conf
 
 	return nil
 }
+
+type TaskConfidence struct {
+	Votes    int
+	Possible int
+}
+
+func (m *ACSModel) GetTaskConfidence(ctx context.Context, taskID int) (TaskConfidence, error) {
+	query := `WITH task_elements AS (
+			SELECT id FROM acs_elements WHERE task_id = $1
+		), max_votes AS (
+			SELECT COALESCE(COUNT(*) * 3, 0) AS max_votes FROM task_elements
+		)
+		SELECT
+			COALESCE(SUM(c.vote), 0) AS votes,
+			(SELECT max_votes FROM max_votes) AS possible
+		FROM element_confidence c
+		WHERE c.element_id IN (SELECT id FROM task_elements)
+	`
+
+	var confidence TaskConfidence
+	if err := m.db.QueryRow(ctx, query, taskID).Scan(&confidence.Votes, &confidence.Possible); err != nil {
+		return TaskConfidence{}, fmt.Errorf("failed to get task confidence: %v", err)
+	}
+
+	return confidence, nil
+}
