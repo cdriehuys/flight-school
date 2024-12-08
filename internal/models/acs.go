@@ -31,6 +31,8 @@ type Task struct {
 	AreaPublicID string `db:"area_public_id"`
 	AreaName     string `db:"area_name"`
 
+	Confidence TaskConfidence `db:"-"`
+
 	KnowledgeElements      []TaskElement `db:"-"`
 	RiskManagementElements []TaskElement `db:"-"`
 	SkillElements          []TaskElement `db:"-"`
@@ -143,15 +145,20 @@ func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int) ([]Task, err
 		return nil, fmt.Errorf("failed to list elements for tasks: %v", err)
 	}
 
+	confidences, err := m.listTaskConfidences(ctx, taskIDs)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get confidence for tasks: %v", err)
+	}
+
 	for i, task := range tasks {
 		elements, hasElements := taskElements[task.ID]
-		if !hasElements {
-			continue
+		if hasElements {
+			tasks[i].KnowledgeElements = elements[TaskElementTypeKnowledge]
+			tasks[i].RiskManagementElements = elements[TaskElementTypeRiskManagement]
+			tasks[i].SkillElements = elements[TaskElementTypeSkills]
 		}
 
-		tasks[i].KnowledgeElements = elements[TaskElementTypeKnowledge]
-		tasks[i].RiskManagementElements = elements[TaskElementTypeRiskManagement]
-		tasks[i].SkillElements = elements[TaskElementTypeSkills]
+		tasks[i].Confidence = confidences[task.ID]
 	}
 
 	return tasks, nil
@@ -350,4 +357,37 @@ func (m *ACSModel) GetTaskConfidence(ctx context.Context, taskID int) (TaskConfi
 	}
 
 	return confidence, nil
+}
+
+func (m *ACSModel) listTaskConfidences(ctx context.Context, taskIDs []int) (map[int]TaskConfidence, error) {
+	query := `WITH max_votes AS (
+			SELECT COALESCE(COUNT(*) * 3, 0) AS max_votes, e.task_id AS task_id
+			FROM acs_elements e
+			GROUP BY e.task_id
+		)
+		SELECT
+			e.task_id AS task_id,
+			COALESCE(SUM(c.vote), 0) AS votes,
+			(SELECT max_votes FROM max_votes WHERE task_id = e.task_id) AS possible
+		FROM element_confidence c
+			RIGHT JOIN acs_elements e ON c.element_id = e.id
+		WHERE e.task_id = ANY ($1)
+		GROUP BY e.task_id`
+	rows, _ := m.db.Query(ctx, query, taskIDs)
+
+	confidenceByTask := make(map[int]TaskConfidence)
+
+	_, err := pgx.CollectRows(rows, func(row pgx.CollectableRow) (struct{}, error) {
+		var taskID int
+		var c TaskConfidence
+		if err := row.Scan(&taskID, &c.Votes, &c.Possible); err != nil {
+			return struct{}{}, err
+		}
+
+		confidenceByTask[taskID] = c
+
+		return struct{}{}, nil
+	})
+
+	return confidenceByTask, err
 }
