@@ -16,6 +16,7 @@ func (a *App) Routes() http.Handler {
 	mux.Handle("GET /acs", homepageRedirect)
 	mux.Handle("GET /acs/{acs}", homepageRedirect)
 	mux.HandleFunc("GET /acs/{acs}/{areaID}", a.areaDetail)
+	mux.HandleFunc("GET /acs/{acs}/{areaID}/{taskID}", a.taskDetail)
 
 	middleware := alice.New(a.logRequest)
 

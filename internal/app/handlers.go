@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -37,4 +38,12 @@ func (a *App) areaDetail(w http.ResponseWriter, r *http.Request) {
 	data := templateData{AreaOfOperation: area, Tasks: tasks}
 
 	a.render(w, r, http.StatusOK, "area-detail.html.tmpl", data)
+}
+
+func (a *App) taskDetail(w http.ResponseWriter, r *http.Request) {
+	acs := r.PathValue("acs")
+	areaID := r.PathValue("areaID")
+	taskID := r.PathValue("taskID")
+
+	fmt.Fprintf(w, "%s.%s.%s", acs, areaID, taskID)
 }

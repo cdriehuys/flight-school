@@ -1,3 +1,5 @@
+{{ define "title" }}{{ .AreaOfOperation.FullID }} &ndash; {{ .AreaOfOperation.Name }}{{ end }}
+
 {{ define "content" }}
 <section class="container">
   <a class="breadcrumb" href="/">Home</a>
@@ -11,55 +13,20 @@
   {{ range . }}
   <div class="task">
     <div class="task__header">
-      <h2 class="task__title">{{ .PublicID }} &ndash; {{ .Name }}</h2>
-      {{ with .Objective }}
-      <p><strong>Objective:</strong> {{ . }}</p>
-      {{ end }}
+      <h2 class="task__title">
+        <a href="/acs/{{ $area.ACS }}/{{ $area.PublicID }}/{{ .PublicID }}">{{ .Name }}</a>
+      </h2>
+      <h3 class="task__subtitle">{{ $area.FullID }}.{{ .PublicID }}</h3>
     </div>
 
-    {{ $task := . }}
-
-    {{ with .KnowledgeElements }}
-    <div class="task__elements">
-      <p><strong>Knowledge:</strong> The applicant demonstrates understanding of:</p>
-      <ul>
-        {{ range . }}
-        <li>
-          {{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}
-          {{ with .SubElements }}
-          <ol class="task__subelements">
-            {{ range . }}
-            <li value="{{ .PublicID }}">{{ .Content }}</li>
-            {{ end }}
-          </ol>
-          {{ end }}
-        </li>
-        {{ end }}
-      </ul>
-    </div>
+    {{ with .Objective }}
+    <p class="task__objective"><strong>Objective:</strong> {{ . }}</p>
     {{ end }}
 
-    {{ with .RiskManagementElements }}
     <div class="task__elements">
-      <p><strong>Risk Management:</strong> The applicant is able to identify, assess, and mitigate risk associated with:</p>
-      <ul>
-        {{ range . }}
-        <li>{{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}</li>
-        {{ end }}
-      </ul>
+      <strong class="task__elements__title">Elements</strong>
+      <p>{{ len .KnowledgeElements }} Knowledge • {{ len .RiskManagementElements }} Risk • {{ len .SkillElements }} Skill</p>
     </div>
-    {{ end }}
-
-    {{ with .SkillElements }}
-    <div class="task__elements">
-      <p><strong>Skills:</strong> The applicant exhibits the skill to:</p>
-      <ul>
-        {{ range . }}
-        <li>{{ .Type }}{{ .PublicID }} &ndash; {{ .Content }}</li>
-        {{ end }}
-      </ul>
-    </div>
-    {{ end }}
   </div>
   {{ end }}
 </section>
