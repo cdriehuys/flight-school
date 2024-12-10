@@ -80,7 +80,7 @@ func (a *App) taskDetail(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) setElementConfidence(w http.ResponseWriter, r *http.Request) {
-	elementID, err := strconv.Atoi(r.PathValue("elementID"))
+	elementID, err := strconv.ParseInt(r.PathValue("elementID"), 10, 32)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprint(w, http.StatusText(http.StatusBadRequest))
@@ -100,33 +100,33 @@ func (a *App) setElementConfidence(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := a.acsModel.SetElementConfidence(r.Context(), elementID, confidence); err != nil {
+	if err := a.acsModel.SetElementConfidence(r.Context(), int32(elementID), confidence); err != nil {
 		a.logger.ErrorContext(r.Context(), "Failed to set element confidence.", "error", err, "elementID", elementID, "confidence", confidence)
 		a.serverError(w, r, err)
 		return
 	}
 
-	task, err := a.acsModel.GetTaskByElementID(r.Context(), elementID)
+	task, err := a.acsModel.GetTaskByElementID(r.Context(), int32(elementID))
 	if err != nil {
 		a.logger.ErrorContext(r.Context(), "Failed to retrieve parent task.", "error", err, "elementID", elementID)
 		a.serverError(w, r, err)
 		return
 	}
 
-	http.Redirect(w, r, fmt.Sprintf("/acs/%s/%s/%s", task.ACS, task.AreaPublicID, task.PublicID), http.StatusSeeOther)
+	http.Redirect(w, r, fmt.Sprintf("/acs/%s/%s/%s", task.Area.ACS, task.Area.PublicID, task.PublicID), http.StatusSeeOther)
 }
 
-func getConfidenceFromForm(values url.Values) (models.ElementConfidence, error) {
+func getConfidenceFromForm(values url.Values) (models.ConfidenceLevel, error) {
 	if values.Has("high") {
-		return models.ElementConfidenceHigh, nil
+		return models.ConfidenceLevelHigh, nil
 	}
 
 	if values.Has("medium") {
-		return models.ElementConfidenceMedium, nil
+		return models.ConfidenceLevelMedium, nil
 	}
 
 	if values.Has("low") {
-		return models.ElementConfidenceLow, nil
+		return models.ConfidenceLevelLow, nil
 	}
 
 	return 0, errors.New("unknown confidence level")

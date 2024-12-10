@@ -1,15 +1,15 @@
-{{ define "title" }}{{ .Task.Name }}{{ end }}
+{{ define "title" }}{{ .Task.FullPublicID }} &ndash; {{ .Task.Name }}{{ end }}
 
 {{ define "content" }}
 <section class="container">
   <div class="breadcrumbs mb-md">
     <a class="breadcrumb" href="/">Home
-    </a><a class="breadcrumb" href="/acs/{{ .Task.ACS }}/{{ .Task.AreaPublicID }}">{{ .Task.AreaName }}</a>
+    </a><a class="breadcrumb" href="/acs/{{ .Task.Area.ACS }}/{{ .Task.Area.PublicID }}">{{ .Task.Area.Name }}</a>
   </div>
 
   <section class="card mb-lg">
     <h1 class="page__title">{{ .Task.Name }}</h1>
-    <h2 class="page__subtitle text-subtle mb-md">{{ .Task.ACS }}.{{ .Task.AreaPublicID }}.{{ .Task.PublicID }}</h2>
+    <h2 class="page__subtitle text-subtle mb-md">{{ .Task.FullPublicID }}</h2>
 
     <p class="mb-md"><strong>Confidence:</strong> {{ fracAsPercent .TaskConfidence.Votes .TaskConfidence.Possible }}%</p>
 

@@ -1,0 +1,19 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "queries.sql"
+    schema: "../../../migrations"
+    gen:
+      go:
+        package: "queries"
+        out: "./"
+        output_db_file_name: "db.gen.go"
+        output_models_file_name: "models.gen.go"
+        output_files_suffix: ".gen.go"
+        sql_package: "pgx/v5"
+
+overrides:
+  go:
+    rename:
+      ac: ACS
+      acs_area_task: Task

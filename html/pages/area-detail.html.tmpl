@@ -20,7 +20,7 @@
         <h2 class="task__title">
           <a href="/acs/{{ $area.ACS }}/{{ $area.PublicID }}/{{ .PublicID }}">{{ .Name }}</a>
         </h2>
-        <h3 class="mb-md text-subtle">{{ $area.FullID }}.{{ .PublicID }}</h3>
+        <h3 class="mb-md text-subtle">{{ .FullPublicID }}</h3>
       </div>
 
       {{ with .Confidence }}
@@ -33,7 +33,7 @@
 
       <div class="mb-sm">
         <strong>Elements</strong>
-        <p>{{ len .KnowledgeElements }} Knowledge • {{ len .RiskManagementElements }} Risk • {{ len .SkillElements }} Skill</p>
+        <p>{{ .KnowledgeElementCount }} Knowledge • {{ .RiskManagementElementCount }} Risk • {{ .SkillElementCount }} Skill</p>
       </div>
     </div>
     {{ end }}

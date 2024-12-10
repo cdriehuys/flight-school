@@ -19,7 +19,7 @@ type templateData struct {
 	AreasOfOperation []models.AreaOfOperation
 	Task             models.Task
 	TaskConfidence   models.TaskConfidence
-	Tasks            []models.Task
+	Tasks            []models.TaskSummary
 }
 
 // render executes a template and writes it as the response.

@@ -10,6 +10,16 @@ study efficiently.
 
 The application expects to have a Postgres database available.
 
+## Build It
+
+Build tasks are orchestrated with [`just`][just]. The main entrypoint for
+building the application is:
+```shell
+just build
+```
+
+Other tasks can be viewed via `just --list`.
+
 ## Run It
 
 The main web application can be built from `./cmd/flight-school`. It launches a
@@ -34,3 +44,4 @@ Usage of populate-acs:
 ```
 
 [acs]: https://www.faa.gov/training_testing/testing/acs
+[just]: https://github.com/casey/just

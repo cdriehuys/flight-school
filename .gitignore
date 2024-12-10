@@ -1,2 +1,8 @@
+# Generated Files
+*.gen.go
+
+# Builds
+build
+
 # Debugging artifacts
 __debug_bin*

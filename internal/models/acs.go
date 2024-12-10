@@ -5,37 +5,62 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/cdriehuys/flight-school/internal/models/queries"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type AreaOfOperation struct {
-	ID       int    `db:"id"`
-	ACS      string `db:"acs_id"`
-	PublicID string `db:"public_id"`
-	Name     string `db:"name"`
+	ID       int32
+	ACS      string
+	PublicID string
+	Name     string
 }
 
 func (a AreaOfOperation) FullID() string {
 	return fmt.Sprintf("%s.%s", a.ACS, a.PublicID)
 }
 
+func areaOfOperationFromModel(m queries.AcsArea) AreaOfOperation {
+	return AreaOfOperation{
+		ID:       m.ID,
+		ACS:      m.AcsID,
+		PublicID: m.PublicID,
+		Name:     m.Name,
+	}
+}
+
+type TaskSummary struct {
+	ID        int32
+	AreaID    int32
+	PublicID  string
+	Name      string
+	Objective string
+
+	FullPublicID string
+
+	Confidence TaskConfidence
+
+	KnowledgeElementCount      int
+	RiskManagementElementCount int
+	SkillElementCount          int
+}
+
 type Task struct {
-	ID        int    `db:"id"`
-	AreaID    int    `db:"area_id"`
+	ID        int32  `db:"id"`
 	PublicID  string `db:"public_id"`
 	Name      string `db:"name"`
 	Objective string `db:"objective"`
 
-	ACS          string `db:"acs"`
-	AreaPublicID string `db:"area_public_id"`
-	AreaName     string `db:"area_name"`
+	Area       AreaOfOperation
+	Confidence TaskConfidence
 
-	Confidence TaskConfidence `db:"-"`
+	KnowledgeElements      []TaskElement
+	RiskManagementElements []TaskElement
+	SkillElements          []TaskElement
+}
 
-	KnowledgeElements      []TaskElement `db:"-"`
-	RiskManagementElements []TaskElement `db:"-"`
-	SkillElements          []TaskElement `db:"-"`
+func (t Task) FullPublicID() string {
+	return fmt.Sprintf("%s.%s.%s", t.Area.ACS, t.Area.PublicID, t.PublicID)
 }
 
 type TaskElementType string
@@ -47,167 +72,133 @@ const (
 )
 
 type TaskElement struct {
-	ID       int `db:"id"`
-	TaskID   int `db:"task_id"`
+	ID       int32 `db:"id"`
+	TaskID   int32 `db:"task_id"`
 	Type     TaskElementType
-	PublicID int    `db:"public_id"`
+	PublicID int32  `db:"public_id"`
 	Content  string `db:"content"`
 
 	SubElements []SubElement `db:"-"`
 }
 
 type SubElement struct {
-	ID        int    `db:"id"`
-	ElementID int    `db:"element_id"`
+	ID        int32  `db:"id"`
+	ElementID int32  `db:"element_id"`
 	PublicID  string `db:"public_id"`
 	Content   string `db:"content"`
 }
 
-type ElementConfidence int
+type ConfidenceLevel int16
 
 const (
-	ElementConfidenceLow    ElementConfidence = 1
-	ElementConfidenceMedium ElementConfidence = 2
-	ElementConfidenceHigh   ElementConfidence = 3
+	ConfidenceLevelLow    ConfidenceLevel = 1
+	ConfidenceLevelMedium ConfidenceLevel = 2
+	ConfidenceLevelHigh   ConfidenceLevel = 3
 )
 
 type ACSModel struct {
 	logger *slog.Logger
 	db     *pgxpool.Pool
+	q      queries.Queries
 }
 
 func NewACSModel(logger *slog.Logger, db *pgxpool.Pool) *ACSModel {
-	return &ACSModel{logger, db}
+	return &ACSModel{logger, db, *queries.New(db)}
 }
 
 func (m *ACSModel) GetAreaByID(ctx context.Context, acs string, id string) (AreaOfOperation, error) {
-	query := `SELECT id, acs_id, public_id, "name"
-		FROM acs_areas
-		WHERE acs_id = $1 AND public_id = $2`
-
-	rows, err := m.db.Query(ctx, query, acs, id)
+	areaModel, err := m.q.GetAreaByPublicID(ctx, queries.GetAreaByPublicIDParams{
+		AcsID:    acs,
+		PublicID: id,
+	})
 	if err != nil {
-		return AreaOfOperation{}, fmt.Errorf("failed to retrieve area with ID %s: %v", id, err)
+		return AreaOfOperation{}, fmt.Errorf("failed to retrieve area %s.%s: %v", acs, id, err)
 	}
 
-	return pgx.CollectExactlyOneRow(rows, pgx.RowToStructByName[AreaOfOperation])
+	return areaOfOperationFromModel(areaModel), nil
 }
 
 func (m *ACSModel) ListAreasByACS(ctx context.Context, acs string) ([]AreaOfOperation, error) {
-	query := `SELECT id, acs_id, public_id, "name"
-		FROM acs_areas
-		WHERE acs_id = $1
-		ORDER BY "order" ASC`
-	rows, err := m.db.Query(ctx, query, acs)
+	areaModels, err := m.q.ListAreasByACS(ctx, acs)
 	if err != nil {
-		return nil, fmt.Errorf("failed to query areas in for ACS %s: %v", acs, err)
+		return nil, fmt.Errorf("failed to list areas for ACS %s: %v", acs, err)
 	}
 
-	areas, err := pgx.CollectRows(rows, pgx.RowToStructByName[AreaOfOperation])
-	if err != nil {
-		return nil, fmt.Errorf("failed to collect areas: %v", err)
+	areas := make([]AreaOfOperation, len(areaModels))
+	for i, a := range areaModels {
+		areas[i] = areaOfOperationFromModel(a)
 	}
 
 	return areas, nil
 }
 
-func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int) ([]Task, error) {
-	query := `SELECT
-			t.id,
-			t.area_id,
-			t.public_id,
-			t.name,
-			t.objective,
-			a.acs_id AS acs,
-			a.public_id AS area_public_id,
-			a.name AS area_name
-		FROM acs_area_tasks t
-			LEFT JOIN acs_areas a ON t.area_id = a.id
-		WHERE area_id = $1
-		ORDER BY public_id ASC`
-	rows, err := m.db.Query(ctx, query, areaID)
+func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int32) ([]TaskSummary, error) {
+	taskModels, err := m.q.ListTasksByArea(ctx, int32(areaID))
 	if err != nil {
 		return nil, fmt.Errorf("failed to query tasks for area %d: %v", areaID, err)
 	}
 
-	tasks, err := pgx.CollectRows(rows, pgx.RowToStructByName[Task])
-	if err != nil {
-		return nil, fmt.Errorf("failed to collect tasks: %v", err)
-	}
-
-	taskIDs := make([]int, len(tasks))
-	for _, task := range tasks {
-		taskIDs = append(taskIDs, task.ID)
-	}
-
-	taskElements, err := m.listElementsForTasks(ctx, taskIDs)
-	if err != nil {
-		return nil, fmt.Errorf("failed to list elements for tasks: %v", err)
-	}
-
-	confidences, err := m.listTaskConfidences(ctx, taskIDs)
-	if err != nil {
-		return nil, fmt.Errorf("failed to get confidence for tasks: %v", err)
-	}
-
-	for i, task := range tasks {
-		elements, hasElements := taskElements[task.ID]
-		if hasElements {
-			tasks[i].KnowledgeElements = elements[TaskElementTypeKnowledge]
-			tasks[i].RiskManagementElements = elements[TaskElementTypeRiskManagement]
-			tasks[i].SkillElements = elements[TaskElementTypeSkills]
+	tasks := make([]TaskSummary, len(taskModels))
+	for i, t := range taskModels {
+		tasks[i] = TaskSummary{
+			ID:                         t.Task.ID,
+			AreaID:                     areaID,
+			PublicID:                   t.Task.PublicID,
+			Name:                       t.Task.Name,
+			Objective:                  t.Task.Objective,
+			FullPublicID:               t.FullPublicID,
+			Confidence:                 TaskConfidence{int(t.Votes), int(t.MaxVotes)},
+			KnowledgeElementCount:      int(t.KnowledgeElementCount),
+			RiskManagementElementCount: int(t.RiskElementCount),
+			SkillElementCount:          int(t.SkillElementCount),
 		}
-
-		tasks[i].Confidence = confidences[task.ID]
 	}
 
 	return tasks, nil
 }
 
 func (m *ACSModel) GetTaskByArea(ctx context.Context, acs string, areaID string, taskID string) (Task, error) {
-	query := `SELECT
-			t.id,
-			t.area_id,
-			t.public_id,
-			t.name,
-			t.objective,
-			a.acs_id AS acs,
-			a.public_id AS area_public_id,
-			a.name AS area_name
-		FROM acs_area_tasks t
-			LEFT JOIN acs_areas a ON t.area_id = a.id
-		WHERE a.acs_id = $1 AND a.public_id = $2 AND t.public_id = $3`
-	rows, _ := m.db.Query(ctx, query, acs, areaID, taskID)
-
-	return m.getTaskFromRows(ctx, rows)
-}
-
-func (m *ACSModel) GetTaskByElementID(ctx context.Context, elementID int) (Task, error) {
-	query := `SELECT DISTINCT
-			t.id,
-			t.area_id,
-			t.public_id,
-			t.name,
-			t.objective,
-			a.acs_id AS acs,
-			a.public_id AS area_public_id,
-			a.name AS area_name
-		FROM acs_elements e
-			LEFT JOIN acs_area_tasks t ON e.task_id = t.id
-			LEFT JOIN acs_areas a ON t.area_id = a.id
-		WHERE e.id = $1`
-	rows, _ := m.db.Query(ctx, query, elementID)
-
-	return m.getTaskFromRows(ctx, rows)
-}
-
-func (m *ACSModel) getTaskFromRows(ctx context.Context, rows pgx.Rows) (Task, error) {
-	task, err := pgx.CollectExactlyOneRow(rows, pgx.RowToStructByName[Task])
+	row, err := m.q.GetTaskByPublicID(ctx, queries.GetTaskByPublicIDParams{
+		Acs:    acs,
+		AreaID: areaID,
+		TaskID: taskID,
+	})
 	if err != nil {
-		return Task{}, fmt.Errorf("failed to collect task: %v", err)
+		return Task{}, fmt.Errorf("failed to retrieve task %s.%s.%s: %v", acs, areaID, taskID, err)
 	}
 
-	elements, err := m.listElementsForTasks(ctx, []int{task.ID})
+	task := Task{
+		ID:         row.Task.ID,
+		PublicID:   row.Task.PublicID,
+		Name:       row.Task.Name,
+		Objective:  row.Task.Objective,
+		Area:       areaOfOperationFromModel(row.AcsArea),
+		Confidence: TaskConfidence{int(row.Votes), int(row.MaxVotes)},
+	}
+
+	return m.addElementsToTask(ctx, task)
+}
+
+func (m *ACSModel) GetTaskByElementID(ctx context.Context, elementID int32) (Task, error) {
+	row, err := m.q.GetTaskByElementID(ctx, elementID)
+	if err != nil {
+		return Task{}, fmt.Errorf("failed to retrieve parent task for element %d: %v", elementID, err)
+	}
+
+	task := Task{
+		ID:         row.Task.ID,
+		PublicID:   row.Task.PublicID,
+		Name:       row.Task.Name,
+		Objective:  row.Task.Objective,
+		Area:       areaOfOperationFromModel(row.AcsArea),
+		Confidence: TaskConfidence{int(row.Votes), int(row.MaxVotes)},
+	}
+
+	return m.addElementsToTask(ctx, task)
+}
+
+func (m *ACSModel) addElementsToTask(ctx context.Context, task Task) (Task, error) {
+	elements, err := m.listElementsForTasks(ctx, []int32{task.ID})
 	if err != nil {
 		return Task{}, fmt.Errorf("failed to list elements for task: %v", err)
 	}
@@ -222,109 +213,98 @@ func (m *ACSModel) getTaskFromRows(ctx context.Context, rows pgx.Rows) (Task, er
 	return task, nil
 }
 
-func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int) (map[int]map[TaskElementType][]TaskElement, error) {
-	query := `SELECT id, task_id, "type", public_id, content
-		FROM acs_elements
-		WHERE task_id = ANY ($1)
-		ORDER BY public_id ASC`
-
-	rows, err := m.db.Query(ctx, query, taskIDs)
+func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int32) (map[int32]map[TaskElementType][]TaskElement, error) {
+	elements, err := m.q.ListElementsByTaskIDs(ctx, taskIDs)
 	if err != nil {
-		return nil, fmt.Errorf("failed to query task elements: %v", err)
+		return nil, fmt.Errorf("failed to list task elements: %v", err)
 	}
 
-	elementIDs := make([]int, 0)
-	elementsByTask := make(map[int]map[TaskElementType][]TaskElement)
-
-	_, err = pgx.CollectRows(rows, func(row pgx.CollectableRow) (struct{}, error) {
-		el, err := pgx.RowToStructByName[TaskElement](row)
-		if err != nil {
-			return struct{}{}, err
-		}
-
-		elementIDs = append(elementIDs, el.ID)
-
-		_, taskExists := elementsByTask[el.TaskID]
-		if !taskExists {
-			elementsByTask[el.TaskID] = make(map[TaskElementType][]TaskElement)
-		}
-
-		_, elementTypeExists := elementsByTask[el.TaskID][el.Type]
-		if !elementTypeExists {
-			elementsByTask[el.TaskID][el.Type] = make([]TaskElement, 0, 1)
-		}
-
-		elementsByTask[el.TaskID][el.Type] = append(elementsByTask[el.TaskID][el.Type], el)
-
-		return struct{}{}, nil
-	})
-
-	if err != nil {
-		return nil, fmt.Errorf("failed to collect task elements: %v", err)
+	elementIDs := make([]int32, 0)
+	for _, e := range elements {
+		elementIDs = append(elementIDs, e.ID)
 	}
 
 	subElements, err := m.listSubElements(ctx, elementIDs)
 	if err != nil {
-		return nil, fmt.Errorf("failed to collect sub-elements: %v", err)
+		return nil, fmt.Errorf("failed to list sub-elements for elements: %v", err)
 	}
 
-	for taskID, elementTypes := range elementsByTask {
-		for elementType, elements := range elementTypes {
-			for i, element := range elements {
-				s, exists := subElements[element.ID]
-				if exists {
-					elementsByTask[taskID][elementType][i].SubElements = s
-				}
-			}
+	elementsByTask := make(map[int32]map[TaskElementType][]TaskElement)
+	for _, e := range elements {
+		if _, ok := elementsByTask[e.TaskID]; !ok {
+			elementsByTask[e.TaskID] = make(map[TaskElementType][]TaskElement)
 		}
+
+		elementType := taskElementTypeFromModel(e.Type)
+		if _, ok := elementsByTask[e.TaskID][elementType]; !ok {
+			elementsByTask[e.TaskID][elementType] = make([]TaskElement, 0, 1)
+		}
+
+		element := TaskElement{
+			ID:          e.ID,
+			TaskID:      e.TaskID,
+			Type:        elementType,
+			PublicID:    e.PublicID,
+			Content:     e.Content,
+			SubElements: subElements[e.ID],
+		}
+
+		elementsByTask[e.TaskID][elementType] = append(
+			elementsByTask[e.TaskID][elementType],
+			element,
+		)
 	}
 
 	return elementsByTask, nil
 }
 
-func (m *ACSModel) listSubElements(ctx context.Context, elementIDs []int) (map[int][]SubElement, error) {
-	query := `SELECT id, element_id, public_id, content
-		FROM acs_subelements
-		WHERE element_id = ANY ($1)
-		ORDER BY public_id ASC`
+func taskElementTypeFromModel(elementType queries.AcsElementType) TaskElementType {
+	switch elementType {
+	case queries.AcsElementTypeK:
+		return TaskElementTypeKnowledge
 
-	rows, err := m.db.Query(ctx, query, elementIDs)
+	case queries.AcsElementTypeR:
+		return TaskElementTypeRiskManagement
+
+	case queries.AcsElementTypeS:
+		return TaskElementTypeSkills
+	}
+
+	panic(fmt.Sprintf("Unknown element type: %s", elementType))
+}
+
+func (m *ACSModel) listSubElements(ctx context.Context, elementIDs []int32) (map[int32][]SubElement, error) {
+	subElements, err := m.q.ListSubElementsByElementIDs(ctx, elementIDs)
 	if err != nil {
 		return nil, fmt.Errorf("failed to query sub-elements: %v", err)
 	}
 
-	subElements := make(map[int][]SubElement, len(elementIDs))
-
-	_, err = pgx.CollectRows(rows, func(row pgx.CollectableRow) (struct{}, error) {
-		subElement, err := pgx.RowToStructByName[SubElement](row)
-		if err != nil {
-			return struct{}{}, err
+	subElementsByElementID := make(map[int32][]SubElement)
+	for _, s := range subElements {
+		if _, ok := subElementsByElementID[s.ElementID]; !ok {
+			subElementsByElementID[s.ElementID] = make([]SubElement, 0, 1)
 		}
 
-		_, alreadySawElement := subElements[subElement.ElementID]
-		if !alreadySawElement {
-			subElements[subElement.ElementID] = make([]SubElement, 0, 1)
-		}
-
-		subElements[subElement.ElementID] = append(subElements[subElement.ElementID], subElement)
-
-		return struct{}{}, nil
-	})
-
-	if err != nil {
-		return nil, fmt.Errorf("failed to collect sub-elements: %v", err)
+		subElementsByElementID[s.ElementID] = append(
+			subElementsByElementID[s.ElementID],
+			SubElement{
+				ID:        s.ID,
+				ElementID: s.ElementID,
+				PublicID:  s.PublicID,
+				Content:   s.Content,
+			},
+		)
 	}
 
-	return subElements, nil
+	return subElementsByElementID, nil
 }
 
-func (m *ACSModel) SetElementConfidence(ctx context.Context, elementID int, confidence ElementConfidence) error {
-	query := `INSERT INTO element_confidence (element_id, vote)
-		VALUES ($1, $2)
-		ON CONFLICT (element_id) DO UPDATE
-		SET vote = EXCLUDED.vote`
-
-	if _, err := m.db.Exec(ctx, query, elementID, confidence); err != nil {
+func (m *ACSModel) SetElementConfidence(ctx context.Context, elementID int32, confidence ConfidenceLevel) error {
+	params := queries.SetElementConfidenceParams{
+		ElementID: elementID,
+		Vote:      int16(confidence),
+	}
+	if err := m.q.SetElementConfidence(ctx, params); err != nil {
 		return fmt.Errorf("failed to update confidence for element %d: %v", elementID, err)
 	}
 
@@ -338,56 +318,13 @@ type TaskConfidence struct {
 	Possible int
 }
 
-func (m *ACSModel) GetTaskConfidence(ctx context.Context, taskID int) (TaskConfidence, error) {
-	query := `WITH task_elements AS (
-			SELECT id FROM acs_elements WHERE task_id = $1
-		), max_votes AS (
-			SELECT COALESCE(COUNT(*) * 3, 0) AS max_votes FROM task_elements
-		)
-		SELECT
-			COALESCE(SUM(c.vote), 0) AS votes,
-			(SELECT max_votes FROM max_votes) AS possible
-		FROM element_confidence c
-		WHERE c.element_id IN (SELECT id FROM task_elements)
-	`
-
-	var confidence TaskConfidence
-	if err := m.db.QueryRow(ctx, query, taskID).Scan(&confidence.Votes, &confidence.Possible); err != nil {
+func (m *ACSModel) GetTaskConfidence(ctx context.Context, taskID int32) (TaskConfidence, error) {
+	result, err := m.q.GetTaskConfidenceByTaskID(ctx, taskID)
+	if err != nil {
 		return TaskConfidence{}, fmt.Errorf("failed to get task confidence: %v", err)
 	}
 
+	confidence := TaskConfidence{Votes: int(result.Votes), Possible: int(result.Possible)}
+
 	return confidence, nil
-}
-
-func (m *ACSModel) listTaskConfidences(ctx context.Context, taskIDs []int) (map[int]TaskConfidence, error) {
-	query := `WITH max_votes AS (
-			SELECT COALESCE(COUNT(*) * 3, 0) AS max_votes, e.task_id AS task_id
-			FROM acs_elements e
-			GROUP BY e.task_id
-		)
-		SELECT
-			e.task_id AS task_id,
-			COALESCE(SUM(c.vote), 0) AS votes,
-			(SELECT max_votes FROM max_votes WHERE task_id = e.task_id) AS possible
-		FROM element_confidence c
-			RIGHT JOIN acs_elements e ON c.element_id = e.id
-		WHERE e.task_id = ANY ($1)
-		GROUP BY e.task_id`
-	rows, _ := m.db.Query(ctx, query, taskIDs)
-
-	confidenceByTask := make(map[int]TaskConfidence)
-
-	_, err := pgx.CollectRows(rows, func(row pgx.CollectableRow) (struct{}, error) {
-		var taskID int
-		var c TaskConfidence
-		if err := row.Scan(&taskID, &c.Votes, &c.Possible); err != nil {
-			return struct{}{}, err
-		}
-
-		confidenceByTask[taskID] = c
-
-		return struct{}{}, nil
-	})
-
-	return confidenceByTask, err
 }

@@ -1,6 +1,22 @@
 default:
   @just --list
 
+# Build the application
+[group('build')]
+build: clean generate
+  go build -o ./build/flight-school ./cmd/flight-school
+  go build -o ./build/populate-acs ./cmd/populate-acs
+
+# Remove generated files
+[group('build')]
+clean:
+  @find . -type f -name '*.gen.go' -delete
+
+# Generate code
+[group('build')]
+generate:
+  @go generate ./...
+
 # Populate the database with a particular ACS.
 [group('data')]
 populate-acs file:
