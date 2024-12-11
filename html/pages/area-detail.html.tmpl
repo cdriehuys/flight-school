@@ -1,7 +1,7 @@
 {{ define "title" }}{{ .AreaOfOperation.FullID }} &ndash; {{ .AreaOfOperation.Name }}{{ end }}
 
 {{ define "content" }}
-<section class="container">
+<section class="container container--lg">
   <div class="breadcrumbs mb-md">
     <a class="breadcrumb" href="/">Home</a>
   </div>
@@ -10,9 +10,11 @@
     <h1 class="page__title">{{ .AreaOfOperation.Name }}</h1>
     <h2 class="page__subtitle text-subtle">{{ .AreaOfOperation.FullID }}</h1>
   </section>
+</section>
 
-  {{ $area := .AreaOfOperation}}
+{{ $area := .AreaOfOperation}}
 
+<section class="container">
   {{ with .Tasks }}
     {{ range . }}
     <div class="mb-lg card card--active-hover">

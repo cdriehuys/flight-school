@@ -1,7 +1,7 @@
 {{ define "title" }}{{ .Task.FullPublicID }} &ndash; {{ .Task.Name }}{{ end }}
 
 {{ define "content" }}
-<section class="container">
+<section class="container container--lg">
   <div class="breadcrumbs mb-md">
     <a class="breadcrumb" href="/">Home
     </a><a class="breadcrumb" href="/acs/{{ .Task.Area.ACS }}/{{ .Task.Area.PublicID }}">{{ .Task.Area.Name }}</a>
@@ -15,7 +15,9 @@
 
     <p><strong>Objective:</strong> {{ .Task.Objective }}</p>
   </section>
+</section>
 
+<section class="container">
   {{ with .Task.KnowledgeElements }}
   <div class="card mb-md">
     <p class="mb-sm">
