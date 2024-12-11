@@ -14,6 +14,9 @@ type AreaOfOperation struct {
 	ACS      string
 	PublicID string
 	Name     string
+
+	TaskCount  int
+	Confidence Confidence
 }
 
 func (a AreaOfOperation) FullID() string {
@@ -38,7 +41,7 @@ type TaskSummary struct {
 
 	FullPublicID string
 
-	Confidence TaskConfidence
+	Confidence Confidence
 
 	KnowledgeElementCount      int
 	RiskManagementElementCount int
@@ -52,7 +55,7 @@ type Task struct {
 	Objective string `db:"objective"`
 
 	Area       AreaOfOperation
-	Confidence TaskConfidence
+	Confidence Confidence
 
 	KnowledgeElements      []TaskElement
 	RiskManagementElements []TaskElement
@@ -126,7 +129,11 @@ func (m *ACSModel) ListAreasByACS(ctx context.Context, acs string) ([]AreaOfOper
 
 	areas := make([]AreaOfOperation, len(areaModels))
 	for i, a := range areaModels {
-		areas[i] = areaOfOperationFromModel(a)
+		area := areaOfOperationFromModel(a.AcsArea)
+		area.TaskCount = int(a.TaskCount)
+		area.Confidence = Confidence{Votes: int(a.Votes), Possible: int(a.MaxVotes)}
+
+		areas[i] = area
 	}
 
 	return areas, nil
@@ -147,7 +154,7 @@ func (m *ACSModel) ListTasksByArea(ctx context.Context, areaID int32) ([]TaskSum
 			Name:                       t.Task.Name,
 			Objective:                  t.Task.Objective,
 			FullPublicID:               t.FullPublicID,
-			Confidence:                 TaskConfidence{int(t.Votes), int(t.MaxVotes)},
+			Confidence:                 Confidence{int(t.Votes), int(t.MaxVotes)},
 			KnowledgeElementCount:      int(t.KnowledgeElementCount),
 			RiskManagementElementCount: int(t.RiskElementCount),
 			SkillElementCount:          int(t.SkillElementCount),
@@ -173,7 +180,7 @@ func (m *ACSModel) GetTaskByArea(ctx context.Context, acs string, areaID string,
 		Name:       row.Task.Name,
 		Objective:  row.Task.Objective,
 		Area:       areaOfOperationFromModel(row.AcsArea),
-		Confidence: TaskConfidence{int(row.Votes), int(row.MaxVotes)},
+		Confidence: Confidence{int(row.Votes), int(row.MaxVotes)},
 	}
 
 	return m.addElementsToTask(ctx, task)
@@ -191,7 +198,7 @@ func (m *ACSModel) GetTaskByElementID(ctx context.Context, elementID int32) (Tas
 		Name:       row.Task.Name,
 		Objective:  row.Task.Objective,
 		Area:       areaOfOperationFromModel(row.AcsArea),
-		Confidence: TaskConfidence{int(row.Votes), int(row.MaxVotes)},
+		Confidence: Confidence{int(row.Votes), int(row.MaxVotes)},
 	}
 
 	return m.addElementsToTask(ctx, task)
@@ -313,18 +320,18 @@ func (m *ACSModel) SetElementConfidence(ctx context.Context, elementID int32, co
 	return nil
 }
 
-type TaskConfidence struct {
+type Confidence struct {
 	Votes    int
 	Possible int
 }
 
-func (m *ACSModel) GetTaskConfidence(ctx context.Context, taskID int32) (TaskConfidence, error) {
+func (m *ACSModel) GetTaskConfidence(ctx context.Context, taskID int32) (Confidence, error) {
 	result, err := m.q.GetTaskConfidenceByTaskID(ctx, taskID)
 	if err != nil {
-		return TaskConfidence{}, fmt.Errorf("failed to get task confidence: %v", err)
+		return Confidence{}, fmt.Errorf("failed to get task confidence: %v", err)
 	}
 
-	confidence := TaskConfidence{Votes: int(result.Votes), Possible: int(result.Possible)}
+	confidence := Confidence{Votes: int(result.Votes), Possible: int(result.Possible)}
 
 	return confidence, nil
 }

@@ -4,10 +4,36 @@ FROM acs_areas
 WHERE acs_id = $1 AND public_id = $2;
 
 -- name: ListAreasByACS :many
-SELECT *
-FROM acs_areas
-WHERE acs_id = $1
-ORDER BY "order" ASC;
+WITH areas AS (
+    SELECT * FROM acs_areas
+    WHERE acs_areas.acs_id = $1
+), task_count AS (
+    SELECT a.id AS area_id, COUNT(t.id) as tasks
+    FROM acs_area_tasks t
+        LEFT JOIN areas a ON t.area_id = a.id
+    GROUP BY a.id
+), votes AS (
+    SELECT t.area_id AS area_id, SUM(c.vote) AS votes
+    FROM element_confidence c
+        LEFT JOIN acs_elements e ON c.element_id = e.id
+        LEFT JOIN acs_area_tasks t ON e.task_id = t.id
+    WHERE t.area_id = ANY(SELECT id FROM areas)
+    GROUP BY t.area_id
+), max_votes AS (
+    SELECT t.area_id AS area_id, COUNT(e.id) * 3 AS max_votes
+    FROM acs_elements e
+        LEFT JOIN acs_area_tasks t ON e.task_id = t.id
+    WHERE t.area_id = ANY(SELECT id FROM areas)
+    GROUP BY t.area_id
+)
+SELECT
+    sqlc.embed(a),
+    COALESCE((SELECT tasks FROM task_count WHERE area_id = a.id), 0)::int AS task_count,
+    COALESCE((SELECT votes FROM votes WHERE area_id = a.id), 0)::int AS votes,
+    COALESCE((SELECT max_votes FROM max_votes WHERE area_id = a.id), 0)::int as max_votes
+FROM acs_areas a
+WHERE a.id = ANY(SELECT id FROM areas)
+ORDER BY a."order" ASC;
 
 -- name: ListTasksByArea :many
 WITH task_element_counts AS (

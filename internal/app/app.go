@@ -34,7 +34,7 @@ type acsModel interface {
 	GetAreaByID(ctx context.Context, acs string, areaID string) (models.AreaOfOperation, error)
 	GetTaskByArea(ctx context.Context, acs string, areaID string, taskID string) (models.Task, error)
 	GetTaskByElementID(ctx context.Context, elementID int32) (models.Task, error)
-	GetTaskConfidence(ctx context.Context, taskID int32) (models.TaskConfidence, error)
+	GetTaskConfidence(ctx context.Context, taskID int32) (models.Confidence, error)
 	ListAreasByACS(ctx context.Context, acs string) ([]models.AreaOfOperation, error)
 	ListTasksByArea(ctx context.Context, areaID int32) ([]models.TaskSummary, error)
 	SetElementConfidence(ctx context.Context, elementID int32, confidence models.ConfidenceLevel) error
@@ -82,10 +82,10 @@ func New(
 }
 
 // fracAsPercent computes an integer percentage in the range [0, 100] from a fraction. An undefined
-// fraction is treated as 0%.
+// fraction is treated as 100%.
 func fracAsPercent(numerator int, denominator int) int {
 	if denominator == 0 {
-		return 0
+		return 100
 	}
 
 	decimal := float64(numerator) / float64(denominator) * 100

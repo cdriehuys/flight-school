@@ -1,12 +1,23 @@
 {{ define "content" }}
+<section class="container container--lg">
+  <div class="card mb-lg mt-lg">
+    <h1 class="page__title">ACS - Private Pilot Airplane</h1>
+    <h2 class="page__subtitle text-subtle">PA</h2>
+  </div>
+</section>
+
 <section class="container">
-  <h1>ACS - Private Pilot Airplane</h1>
-  <ul>
-    {{ range .AreasOfOperation }}
-    <li>
-      <a href="/acs/{{ .ACS }}/{{ .PublicID }}">{{ .ACS }}.{{ .PublicID }} &ndash; {{ .Name }}</a>
-    </li>
-    {{ end }}
-  </ul>
+  {{ range .AreasOfOperation }}
+  <div class="card card--active-hover mb-lg">
+    <h2 class=""><a href="/acs/{{ .ACS }}/{{ .PublicID }}">{{ .Name }}</a>
+    <h3 class="mb-sm text-subtle">{{ .FullID }}</h3>
+
+    <p><strong>Tasks:</strong> {{ .TaskCount }}</p>
+    <p>
+      <strong>Confidence:</strong>
+      {{ fracAsPercent .Confidence.Votes .Confidence.Possible }}%
+    </p>
+  </div>
+  {{ end }}
 </section>
 {{ end }}
