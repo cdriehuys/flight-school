@@ -205,25 +205,22 @@ func (m *ACSModel) GetTaskByElementID(ctx context.Context, elementID int32) (Tas
 }
 
 func (m *ACSModel) addElementsToTask(ctx context.Context, task Task) (Task, error) {
-	elements, err := m.listElementsForTasks(ctx, []int32{task.ID})
+	elements, err := m.listElementsForTask(ctx, task.ID)
 	if err != nil {
 		return Task{}, fmt.Errorf("failed to list elements for task: %v", err)
 	}
 
-	taskElements, hasElements := elements[task.ID]
-	if hasElements {
-		task.KnowledgeElements = taskElements[TaskElementTypeKnowledge]
-		task.RiskManagementElements = taskElements[TaskElementTypeRiskManagement]
-		task.SkillElements = taskElements[TaskElementTypeSkills]
-	}
+	task.KnowledgeElements = elements[TaskElementTypeKnowledge]
+	task.RiskManagementElements = elements[TaskElementTypeRiskManagement]
+	task.SkillElements = elements[TaskElementTypeSkills]
 
 	return task, nil
 }
 
-func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int32) (map[int32]map[TaskElementType][]TaskElement, error) {
-	elements, err := m.q.ListElementsByTaskIDs(ctx, taskIDs)
+func (m *ACSModel) listElementsForTask(ctx context.Context, taskID int32) (map[TaskElementType][]TaskElement, error) {
+	elements, err := m.q.ListElementsByTaskID(ctx, taskID)
 	if err != nil {
-		return nil, fmt.Errorf("failed to list task elements: %v", err)
+		return nil, fmt.Errorf("failed to list task elements for task %d: %v", taskID, err)
 	}
 
 	elementIDs := make([]int32, 0)
@@ -236,15 +233,11 @@ func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int32) (m
 		return nil, fmt.Errorf("failed to list sub-elements for elements: %v", err)
 	}
 
-	elementsByTask := make(map[int32]map[TaskElementType][]TaskElement)
+	elementsByType := make(map[TaskElementType][]TaskElement)
 	for _, e := range elements {
-		if _, ok := elementsByTask[e.TaskID]; !ok {
-			elementsByTask[e.TaskID] = make(map[TaskElementType][]TaskElement)
-		}
-
 		elementType := taskElementTypeFromModel(e.Type)
-		if _, ok := elementsByTask[e.TaskID][elementType]; !ok {
-			elementsByTask[e.TaskID][elementType] = make([]TaskElement, 0, 1)
+		if _, ok := elementsByType[elementType]; !ok {
+			elementsByType[elementType] = make([]TaskElement, 0, 1)
 		}
 
 		element := TaskElement{
@@ -256,13 +249,13 @@ func (m *ACSModel) listElementsForTasks(ctx context.Context, taskIDs []int32) (m
 			SubElements: subElements[e.ID],
 		}
 
-		elementsByTask[e.TaskID][elementType] = append(
-			elementsByTask[e.TaskID][elementType],
+		elementsByType[elementType] = append(
+			elementsByType[elementType],
 			element,
 		)
 	}
 
-	return elementsByTask, nil
+	return elementsByType, nil
 }
 
 func taskElementTypeFromModel(elementType queries.AcsElementType) TaskElementType {

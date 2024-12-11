@@ -136,10 +136,10 @@ SELECT
 FROM element_confidence c
 WHERE c.element_id IN (SELECT id FROM task_elements);
 
--- name: ListElementsByTaskIDs :many
+-- name: ListElementsByTaskID :many
 SELECT *
 FROM acs_elements
-WHERE task_id = ANY ($1::int[])
+WHERE task_id = $1
 ORDER BY "type", public_id ASC;
 
 -- name: SetElementConfidence :exec
