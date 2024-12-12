@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cdriehuys/flight-school/acs/schema/acs.json",
+  "title": "ACS",
+  "description": "ACS standard published by the FAA",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "areas"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema that the document uses"
+    },
+    "id": {
+      "type": "string",
+      "description": "Two letter ACS code",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the ACS document"
+    },
+    "areas": {
+      "type": "array",
+      "description": "The knowledge areas that make up the ACS",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "tasks"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Public ID of the ACS area (a Roman numeral)",
+            "pattern": "^[IVX]+$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Descriptive name of the area"
+          },
+          "tasks": {
+            "type": "array",
+            "description": "Tasks that make up the area",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "name", "objective"],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Public identifier for the task",
+                  "minLength": 1,
+                  "maxLength": 1,
+                  "pattern": "^[A-Z]$"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Descriptive name for the task"
+                },
+                "objective": {
+                  "type": "string",
+                  "description": "The goal of the task"
+                },
+                "knowledge": {
+                  "type": "array",
+                  "description": "Knowledge elements each airman is tested on",
+                  "items": { "$ref": "#/$defs/element" }
+                },
+                "riskManagement": {
+                  "type": "array",
+                  "description": "Risk management elements each airman is tested on",
+                  "items": { "$ref": "#/$defs/element" }
+                },
+                "skills": {
+                  "type": "array",
+                  "description": "Skill elements each airman is tested on",
+                  "items": { "$ref": "#/$defs/element" }
+                },
+                "appliesTo": {
+                  "type": "array",
+                  "description": "The subset of aircraft classes that this task applies to",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{4}$"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "element": {
+      "type": "object",
+      "description": "A testable element of a task.",
+      "additionalProperties": false,
+      "required": ["id", "content"],
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "The element's order within its task and type"
+        },
+        "content": {
+          "type": "string",
+          "description": "The text describing what the airman needs to know"
+        },
+        "subElements": {
+          "type": "array",
+          "description": "Specific attributes of a broader element",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "content"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1,
+                "pattern": "^[a-z]$"
+              },
+              "content": {
+                "type": "string",
+                "description": "A specific piece of the overall element"
+              },
+              "appliesTo": {
+                "type": "array",
+                "description": "The subset of aircraft classes that this sub-element applies to",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{4}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

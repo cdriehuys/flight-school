@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema/acs.json",
   "id": "PA",
   "name": "Private Pilot for Airplane Category",
   "areas": [
@@ -744,12 +745,102 @@
               "id": 4,
               "content": "Environmental factors, including weather, terrain, route selection, and obstructions."
             }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Pilot."
+            },
+            {
+              "id": 2,
+              "content": "Aircraft."
+            },
+            {
+              "id": 3,
+              "content": "Environment (e.g., weather, airports, airspace, terrain, obstacles)."
+            },
+            {
+              "id": 4,
+              "content": "External pressures."
+            },
+            {
+              "id": 5,
+              "content": "Aviation security concerns."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Inspect the airplane with reference to an appropriate checklist."
+            },
+            {
+              "id": 2,
+              "content": "Verify the airplane is in condition for safe flight and conforms to its type design."
+            },
+            {
+              "id": 3,
+              "content": "Perform self-assessment."
+            },
+            {
+              "id": 4,
+              "content": "Continue to assess the environment for safe flight."
+            }
           ]
         },
         {
           "id": "B",
           "name": "Flight Deck Management",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with flight deck management practices."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with flight deck management practices.",
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Passenger briefing requirements, including operation and required use of safety restraint systems."
+            },
+            {
+              "id": 2,
+              "content": "Use of appropriate checklists."
+            },
+            {
+              "id": 3,
+              "content": "Requirements for current and appropriate navigation data."
+            },
+            {
+              "id": 4,
+              "content": "Securing items and cargo."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Use of systems or equipment, including automation and portable electronic devices."
+            },
+            {
+              "id": 2,
+              "content": "Inoperative equipment."
+            },
+            {
+              "id": 3,
+              "content": "Passenger distractions."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Secure all items in the aircraft."
+            },
+            {
+              "id": 2,
+              "content": "Conduct an appropriate passenger briefing, including identifying the pilot-in-command (PIC), use of safety belts, shoulder harnesses, doors, passenger conduct, sterile aircraft, propeller blade avoidance, and emergency procedures."
+            },
+            {
+              "id": 3,
+              "content": "Properly program and manage the aircraft’s automation, as applicable."
+            },
+            {
+              "id": 4,
+              "content": "Appropriately manage risks by utilizing ADM, including SRM/CRM."
+            }
+          ]
         },
         {
           "id": "C",
