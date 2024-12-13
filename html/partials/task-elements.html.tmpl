@@ -8,7 +8,7 @@
       {{ with .SubElements }}
       <ol class="sub-elements">
         {{ range . }}
-        <li>{{ .Content }}</li>
+        <li value="{{ add .Order 1 }}">{{ .Content }}</li>
         {{ end }}
       </ol>
       {{ end }}

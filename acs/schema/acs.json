@@ -117,14 +117,8 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["id", "content"],
+            "required": ["content"],
             "properties": {
-              "id": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 1,
-                "pattern": "^[a-z]$"
-              },
               "content": {
                 "type": "string",
                 "description": "A specific piece of the overall element"

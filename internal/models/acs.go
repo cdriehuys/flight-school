@@ -85,10 +85,16 @@ type TaskElement struct {
 }
 
 type SubElement struct {
-	ID        int32  `db:"id"`
-	ElementID int32  `db:"element_id"`
-	PublicID  string `db:"public_id"`
+	ID        int32 `db:"id"`
+	ElementID int32 `db:"element_id"`
+	Order     int32
 	Content   string `db:"content"`
+}
+
+func (s SubElement) PublicID() string {
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+
+	return string(alphabet[s.Order])
 }
 
 type ConfidenceLevel int16
@@ -290,7 +296,7 @@ func (m *ACSModel) listSubElements(ctx context.Context, elementIDs []int32) (map
 			SubElement{
 				ID:        s.ID,
 				ElementID: s.ElementID,
-				PublicID:  s.PublicID,
+				Order:     s.Order,
 				Content:   s.Content,
 			},
 		)

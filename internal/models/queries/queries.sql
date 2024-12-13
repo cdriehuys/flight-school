@@ -152,4 +152,4 @@ SET vote = EXCLUDED.vote;
 SELECT *
 FROM acs_subelements
 WHERE element_id = ANY ($1::int[])
-ORDER BY public_id ASC;
+ORDER BY "order" ASC;

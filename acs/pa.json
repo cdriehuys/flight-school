@@ -60,23 +60,18 @@
               "content": "General airworthiness requirements and compliance for airplanes, including:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Location and expiration dates of required aircraft certificates"
                 },
                 {
-                  "id": "b",
                   "content": "Required inspections and airplane logbook documentation"
                 },
                 {
-                  "id": "c",
                   "content": "Airworthiness Directives and Special Airworthiness Information Bulletins"
                 },
                 {
-                  "id": "d",
                   "content": "Purpose and procedure for obtaining a special flight permit"
                 },
                 {
-                  "id": "e",
                   "content": "Owner/Operator and pilot-in-command responsibilities"
                 }
               ]
@@ -90,19 +85,15 @@
               "content": "Equipment requirements for day and night VFR flight, including:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Flying with inoperative equipment"
                 },
                 {
-                  "id": "b",
                   "content": "Using an approved Minimum Equipment List (MEL)"
                 },
                 {
-                  "id": "c",
                   "content": "Kinds of Operation Equipment List (KOEL)"
                 },
                 {
-                  "id": "d",
                   "content": "Required discrepancy records or placards"
                 }
               ]
@@ -147,31 +138,24 @@
               "content": "Acceptable weather products and resources required for preflight planning, current and forecast weather for departure, en route, and arrival phases of flight such as:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Airport Observations (METAR and SPECI) and Pilot Observations (PIREP)"
                 },
                 {
-                  "id": "b",
                   "content": "Surface Analysis Chart, Ceiling and Visibility Chart (CVA)"
                 },
                 {
-                  "id": "c",
                   "content": "Terminal Aerodrome Forecasts (TAF)"
                 },
                 {
-                  "id": "d",
                   "content": "Graphical Forecasts for Aviation (GFA)"
                 },
                 {
-                  "id": "e",
                   "content": "Wind and Temperature Aloft Forecast (FB)"
                 },
                 {
-                  "id": "f",
                   "content": "Convective Outlook (AC)"
                 },
                 {
-                  "id": "g",
                   "content": "Inflight Aviation Weather Advisories including Airmen's Meteorological Information (AIRMET), Significant Meteorological Information (SIGMET), and Convective SIGMET"
                 }
               ]
@@ -181,51 +165,39 @@
               "content": "Meteorology applicable to the departure, en route, alternate, and destination under visual flight rules (VFR) in Visual Meteorological Conditions (VMC), including expected climate and hazardous conditions such as:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Atmospheric composition and stability"
                 },
                 {
-                  "id": "b",
                   "content": "Wind (e.g., windshear, mountain wave, factors affecting wind, etc.)"
                 },
                 {
-                  "id": "c",
                   "content": "Temperature and heat exchange"
                 },
                 {
-                  "id": "d",
                   "content": "Moisture/precipitation"
                 },
                 {
-                  "id": "e",
                   "content": "Weather system formation, including air masses and fronts"
                 },
                 {
-                  "id": "f",
                   "content": "Clouds"
                 },
                 {
-                  "id": "g",
                   "content": "Turbulence"
                 },
                 {
-                  "id": "h",
                   "content": "Thunderstorms and microbursts"
                 },
                 {
-                  "id": "i",
                   "content": "Icing and freezing level information"
                 },
                 {
-                  "id": "j",
                   "content": "Fog/mist"
                 },
                 {
-                  "id": "k",
                   "content": "Frost"
                 },
                 {
-                  "id": "l",
                   "content": "Obstructions to visibility (e.g., smoke, haze, volcanic ash, etc.)"
                 }
               ]
@@ -241,15 +213,12 @@
               "content": "Making the go/no-go and continue/divert decisions, including:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Circumstances that would make diversion prudent"
                 },
                 {
-                  "id": "b",
                   "content": "Personal weather minimums"
                 },
                 {
-                  "id": "c",
                   "content": "Hazardous weather conditions, including known or forecast icing or turbulence aloft"
                 }
               ]
@@ -259,15 +228,12 @@
               "content": "Use and limitations of:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Installed onboard weather equipment"
                 },
                 {
-                  "id": "b",
                   "content": "Aviation weather reports and forecasts"
                 },
                 {
-                  "id": "c",
                   "content": "Inflight weather resources"
                 }
               ]
@@ -298,7 +264,6 @@
               "content": "Route planning, including consideration of different classes and special use airspace (SUA) and selection of appropriate and available navigation/communication systems and facilities.",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Use of an electronic flight bag (EFB), if used"
                 }
               ]
@@ -312,15 +277,12 @@
               "content": "Calculating:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Time, climb and descent rates, course, distance, heading, true airspeed, and groundspeed"
                 },
                 {
-                  "id": "b",
                   "content": "Estimated time of arrival, including conversion to universal coordinated time (UTC)"
                 },
                 {
-                  "id": "c",
                   "content": "Fuel requirements, including reserve"
                 }
               ]
@@ -448,27 +410,21 @@
               "content": "Factors affecting performance, including:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Atmospheric conditions"
                 },
                 {
-                  "id": "b",
                   "content": "Pilot technique"
                 },
                 {
-                  "id": "c",
                   "content": "Airplane configuration"
                 },
                 {
-                  "id": "d",
                   "content": "Airport environment"
                 },
                 {
-                  "id": "e",
                   "content": "Loading [e.g., center of gravity (CG)]"
                 },
                 {
-                  "id": "f",
                   "content": "Weight and balance"
                 }
               ]
@@ -513,52 +469,40 @@
               "content": "Airplane systems, including:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Primary flight controls"
                 },
                 {
-                  "id": "b",
                   "content": "Secondary flight controls"
                 },
                 {
-                  "id": "c",
                   "content": "Powerplant and propeller"
                 },
                 {
-                  "id": "d",
                   "content": "Landing gear"
                 },
                 {
-                  "id": "e",
                   "content": "Fuel, oil, and hydraulic"
                 },
                 {
-                  "id": "f",
                   "content": "Electrical"
                 },
                 {
-                  "id": "g",
                   "content": "Avionics"
                 },
                 {
-                  "id": "h",
                   "content": "Pitot-static, vacuum/pressure, and associated flight instruments"
                 },
                 {
-                  "id": "i",
                   "content": "Environmental"
                 },
                 {
-                  "id": "j",
                   "content": "Deicing and anti-icing"
                 },
                 {
-                  "id": "k",
                   "content": "Water rudders",
                   "appliesTo": ["ASES", "AMES"]
                 },
                 {
-                  "id": "l",
                   "content": "Oxygen system"
                 }
               ]
@@ -603,51 +547,39 @@
               "content": "Symptoms, recognition, causes, effects, and corrective actions associated with aeromedical and physiological issues, including:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Hypoxia"
                 },
                 {
-                  "id": "b",
                   "content": "Hyperventilation"
                 },
                 {
-                  "id": "c",
                   "content": "Middle ear and sinus problems"
                 },
                 {
-                  "id": "d",
                   "content": "Spatial disorientation"
                 },
                 {
-                  "id": "e",
                   "content": "Motion sickness"
                 },
                 {
-                  "id": "f",
                   "content": "Carbon monoxide poisoning"
                 },
                 {
-                  "id": "g",
                   "content": "Stress"
                 },
                 {
-                  "id": "h",
                   "content": "Fatigue"
                 },
                 {
-                  "id": "i",
                   "content": "Dehydration and nutrition"
                 },
                 {
-                  "id": "j",
                   "content": "Hypothermia"
                 },
                 {
-                  "id": "k",
                   "content": "Optical illusions"
                 },
                 {
-                  "id": "l",
                   "content": "Dissolved nitrogen in the bloodstream after scuba dives"
                 }
               ]
@@ -724,19 +656,15 @@
               "content": "Airplane preflight inspection, including:",
               "subElements": [
                 {
-                  "id": "a",
                   "content": "Which items should be inspected"
                 },
                 {
-                  "id": "b",
                   "content": "The reasons for checking each item"
                 },
                 {
-                  "id": "c",
                   "content": "How to detect possible defects"
                 },
                 {
-                  "id": "d",
                   "content": "The associated regulations"
                 }
               ]

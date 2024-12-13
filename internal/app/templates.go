@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/fs"
 	"log/slog"
+	"math"
 	"net/http"
 	"path"
 	"path/filepath"
@@ -54,6 +55,8 @@ type templateCache struct {
 }
 
 func newTemplateCache(logger *slog.Logger, files fs.FS, funcs template.FuncMap) (templateCache, error) {
+	allFuncs := templateFuncs(funcs)
+
 	pages, err := fs.Glob(files, "pages/*.html.tmpl")
 	if err != nil {
 		return templateCache{}, fmt.Errorf("failed to gather pages: %v", err)
@@ -69,7 +72,7 @@ func newTemplateCache(logger *slog.Logger, files fs.FS, funcs template.FuncMap) 
 			page,
 		}
 
-		ts, err := template.New(name).Funcs(funcs).ParseFS(files, patterns...)
+		ts, err := template.New(name).Funcs(allFuncs).ParseFS(files, patterns...)
 		if err != nil {
 			return templateCache{}, fmt.Errorf("failed to build template for %s: %v", page, err)
 		}
@@ -98,6 +101,14 @@ type liveTemplateLoader struct {
 	funcs  template.FuncMap
 }
 
+func makeLiveTemplateLoader(logger *slog.Logger, files fs.FS, funcs template.FuncMap) liveTemplateLoader {
+	return liveTemplateLoader{
+		logger: logger,
+		files:  files,
+		funcs:  templateFuncs(funcs),
+	}
+}
+
 func (l liveTemplateLoader) Render(w io.Writer, name string, data templateData) error {
 	pagePath := path.Join("pages", name)
 
@@ -115,4 +126,36 @@ func (l liveTemplateLoader) Render(w io.Writer, name string, data templateData) 
 	l.logger.Info("Parsed template.", "name", name)
 
 	return ts.ExecuteTemplate(w, "base", data)
+}
+
+// templateFuncs creates a function map for templates by merging the provided functions into a base
+// set of functionality.
+func templateFuncs(custom template.FuncMap) template.FuncMap {
+	funcs := template.FuncMap{
+		"add":           add,
+		"fracAsPercent": fracAsPercent,
+	}
+
+	for k, f := range custom {
+		funcs[k] = f
+	}
+
+	return funcs
+}
+
+// add provides basic addition inside a template
+func add(a int32, b int32) int32 {
+	return a + b
+}
+
+// fracAsPercent computes an integer percentage in the range [0, 100] from a fraction. An undefined
+// fraction is treated as 100%.
+func fracAsPercent(numerator int, denominator int) int {
+	if denominator == 0 {
+		return 100
+	}
+
+	decimal := float64(numerator) / float64(denominator) * 100
+
+	return int(math.Round(decimal))
 }

@@ -85,7 +85,6 @@ type Element struct {
 }
 
 type SubElement struct {
-	ID      string `json:"id"`
 	Content string `json:"content"`
 }
 
@@ -196,8 +195,8 @@ func upsertElement(
 	elementPublicID := fmt.Sprintf("%s.%s%d", taskPublicID, elementType, element.ID)
 	log.Printf("%s - Updated element", elementPublicID)
 
-	for _, subElement := range element.SubElements {
-		if err := upsertSubelement(ctx, db, elementPublicID, elementPK, subElement); err != nil {
+	for i, subElement := range element.SubElements {
+		if err := upsertSubelement(ctx, db, elementPublicID, elementPK, i, subElement); err != nil {
 			return fmt.Errorf("failed to update subelement: %v", err)
 		}
 	}
@@ -205,23 +204,28 @@ func upsertElement(
 	return nil
 }
 
+const subElementAlphabet = "abcdefghijklmnopqrstuvwxyz"
+
 func upsertSubelement(
 	ctx context.Context,
 	db *pgx.Conn,
 	elementPublicID string,
 	elementPK int,
+	order int,
 	subElement SubElement,
 ) error {
-	query := `INSERT INTO acs_subelements (element_id, public_id, content)
+	query := `INSERT INTO acs_subelements (element_id, "order", content)
 		VALUES ($1, $2, $3)
-		ON CONFLICT (element_id, public_id) DO UPDATE
+		ON CONFLICT (element_id, "order") DO UPDATE
 		SET content = EXCLUDED.content`
 
-	if _, err := db.Exec(ctx, query, elementPK, subElement.ID, subElement.Content); err != nil {
-		return fmt.Errorf("failed to update sub-element %s%s: %v", elementPublicID, subElement.ID, err)
+	subElementName := fmt.Sprintf("%s%c", elementPublicID, subElementAlphabet[order])
+
+	if _, err := db.Exec(ctx, query, elementPK, order, subElement.Content); err != nil {
+		return fmt.Errorf("failed to update sub-element %s: %v", subElementName, err)
 	}
 
-	log.Printf("%s%s - Updated sub-element", elementPublicID, subElement.ID)
+	log.Printf("%s - Updated sub-element", subElementName)
 
 	return nil
 }

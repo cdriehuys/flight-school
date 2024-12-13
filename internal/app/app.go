@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"io/fs"
 	"log/slog"
-	"math"
 
 	"github.com/cdriehuys/flight-school/internal/models"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -53,13 +52,12 @@ func New(
 
 	sf := newStaticDir(staticFiles)
 	funcMap := template.FuncMap{
-		"fracAsPercent": fracAsPercent,
-		"static":        sf.URL,
+		"static": sf.URL,
 	}
 
 	var templates templateEngine
 	if options.LiveTemplates {
-		templates = liveTemplateLoader{logger, templateFiles, funcMap}
+		templates = makeLiveTemplateLoader(logger, templateFiles, funcMap)
 	} else {
 		var err error
 		templates, err = newTemplateCache(logger, templateFiles, funcMap)
@@ -79,16 +77,4 @@ func New(
 	}
 
 	return app, nil
-}
-
-// fracAsPercent computes an integer percentage in the range [0, 100] from a fraction. An undefined
-// fraction is treated as 100%.
-func fracAsPercent(numerator int, denominator int) int {
-	if denominator == 0 {
-		return 100
-	}
-
-	decimal := float64(numerator) / float64(denominator) * 100
-
-	return int(math.Round(decimal))
 }
