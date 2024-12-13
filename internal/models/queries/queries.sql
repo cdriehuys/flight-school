@@ -136,6 +136,12 @@ SELECT
 FROM element_confidence c
 WHERE c.element_id IN (SELECT id FROM task_elements);
 
+-- name: GetTaskReferencesByTaskID :many
+SELECT *
+FROM task_references
+WHERE task_id = $1
+ORDER BY "order" ASC;
+
 -- name: ListElementsByTaskID :many
 SELECT *
 FROM acs_elements

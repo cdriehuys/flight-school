@@ -49,13 +49,15 @@ type TaskSummary struct {
 }
 
 type Task struct {
-	ID        int32  `db:"id"`
-	PublicID  string `db:"public_id"`
-	Name      string `db:"name"`
-	Objective string `db:"objective"`
+	ID        int32
+	PublicID  string
+	Name      string
+	Objective string
 
 	Area       AreaOfOperation
 	Confidence Confidence
+
+	References []string
 
 	KnowledgeElements      []TaskElement
 	RiskManagementElements []TaskElement
@@ -75,20 +77,20 @@ const (
 )
 
 type TaskElement struct {
-	ID       int32 `db:"id"`
-	TaskID   int32 `db:"task_id"`
+	ID       int32
+	TaskID   int32
 	Type     TaskElementType
-	PublicID int32  `db:"public_id"`
-	Content  string `db:"content"`
+	PublicID int32
+	Content  string
 
-	SubElements []SubElement `db:"-"`
+	SubElements []SubElement
 }
 
 type SubElement struct {
-	ID        int32 `db:"id"`
-	ElementID int32 `db:"element_id"`
+	ID        int32
+	ElementID int32
 	Order     int32
-	Content   string `db:"content"`
+	Content   string
 }
 
 func (s SubElement) PublicID() string {
@@ -189,6 +191,13 @@ func (m *ACSModel) GetTaskByArea(ctx context.Context, acs string, areaID string,
 		Confidence: Confidence{int(row.Votes), int(row.MaxVotes)},
 	}
 
+	references, err := m.getTaskReferences(ctx, task.ID)
+	if err != nil {
+		return Task{}, fmt.Errorf("failed to fetch references: %v", err)
+	}
+
+	task.References = references
+
 	return m.addElementsToTask(ctx, task)
 }
 
@@ -207,7 +216,28 @@ func (m *ACSModel) GetTaskByElementID(ctx context.Context, elementID int32) (Tas
 		Confidence: Confidence{int(row.Votes), int(row.MaxVotes)},
 	}
 
+	references, err := m.getTaskReferences(ctx, task.ID)
+	if err != nil {
+		return Task{}, fmt.Errorf("failed to fetch references: %v", err)
+	}
+
+	task.References = references
+
 	return m.addElementsToTask(ctx, task)
+}
+
+func (m *ACSModel) getTaskReferences(ctx context.Context, taskID int32) ([]string, error) {
+	references, err := m.q.GetTaskReferencesByTaskID(ctx, taskID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch references for task %d: %v", taskID, err)
+	}
+
+	refValues := make([]string, len(references))
+	for i, r := range references {
+		refValues[i] = r.Document
+	}
+
+	return refValues, nil
 }
 
 func (m *ACSModel) addElementsToTask(ctx context.Context, task Task) (Task, error) {

@@ -11,6 +11,11 @@
           "id": "A",
           "name": "Pilot Qualifications",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with airman and medical certificates including privileges, limitations, currency, and operating as pilot-in-command as a private pilot.",
+          "references": [
+            "14 CFR parts 61, 68, 91",
+            "AC 68-1",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -54,6 +59,10 @@
           "id": "B",
           "name": "Airworthiness Requirements",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with airworthiness requirements, including airplane certificates.",
+          "references": [
+            "14 CFR parts 39, 43, 91",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -128,6 +137,12 @@
           "id": "C",
           "name": "Weather Information",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with weather information for a flight under VFR.",
+          "references": [
+            "14 CFR part 91",
+            "AC 91-92",
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25, FAA-H-8083-28"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -258,6 +273,14 @@
           "id": "D",
           "name": "Cross-Country Flight Planning",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with cross-country flights and VFR flight planning",
+          "references": [
+            "14 CFR part 91",
+            "AIM",
+            "Chart Supplements",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "NOTAMs",
+            "VFR Navigation Charts"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -357,6 +380,12 @@
           "id": "E",
           "name": "National Airspace System",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with National Airspace System (NAS) operations under VFR as a private pilot.",
+          "references": [
+            "14 CFR parts 71, 91, 93",
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "VFR Navigation Charts"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -400,6 +429,10 @@
           "id": "F",
           "name": "Performance and Limitations",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with operating an airplane safely within the parameters of its performance capabilities and limitations.",
+          "references": [
+            "FAA-H-8083-1, FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -463,6 +496,10 @@
           "id": "G",
           "name": "Operation of Systems",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with safe operation of systems on the airplane provided for the flight test.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -500,7 +537,10 @@
                 },
                 {
                   "content": "Water rudders",
-                  "appliesTo": ["ASES", "AMES"]
+                  "appliesTo": [
+                    "ASES",
+                    "AMES"
+                  ]
                 },
                 {
                   "content": "Oxygen system"
@@ -541,6 +581,10 @@
           "id": "H",
           "name": "Human Factors",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with personal health, flight physiology, and aeromedical and human factors related to safety of flight.",
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -629,8 +673,18 @@
         {
           "id": "I",
           "name": "Water and Seaplane Characteristics, Seaplane Bases, Maritime Rules, and Aids to Marine Navigation",
-          "appliesTo": ["ASES", "AMES"],
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with water and seaplane characteristics, seaplane bases, maritime rules, and aids to marine navigation."
+          "appliesTo": [
+            "ASES",
+            "AMES"
+          ],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with water and seaplane characteristics, seaplane bases, maritime rules, and aids to marine navigation.",
+          "references": [
+            "AIM",
+            "Chart Supplements",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
+            "POH/AFM",
+            "USCG Navigation Rules"
+          ]
         }
       ]
     },
@@ -642,6 +696,10 @@
           "id": "A",
           "name": "Preflight Assessment",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with preparation for safe flight.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25, FAA-H-8083-28",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -719,6 +777,12 @@
           "id": "B",
           "name": "Flight Deck Management",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with flight deck management practices.",
+          "references": [
+            "14 CFR part 91",
+            "AC 120-71",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -773,24 +837,52 @@
         {
           "id": "C",
           "name": "Engine Starting",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with recommended engine starting procedures."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with recommended engine starting procedures.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ]
         },
         {
           "id": "D",
           "name": "Taxiing",
-          "appliesTo": ["ASEL", "AMEL"],
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with taxi operations, including runway incursion avoidance."
+          "appliesTo": [
+            "ASEL",
+            "AMEL"
+          ],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with taxi operations, including runway incursion avoidance.",
+          "references": [
+            "AC 91-73",
+            "AIM",
+            "Chart Supplements",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ]
         },
         {
           "id": "E",
           "name": "Taxiing and Sailing",
-          "appliesTo": ["ASES", "AMES"],
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with taxiing and sailing operations, including runway incursion avoidance."
+          "appliesTo": [
+            "ASES",
+            "AMES"
+          ],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with taxiing and sailing operations, including runway incursion avoidance.",
+          "references": [
+            "AC 91-73",
+            "AIM",
+            "Chart Supplements",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
+            "POH/AFM"
+          ]
         },
         {
           "id": "F",
           "name": "Before Takeoff Check",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with before takeoff check."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with before takeoff check.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
+            "POH/AFM"
+          ]
         }
       ]
     },
@@ -801,12 +893,22 @@
         {
           "id": "A",
           "name": "Communications, Light Signals, and Runway Lighting Systems",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with normal and emergency radio communications, air traffic control (ATC) light signals, and runway lighting systems."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with normal and emergency radio communications, air traffic control (ATC) light signals, and runway lighting systems.",
+          "references": [
+            "14 CFR part 91",
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ]
         },
         {
           "id": "B",
           "name": "Traffic Patterns",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with traffic patterns."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with traffic patterns.",
+          "references": [
+            "14 CFR part 91",
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ]
         }
       ]
     },
@@ -817,7 +919,12 @@
         {
           "id": "A",
           "name": "Normal Takeoff and Climb",
-          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with normal takeoff, climb operations, and rejected takeoff procedures."
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with normal takeoff, climb operations, and rejected takeoff procedures.",
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
+            "POH/AFM"
+          ]
         }
       ]
     }

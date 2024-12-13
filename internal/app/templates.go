@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"path"
 	"path/filepath"
+	"strings"
 
 	"github.com/cdriehuys/flight-school/internal/models"
 )
@@ -134,6 +135,7 @@ func templateFuncs(custom template.FuncMap) template.FuncMap {
 	funcs := template.FuncMap{
 		"add":           add,
 		"fracAsPercent": fracAsPercent,
+		"join":          strings.Join,
 	}
 
 	for k, f := range custom {

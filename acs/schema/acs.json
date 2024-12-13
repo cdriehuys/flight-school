@@ -65,6 +65,11 @@
                   "type": "string",
                   "description": "The goal of the task"
                 },
+                "references": {
+                  "type": "array",
+                  "description": "An array of reference document identifiers related to the task",
+                  "items": { "type": "string" }
+                },
                 "knowledge": {
                   "type": "array",
                   "description": "Knowledge elements each airman is tested on",

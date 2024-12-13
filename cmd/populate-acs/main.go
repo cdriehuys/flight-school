@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/cdriehuys/flight-school/internal/models"
+	"github.com/cdriehuys/flight-school/internal/models/queries"
 	"github.com/jackc/pgx/v5"
 )
 
@@ -34,6 +35,8 @@ func run() error {
 		}
 	}()
 
+	q := queries.New(db)
+
 	dataFile := flag.Arg(0)
 	fmt.Printf("Loading ACS from: %s\n", dataFile)
 
@@ -53,7 +56,7 @@ func run() error {
 		return fmt.Errorf("failed to read ACS from %s: %v", dataFile, err)
 	}
 
-	return insertACS(context.Background(), db, acs)
+	return insertACS(context.Background(), db, q, acs)
 }
 
 type ACS struct {
@@ -73,6 +76,8 @@ type Task struct {
 	Name      string `json:"name"`
 	Objective string `json:"objective"`
 
+	References []string `json:"references"`
+
 	Knowledge      []Element `json:"knowledge"`
 	RiskManagement []Element `json:"riskManagement"`
 	Skills         []Element `json:"skills"`
@@ -88,7 +93,7 @@ type SubElement struct {
 	Content string `json:"content"`
 }
 
-func insertACS(ctx context.Context, db *pgx.Conn, acs ACS) error {
+func insertACS(ctx context.Context, db *pgx.Conn, q *queries.Queries, acs ACS) error {
 	query := `INSERT INTO acs (id, name)
 		VALUES ($1, $2)
 		ON CONFLICT (id) DO UPDATE
@@ -101,7 +106,7 @@ func insertACS(ctx context.Context, db *pgx.Conn, acs ACS) error {
 	log.Printf("%s - Updated ACS\n", acs.ID)
 
 	for i, area := range acs.Areas {
-		if err := upsertArea(ctx, db, acs.ID, i, area); err != nil {
+		if err := upsertArea(ctx, db, q, acs.ID, i, area); err != nil {
 			return fmt.Errorf("failed to update %s.%s: %v", acs.ID, area.ID, err)
 		}
 	}
@@ -109,7 +114,7 @@ func insertACS(ctx context.Context, db *pgx.Conn, acs ACS) error {
 	return nil
 }
 
-func upsertArea(ctx context.Context, db *pgx.Conn, acsID string, order int, area Area) error {
+func upsertArea(ctx context.Context, db *pgx.Conn, q *queries.Queries, acsID string, order int, area Area) error {
 	query := `INSERT INTO acs_areas (acs_id, public_id, name, "order")
 		VALUES ($1, $2, $3, $4)
 		ON CONFLICT (acs_id, public_id) DO UPDATE
@@ -125,7 +130,7 @@ func upsertArea(ctx context.Context, db *pgx.Conn, acsID string, order int, area
 	log.Printf("%s - Updated area - %s\n", areaID, area.Name)
 
 	for _, task := range area.Tasks {
-		if err := upsertTask(ctx, db, areaID, areaPK, task); err != nil {
+		if err := upsertTask(ctx, db, q, areaID, areaPK, task); err != nil {
 			return fmt.Errorf("failed to update task %s.%s: %v", areaID, task.ID, err)
 		}
 	}
@@ -133,20 +138,40 @@ func upsertArea(ctx context.Context, db *pgx.Conn, acsID string, order int, area
 	return nil
 }
 
-func upsertTask(ctx context.Context, db *pgx.Conn, areaID string, areaPK int, task Task) error {
+func upsertTask(ctx context.Context, db *pgx.Conn, q *queries.Queries, areaID string, areaPK int, task Task) error {
 	query := `INSERT INTO acs_area_tasks (area_id, public_id, name, objective)
 		VALUES ($1, $2, $3, $4)
 		ON CONFLICT (area_id, public_id) DO UPDATE
 		SET name = EXCLUDED.name, objective = EXCLUDED.objective
 		RETURNING id`
 
-	var taskPK int
+	var taskPK int32
 	if err := db.QueryRow(ctx, query, areaPK, task.ID, task.Name, task.Objective).Scan(&taskPK); err != nil {
 		return fmt.Errorf("failed to update task %s.%s: %v", areaID, task.ID, err)
 	}
 
 	taskPublicID := fmt.Sprintf("%s.%s", areaID, task.ID)
 	log.Printf("%s - Updated task - %s", taskPublicID, task.Name)
+
+	referenceIDs := make([]int32, len(task.References))
+	for i, reference := range task.References {
+		ref, err := upsertTaskReference(ctx, q, taskPublicID, taskPK, int32(i), reference)
+		if err != nil {
+			return fmt.Errorf("failed to update task reference: %v", err)
+		}
+
+		referenceIDs[i] = ref.ID
+	}
+
+	deletedRefs, err := q.ClearUnknownTaskReferences(ctx, queries.ClearUnknownTaskReferencesParams{
+		TaskID:   taskPK,
+		KnownIds: referenceIDs,
+	})
+	if err != nil {
+		return fmt.Errorf("failed to clear unknown task references: %v", err)
+	}
+
+	log.Printf("%s - Deleted %d unknown reference(s)", taskPublicID, deletedRefs)
 
 	upsertElements := func(elementType models.TaskElementType, elements []Element) error {
 		for _, element := range elements {
@@ -173,11 +198,34 @@ func upsertTask(ctx context.Context, db *pgx.Conn, areaID string, areaPK int, ta
 	return nil
 }
 
+func upsertTaskReference(
+	ctx context.Context,
+	q *queries.Queries,
+	taskPublicID string,
+	taskPK int32,
+	order int32,
+	reference string,
+) (queries.TaskReference, error) {
+	ref, err := q.UpsertTaskReference(ctx, queries.UpsertTaskReferenceParams{
+		TaskID:   taskPK,
+		Document: reference,
+		Order:    order,
+	})
+
+	if err != nil {
+		return queries.TaskReference{}, fmt.Errorf("failed to update reference %q for task %s: %v", reference, taskPublicID, err)
+	}
+
+	log.Printf("%s - Added reference %q", taskPublicID, ref.Document)
+
+	return ref, nil
+}
+
 func upsertElement(
 	ctx context.Context,
 	db *pgx.Conn,
 	taskPublicID string,
-	taskPK int,
+	taskPK int32,
 	elementType models.TaskElementType,
 	element Element,
 ) error {
