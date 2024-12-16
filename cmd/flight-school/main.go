@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"errors"
-	"flag"
 	"fmt"
 	"io"
 	"io/fs"
@@ -17,39 +16,62 @@ import (
 	"github.com/cdriehuys/flight-school/internal/app"
 	"github.com/cdriehuys/flight-school/static"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
-
-var debug bool
 
 const addr = ":8000"
 
+func executeCLI(logStream io.Writer) error {
+	cmd := &cobra.Command{
+		Use:   "flight-school",
+		Short: "Run the flight-school web server",
+		RunE:  webServerRunner(logStream),
+	}
+
+	cmd.Flags().Bool("debug", false, "Enable debug behavior")
+	viper.BindPFlag("debug", cmd.Flags().Lookup("debug"))
+
+	cmd.Flags().String("dsn", "", "DSN for connecting to the database ($FLIGHT_SCHOOL_DSN)")
+	viper.BindEnv("dsn", "FLIGHT_SCHOOL_DSN")
+	viper.BindPFlag("dsn", cmd.Flags().Lookup("dsn"))
+	viper.SetDefault("dsn", "postgres://localhost")
+
+	return cmd.Execute()
+}
+
+func webServerRunner(logStream io.Writer) func(*cobra.Command, []string) error {
+	return func(c *cobra.Command, s []string) error {
+		return run(logStream)
+	}
+}
+
 func run(logStream io.Writer) error {
-	debug := flag.Bool("debug", false, "enable debug behavior")
-	dbDSN := flag.String("dsn", "postgres://localhost", "DSN for connecting to the database")
-	flag.Parse()
+	debug := viper.GetBool("debug")
+	dsn := viper.GetString("dsn")
 
 	logLevel := slog.LevelInfo
-	if *debug {
+	if debug {
 		logLevel = slog.LevelDebug
 	}
 
 	logger := slog.New(slog.NewTextHandler(logStream, &slog.HandlerOptions{Level: logLevel}))
 
 	var templateFiles fs.FS
-	if *debug {
+	if debug {
 		templateFiles = os.DirFS("./html")
 	} else {
 		templateFiles = html.Files
 	}
 
 	var staticFiles fs.FS
-	if *debug {
+	if debug {
 		staticFiles = os.DirFS("./static")
 	} else {
 		staticFiles = static.Files
 	}
 
-	db, err := pgxpool.New(context.Background(), *dbDSN)
+	db, err := pgxpool.New(context.Background(), dsn)
 	if err != nil {
 		return fmt.Errorf("failed to connect to database: %v", err)
 	}
@@ -61,7 +83,7 @@ func run(logStream io.Writer) error {
 		templateFiles,
 		staticFiles,
 		db,
-		&app.Options{Debug: *debug, LiveTemplates: *debug},
+		&app.Options{Debug: debug, LiveTemplates: debug},
 	)
 	if err != nil {
 		return fmt.Errorf("failed to build app: %v", err)
@@ -108,7 +130,7 @@ func run(logStream io.Writer) error {
 }
 
 func main() {
-	if err := run(os.Stderr); err != nil {
+	if err := executeCLI(os.Stderr); err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 		os.Exit(1)
 	}

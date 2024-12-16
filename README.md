@@ -26,11 +26,15 @@ The main web application can be built from `./cmd/flight-school`. It launches a
 web server that listens to `0.0.0.0:8000`.
 
 ```text
-Usage of flight-school:
-  -debug
-        enable debug behavior
-  -dsn string
-        DSN for connecting to the database (default "postgres://localhost")
+Run the flight-school web server
+
+Usage:
+  flight-school [flags]
+
+Flags:
+      --debug        Enable debug behavior
+      --dsn string   DSN for connecting to the database ($FLIGHT_SCHOOL_DSN)
+  -h, --help         help for flight-school
 ```
 
 There's an additional program in `./cmd/populate-acs` that is useful for

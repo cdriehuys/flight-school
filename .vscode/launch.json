@@ -11,10 +11,10 @@
             "mode": "auto",
             "cwd": "${workspaceFolder}",
             "program": "./cmd/flight-school",
-            "args": [
-                "-debug",
-                "-dsn=postgres://${env:POSTGRES_USER}:${env:POSTGRES_PASSWORD}@${env:POSTGRES_HOSTNAME}/${env:POSTGRES_DB}"
-            ]
+            "args": ["--debug"],
+            "env": {
+                "FLIGHT_SCHOOL_DSN": "postgres://${env:POSTGRES_USER}:${env:POSTGRES_PASSWORD}@${env:POSTGRES_HOSTNAME}/${env:POSTGRES_DB}"
+            }
         }
     ]
 }
