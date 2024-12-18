@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/cdriehuys/flight-school/compare/v0.1.0...v0.2.0) (2024-12-18)
+
+
+### Features
+
+* Sub-command for running migrations ([#9](https://github.com/cdriehuys/flight-school/issues/9)) ([4a35b36](https://github.com/cdriehuys/flight-school/commit/4a35b36a28025a940ffe7b0df709794c83f71b95))
+
 ## 0.1.0 (2024-12-16)
 
 
