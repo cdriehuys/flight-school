@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0](https://github.com/cdriehuys/flight-school/compare/v0.2.0...v0.3.0) (2024-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* replacements.
+
+### Features
+
+* Separate flags for live UI assets ([#15](https://github.com/cdriehuys/flight-school/issues/15)) ([2455460](https://github.com/cdriehuys/flight-school/commit/2455460afa0e19ed22151364d9d0d884bfd41f7b))
+
 ## [0.2.0](https://github.com/cdriehuys/flight-school/compare/v0.1.0...v0.2.0) (2024-12-18)
 
 
