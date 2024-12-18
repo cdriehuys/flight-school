@@ -14,6 +14,8 @@ import (
 
 	"github.com/cdriehuys/flight-school/html"
 	"github.com/cdriehuys/flight-school/internal/app"
+	"github.com/cdriehuys/flight-school/internal/cli"
+	"github.com/cdriehuys/flight-school/migrations"
 	"github.com/cdriehuys/flight-school/static"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/spf13/cobra"
@@ -22,7 +24,7 @@ import (
 
 const addr = ":8000"
 
-func executeCLI(logStream io.Writer) error {
+func executeCLI(logStream io.Writer, migrationFS fs.FS) error {
 	cmd := &cobra.Command{
 		Use:   "flight-school",
 		Short: "Run the flight-school web server",
@@ -32,10 +34,12 @@ func executeCLI(logStream io.Writer) error {
 	cmd.Flags().Bool("debug", false, "Enable debug behavior")
 	viper.BindPFlag("debug", cmd.Flags().Lookup("debug"))
 
-	cmd.Flags().String("dsn", "", "DSN for connecting to the database ($FLIGHT_SCHOOL_DSN)")
+	cmd.PersistentFlags().String("dsn", "", "DSN for connecting to the database ($FLIGHT_SCHOOL_DSN)")
 	viper.BindEnv("dsn", "FLIGHT_SCHOOL_DSN")
-	viper.BindPFlag("dsn", cmd.Flags().Lookup("dsn"))
+	viper.BindPFlag("dsn", cmd.PersistentFlags().Lookup("dsn"))
 	viper.SetDefault("dsn", "postgres://localhost")
+
+	cmd.AddCommand(cli.NewMigrateCmd(migrationFS))
 
 	return cmd.Execute()
 }
@@ -130,7 +134,7 @@ func run(logStream io.Writer) error {
 }
 
 func main() {
-	if err := executeCLI(os.Stderr); err != nil {
+	if err := executeCLI(os.Stderr, migrations.Files); err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
 		os.Exit(1)
 	}
