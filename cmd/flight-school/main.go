@@ -39,6 +39,12 @@ func executeCLI(logStream io.Writer, migrationFS fs.FS) error {
 	viper.BindPFlag("dsn", cmd.PersistentFlags().Lookup("dsn"))
 	viper.SetDefault("dsn", "postgres://localhost")
 
+	cmd.Flags().String("static-dir", "", "Use static files from this path instead of the embedded files")
+	viper.BindPFlag("static-dir", cmd.Flags().Lookup("static-dir"))
+
+	cmd.Flags().String("template-dir", "", "Use templates from this path instead of the embedded files")
+	viper.BindPFlag("template-dir", cmd.Flags().Lookup("template-dir"))
+
 	cmd.AddCommand(cli.NewMigrateCmd(migrationFS))
 
 	return cmd.Execute()
@@ -61,16 +67,25 @@ func run(logStream io.Writer) error {
 
 	logger := slog.New(slog.NewTextHandler(logStream, &slog.HandlerOptions{Level: logLevel}))
 
+	appOpts := app.Options{Debug: debug}
+
+	templateDir := viper.GetString("template-dir")
+
 	var templateFiles fs.FS
-	if debug {
-		templateFiles = os.DirFS("./html")
+	if templateDir != "" {
+		templateFiles = os.DirFS(templateDir)
+		appOpts.LiveTemplates = true
+		logger.Info("Using live templates", "templateDir", templateDir)
 	} else {
 		templateFiles = html.Files
 	}
 
+	staticDir := viper.GetString("static-dir")
+
 	var staticFiles fs.FS
-	if debug {
-		staticFiles = os.DirFS("./static")
+	if staticDir != "" {
+		staticFiles = os.DirFS(staticDir)
+		logger.Info("Using live static files", "staticDir", staticDir)
 	} else {
 		staticFiles = static.Files
 	}
@@ -82,13 +97,7 @@ func run(logStream io.Writer) error {
 
 	defer db.Close()
 
-	app, err := app.New(
-		logger,
-		templateFiles,
-		staticFiles,
-		db,
-		&app.Options{Debug: debug, LiveTemplates: debug},
-	)
+	app, err := app.New(logger, templateFiles, staticFiles, db, &appOpts)
 	if err != nil {
 		return fmt.Errorf("failed to build app: %v", err)
 	}
