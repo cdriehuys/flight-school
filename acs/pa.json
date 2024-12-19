@@ -841,6 +841,40 @@
           "references": [
             "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
             "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Starting under various conditions."
+            },
+            {
+              "id": 2,
+              "content": "Starting the engine(s) by use of external power."
+            },
+            {
+              "id": 3,
+              "content": "Limitations associated with starting."
+            },
+            {
+              "id": 4,
+              "content": "Conditions leading to and procedures for an aborted start."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Propeller safety."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Position the airplane properly considering structures, other aircraft, wind, and the safety of nearby persons and property."
+            },
+            {
+              "id": 2,
+              "content": "Complete the appropriate checklist(s)."
+            }
           ]
         },
         {
@@ -857,6 +891,101 @@
             "Chart Supplements",
             "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
             "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Current airport aeronautical references and information resources such as the Chart Supplement, airport diagram, and Notices to Air Missions (NOTAMs)"
+            },
+            {
+              "id": 2,
+              "content": "Taxi instructions/clearances."
+            },
+            {
+              "id": 3,
+              "content": "Airport markings, signs, and lights."
+            },
+            {
+              "id": 4,
+              "content": "Visual indicators for wind."
+            },
+            {
+              "id": 5,
+              "content": "Aircraft lighting, as appropriate."
+            },
+            {
+              "id": 6,
+              "content": "Procedures for:",
+              "subElements": [
+                {
+                  "content": "Appropriate flight deck activities prior to taxi, including route planning and identifying the location of Hot Spots"
+                },
+                {
+                  "content": "Radio communications at towered and nontowered airports"
+                },
+                {
+                  "content": "Entering or crossing runways"
+                },
+                {
+                  "content": "Night taxi operations"
+                },
+                {
+                  "content": "Low visibility taxi operations"
+                }
+              ]
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Activities and distractions."
+            },
+            {
+              "id": 2,
+              "content": "Confirmation or expectation bias as related to taxi instructions."
+            },
+            {
+              "id": 3,
+              "content": "A taxi route or departure runway change."
+            },
+            {
+              "id": 4,
+              "content": "Runway incursion."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Receive and correctly read back clearances/instructions, if applicable."
+            },
+            {
+              "id": 2,
+              "content": "Use an airport diagram or taxi chart during taxi, if published, and maintain situational awareness."
+            },
+            {
+              "id": 3,
+              "content": "Position the flight controls for the existing wind, if applicable."
+            },
+            {
+              "id": 4,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 5,
+              "content": "Perform a brake check immediately after the airplane begins moving."
+            },
+            {
+              "id": 6,
+              "content": "Maintain positive control of the airplane during ground operations by controlling direction and speed without excessive use of brakes."
+            },
+            {
+              "id": 7,
+              "content": "Comply with airport/taxiway markings, signals, and air traffic control (ATC) clearances and instructions."
+            },
+            {
+              "id": 8,
+              "content": "Position the airplane properly relative to hold lines."
+            }
           ]
         },
         {
@@ -882,6 +1011,63 @@
           "references": [
             "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
             "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Purpose of before takeoff checklist items, including:",
+              "subElements": [
+                {
+                  "content": "Reasons for checking each item"
+                },
+                {
+                  "content": "Detecting malfunctions"
+                },
+                {
+                  "content": "Ensuring the aircraft is in safe operating condition as recommended by the manufacturer"
+                }
+              ]
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Division of attention while conducting before takeoff checks."
+            },
+            {
+              "id": 2,
+              "content": "Unexpected runway changes by air traffic control (ATC)."
+            },
+            {
+              "id": 3,
+              "content": "Wake turbulence."
+            },
+            {
+              "id": 4,
+              "content": "Potential powerplant failure during takeoff or other malfunction considering operational factors such as airplane characteristics, runway/takeoff path length, surface conditions, environmental conditions, and obstructions."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Review takeoff performance."
+            },
+            {
+              "id": 2,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 3,
+              "content": "Position the airplane appropriately considering wind direction and the presence of any aircraft, vessels, or buildings as applicable."
+            },
+            {
+              "id": 4,
+              "content": "Divide attention inside and outside the flight deck."
+            },
+            {
+              "id": 5,
+              "content": "Verify that engine parameters and airplane configuration are suitable."
+            }
           ]
         }
       ]
@@ -898,6 +1084,76 @@
             "14 CFR part 91",
             "AIM",
             "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "How to obtain appropriate radio frequencies."
+            },
+            {
+              "id": 2,
+              "content": "Proper radio communication procedures and air traffic control (ATC) phraseology."
+            },
+            {
+              "id": 3,
+              "content": "ATC light signal recognition."
+            },
+            {
+              "id": 4,
+              "content": "Appropriate use of transponder(s)."
+            },
+            {
+              "id": 5,
+              "content": "Lost communication procedures."
+            },
+            {
+              "id": 6,
+              "content": "Equipment issues that could cause loss of communication."
+            },
+            {
+              "id": 7,
+              "content": "Radar assistance."
+            },
+            {
+              "id": 8,
+              "content": "National Transportation Safety Board (NTSB) accident/incident reporting."
+            },
+            {
+              "id": 9,
+              "content": "Runway Status Lighting Systems."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Communication."
+            },
+            {
+              "id": 2,
+              "content": "Deciding if and when to declare an emergency."
+            },
+            {
+              "id": 3,
+              "content": "[Archived]"
+            },
+            {
+              "id": 4,
+              "content": "Use of non-standard phraseology."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Select and activate appropriate frequencies."
+            },
+            {
+              "id": 2,
+              "content": "Transmit using standard phraseology and procedures as specified in the Aeronautical Information Manual (AIM) and Pilot/Controller Glossary."
+            },
+            {
+              "id": 3,
+              "content": "Acknowledge radio communications and comply with ATC instructions or as directed by the evaluator."
+            }
           ]
         },
         {
@@ -908,6 +1164,64 @@
             "14 CFR part 91",
             "AIM",
             "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Towered and nontowered airport operations."
+            },
+            {
+              "id": 2,
+              "content": "Traffic pattern selection for the current conditions."
+            },
+            {
+              "id": 3,
+              "content": "Right-of-way rules."
+            },
+            {
+              "id": 4,
+              "content": "Use of automated weather and airport information."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 2,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 3,
+              "content": "Windshear and wake turbulence."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Identify and interpret airport/seaplane base runways, taxiways, markings, signs, and lighting."
+            },
+            {
+              "id": 2,
+              "content": "Comply with recommended traffic pattern procedures."
+            },
+            {
+              "id": 3,
+              "content": "Correct for wind drift to maintain the proper ground track."
+            },
+            {
+              "id": 4,
+              "content": "Maintain orientation with the runway/landing area in use."
+            },
+            {
+              "id": 5,
+              "content": "Maintain traffic pattern altitude, ±100 feet, and the appropriate airspeed, ±10 knots."
+            },
+            {
+              "id": 6,
+              "content": "Maintain situational awareness and proper spacing from other aircraft in the traffic pattern."
+            }
           ]
         }
       ]
@@ -924,6 +1238,150 @@
             "AIM",
             "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
             "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Effects of atmospheric conditions, including wind, on takeoff and climb performance."
+            },
+            {
+              "id": 2,
+              "content": "Best angle of climb speed (Vx) and best rate of climb speed (Vy)."
+            },
+            {
+              "id": 3,
+              "content": "Appropriate airplane configuration."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Selection of runway or takeoff path based on aircraft performance and limitations, available distance, and wind."
+            },
+            {
+              "id": 2,
+              "content": "Effects of:",
+              "subElements": [
+                {
+                  "content": "Crosswind"
+                },
+                {
+                  "content": "Windshear"
+                },
+                {
+                  "content": "Tailwind"
+                },
+                {
+                  "content": "Wake turbulence"
+                },
+                {
+                  "content": "Takeoff surface/condition"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Abnormal operations, including planning for:",
+              "subElements": [
+                {
+                  "content": "Rejected takeoff"
+                },
+                {
+                  "content": "Potential engine failure in takeoff/climb phase of flight"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 7,
+              "content": "Runway incursion."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Verify assigned/correct runway or takeoff path."
+            },
+            {
+              "id": 4,
+              "content": "Determine wind direction with or without visible wind direction indicators."
+            },
+            {
+              "id": 5,
+              "content": "Position the flight controls for the existing wind, if applicable."
+            },
+            {
+              "id": 6,
+              "content": "Clear the area, taxi into takeoff position, and align the airplane on the runway centerline (ASEL, AMEL) or takeoff path (ASES, AMES).",
+              "subElements": [
+                {
+                  "content": "Retract the water rudders, as appropriate",
+                  "appliesTo": ["ASES", "AMES"]
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "content": "Advance the throttle smoothly to takeoff power and confirm proper engine and flight instrument indications prior to rotation.",
+              "subElements": [
+                {
+                  "content": "Establish and maintain the most efficient planing/lift-off attitude, and correct for porpoising or skipping",
+                  "appliesTo": ["ASES", "AMES"]
+                }
+              ]
+            },
+            {
+              "id": 8,
+              "content": "Avoid excessive water spray on the propeller(s).",
+              "appliesTo": ["ASES", "AMES"]
+            },
+            {
+              "id": 9,
+              "content": "Rotate and lift off at the recommended airspeed and accelerate to Vy."
+            },
+            {
+              "id": 10,
+              "content": "[Archived]"
+            },
+            {
+              "id": 11,
+              "content": "Establish a pitch attitude to maintain the manufacturer’s recommended speed or Vy, +10/-5 knots."
+            },
+            {
+              "id": 12,
+              "content": "Configure the airplane in accordance with manufacturer’s guidance"
+            },
+            {
+              "id": 13,
+              "content": "Maintain Vy +10/-5 knots to a safe maneuvering altitude."
+            },
+            {
+              "id": 14,
+              "content": "Maintain directional control and proper wind-drift correction throughout takeoff and climb."
+            },
+            {
+              "id": 15,
+              "content": "Comply with noise abatement procedures, as applicable."
+            }
           ]
         }
       ]
