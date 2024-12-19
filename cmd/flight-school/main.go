@@ -31,8 +31,8 @@ func executeCLI(logStream io.Writer, migrationFS fs.FS) error {
 		RunE:  webServerRunner(logStream),
 	}
 
-	cmd.Flags().Bool("debug", false, "Enable debug behavior")
-	viper.BindPFlag("debug", cmd.Flags().Lookup("debug"))
+	cmd.PersistentFlags().Bool("debug", false, "Enable debug logging")
+	viper.BindPFlag("debug", cmd.PersistentFlags().Lookup("debug"))
 
 	cmd.PersistentFlags().String("dsn", "", "DSN for connecting to the database ($FLIGHT_SCHOOL_DSN)")
 	viper.BindEnv("dsn", "FLIGHT_SCHOOL_DSN")
@@ -45,7 +45,10 @@ func executeCLI(logStream io.Writer, migrationFS fs.FS) error {
 	cmd.Flags().String("template-dir", "", "Use templates from this path instead of the embedded files")
 	viper.BindPFlag("template-dir", cmd.Flags().Lookup("template-dir"))
 
-	cmd.AddCommand(cli.NewMigrateCmd(migrationFS))
+	cmd.AddCommand(
+		cli.NewMigrateCmd(migrationFS),
+		cli.NewPopulateACSCmd(logStream),
+	)
 
 	return cmd.Execute()
 }

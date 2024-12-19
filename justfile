@@ -20,8 +20,8 @@ generate:
 # Populate the database with a particular ACS.
 [group('data')]
 populate-acs file:
-  @go run ./cmd/populate-acs \
-    -dsn postgres://{{ env_var('POSTGRES_USER') }}:{{ env_var('POSTGRES_PASSWORD') }}@{{ env_var('POSTGRES_HOSTNAME') }}/{{ env_var('POSTGRES_DB')}} \
+  @go run ./cmd/flight-school populate-acs \
+    --dsn postgres://{{ env_var('POSTGRES_USER') }}:{{ env_var('POSTGRES_PASSWORD') }}@{{ env_var('POSTGRES_HOSTNAME') }}/{{ env_var('POSTGRES_DB')}} \
     {{ file }}
 
 # Open shell connected to dev database
