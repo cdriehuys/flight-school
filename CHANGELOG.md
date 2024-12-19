@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/cdriehuys/flight-school/compare/v0.3.0...v0.4.0) (2024-12-19)
+
+
+### Features
+
+* Transcribe PA ACS through task PA.IV.A ([#24](https://github.com/cdriehuys/flight-school/issues/24)) ([119a98a](https://github.com/cdriehuys/flight-school/commit/119a98a88dadd042e7fc765af0851eadf9c17818))
+
 ## [0.3.0](https://github.com/cdriehuys/flight-school/compare/v0.2.0...v0.3.0) (2024-12-19)
 
 
