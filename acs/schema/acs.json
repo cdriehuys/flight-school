@@ -116,6 +116,14 @@
           "type": "string",
           "description": "The text describing what the airman needs to know"
         },
+        "appliesTo": {
+          "type": "array",
+          "description": "The subset of aircraft classes that this element applies to",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}$"
+          }
+        },
         "subElements": {
           "type": "array",
           "description": "Specific attributes of a broader element",
