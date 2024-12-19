@@ -83,6 +83,8 @@ type TaskElement struct {
 	PublicID int32
 	Content  string
 
+	FullPublicID string
+
 	SubElements []SubElement
 }
 
@@ -261,7 +263,7 @@ func (m *ACSModel) listElementsForTask(ctx context.Context, taskID int32) (map[T
 
 	elementIDs := make([]int32, 0)
 	for _, e := range elements {
-		elementIDs = append(elementIDs, e.ID)
+		elementIDs = append(elementIDs, e.AcsElement.ID)
 	}
 
 	subElements, err := m.listSubElements(ctx, elementIDs)
@@ -271,18 +273,19 @@ func (m *ACSModel) listElementsForTask(ctx context.Context, taskID int32) (map[T
 
 	elementsByType := make(map[TaskElementType][]TaskElement)
 	for _, e := range elements {
-		elementType := taskElementTypeFromModel(e.Type)
+		elementType := taskElementTypeFromModel(e.AcsElement.Type)
 		if _, ok := elementsByType[elementType]; !ok {
 			elementsByType[elementType] = make([]TaskElement, 0, 1)
 		}
 
 		element := TaskElement{
-			ID:          e.ID,
-			TaskID:      e.TaskID,
-			Type:        elementType,
-			PublicID:    e.PublicID,
-			Content:     e.Content,
-			SubElements: subElements[e.ID],
+			ID:           e.AcsElement.ID,
+			TaskID:       e.AcsElement.TaskID,
+			Type:         elementType,
+			PublicID:     e.AcsElement.PublicID,
+			Content:      e.AcsElement.Content,
+			FullPublicID: e.FullPublicID,
+			SubElements:  subElements[e.AcsElement.ID],
 		}
 
 		elementsByType[elementType] = append(

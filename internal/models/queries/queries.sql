@@ -143,10 +143,14 @@ WHERE task_id = $1
 ORDER BY "order" ASC;
 
 -- name: ListElementsByTaskID :many
-SELECT *
-FROM acs_elements
-WHERE task_id = $1
-ORDER BY "type", public_id ASC;
+SELECT
+    sqlc.embed(e),
+    (a.acs_id || '.' || a.public_id || '.' || t.public_id || '.' || e.type || e.public_id)::text AS full_public_id
+FROM acs_elements e
+    LEFT JOIN acs_area_tasks t ON e.task_id = t.id
+    LEFT JOIN acs_areas a on t.area_id = a.id
+WHERE e.task_id = $1
+ORDER BY e."type", e.public_id ASC;
 
 -- name: SetElementConfidence :exec
 INSERT INTO element_confidence (element_id, vote)
