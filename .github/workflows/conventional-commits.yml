@@ -13,5 +13,5 @@ jobs:
 
       - uses: webiny/action-conventional-commits@v1.3.0
         with:
-          allowed-commit-types: "chore,ci,feat,fix"
+          allowed-commit-types: "chore,ci,docs,feat,fix"
 

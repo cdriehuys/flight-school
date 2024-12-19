@@ -30,11 +30,21 @@ Run the flight-school web server
 
 Usage:
   flight-school [flags]
+  flight-school [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  migrate     Migrate the database forwards
 
 Flags:
-      --debug        Enable debug behavior
-      --dsn string   DSN for connecting to the database ($FLIGHT_SCHOOL_DSN)
-  -h, --help         help for flight-school
+      --debug                 Enable debug behavior
+      --dsn string            DSN for connecting to the database ($FLIGHT_SCHOOL_DSN)
+  -h, --help                  help for flight-school
+      --static-dir string     Use static files from this path instead of the embedded files
+      --template-dir string   Use templates from this path instead of the embedded files
+
+Use "flight-school [command] --help" for more information about a command.
 ```
 
 There's an additional program in `./cmd/populate-acs` that is useful for
