@@ -2,7 +2,7 @@
   {{ with . }}
   <div class="task-element-list">
     {{ range . }}
-    <p class="text-subtle">PA.I.A.{{ .Type }}{{ .PublicID }}</p>
+    <p class="text-subtle">{{ .FullPublicID }}</p>
     <div class="mb-xs">
       {{ .Content }}
       {{ with .SubElements }}
