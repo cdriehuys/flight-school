@@ -14,7 +14,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func NewPopulateACSCmd(logStream io.Writer) *cobra.Command {
+func newPopulateACSCmd(logStream io.Writer) *cobra.Command {
 	return &cobra.Command{
 		Use:   "populate-acs definition-file",
 		Short: "Populate the database with a particular ACS",
