@@ -65,6 +65,10 @@
                   "type": "string",
                   "description": "The goal of the task"
                 },
+                "note": {
+                  "type": "string",
+                  "description": "An additional note about the task"
+                },
                 "references": {
                   "type": "array",
                   "description": "An array of reference document identifiers related to the task",

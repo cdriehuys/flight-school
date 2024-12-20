@@ -1335,7 +1335,10 @@
               "subElements": [
                 {
                   "content": "Retract the water rudders, as appropriate",
-                  "appliesTo": ["ASES", "AMES"]
+                  "appliesTo": [
+                    "ASES",
+                    "AMES"
+                  ]
                 }
               ]
             },
@@ -1345,14 +1348,20 @@
               "subElements": [
                 {
                   "content": "Establish and maintain the most efficient planing/lift-off attitude, and correct for porpoising or skipping",
-                  "appliesTo": ["ASES", "AMES"]
+                  "appliesTo": [
+                    "ASES",
+                    "AMES"
+                  ]
                 }
               ]
             },
             {
               "id": 8,
               "content": "Avoid excessive water spray on the propeller(s).",
-              "appliesTo": ["ASES", "AMES"]
+              "appliesTo": [
+                "ASES",
+                "AMES"
+              ]
             },
             {
               "id": 9,
@@ -1381,6 +1390,888 @@
             {
               "id": 15,
               "content": "Comply with noise abatement procedures, as applicable."
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "Normal Approach and Landing",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with normal approach and landing with emphasis on proper use and coordination of flight controls.",
+          "note": "If a crosswind condition does not exist, the applicant’s knowledge of crosswind elements must be evaluated through oral testing.",
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
+            "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "A stabilized approach, including energy management concepts."
+            },
+            {
+              "id": 2,
+              "content": "Effects of atmospheric conditions, including wind, on approach and landing performance."
+            },
+            {
+              "id": 3,
+              "content": "Wind correction techniques on approach and landing."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Selection of runway/landing surface, approach path, and touchdown area based on pilot capability, aircraft performance and limitations, available distance, and wind."
+            },
+            {
+              "id": 2,
+              "content": "Effects of:",
+              "subElements": [
+                {
+                  "content": "Crosswind"
+                },
+                {
+                  "content": "Windshear"
+                },
+                {
+                  "content": "Tailwind"
+                },
+                {
+                  "content": "Wake turbulence"
+                },
+                {
+                  "content": "Landing surface/condition"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Planning for:",
+              "subElements": [
+                {
+                  "content": "Rejected landing and go-around"
+                },
+                {
+                  "content": "Land and hold short operations (LAHSO)"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Ensure the airplane is aligned with the correct/assigned runway or landing surface."
+            },
+            {
+              "id": 4,
+              "content": "Scan the runway or landing surface and adjoining area for traffic and obstructions."
+            },
+            {
+              "id": 5,
+              "content": "Select and aim for a suitable touchdown point considering the wind conditions, landing surface, and obstructions."
+            },
+            {
+              "id": 6,
+              "content": "Establish the recommended approach and landing configuration, airspeed, and trim, and adjust pitch attitude and power as required to maintain a stabilized approach."
+            },
+            {
+              "id": 7,
+              "content": "Maintain manufacturer’s published approach airspeed or in its absence not more than 1.3 times the stalling speed or the minimum steady flight speed in the landing configuration (Vso), +10/-5 knots with gust factor applied."
+            },
+            {
+              "id": 8,
+              "content": "Maintain directional control and appropriate crosswind correction throughout the approach and landing."
+            },
+            {
+              "id": 9,
+              "content": "Make smooth, timely, and correct control application during round out and touchdown."
+            },
+            {
+              "id": 10,
+              "content": "Touch down at a proper pitch attitude, within 400 feet beyond or on the specified point, with no side drift, and with the airplane’s longitudinal axis aligned with and over the runway center/landing path."
+            },
+            {
+              "id": 11,
+              "content": "Execute a timely go-around if the approach cannot be made within the tolerances specified above or for any other condition that may result in an unsafe approach or landing."
+            },
+            {
+              "id": 12,
+              "content": "Use runway incursion avoidance procedures, if applicable."
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "name": "Soft-Field Takeoff and Climb",
+          "appliesTo": [
+            "ASEL"
+          ],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with soft-field takeoff, climb operations, and rejected takeoff procedures.",
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Effects of atmospheric conditions, including wind, on takeoff and climb performance."
+            },
+            {
+              "id": 2,
+              "content": "Best angle of climb speed (Vx) and best rate of climb speed (Vy)."
+            },
+            {
+              "id": 3,
+              "content": "Appropriate airplane configuration."
+            },
+            {
+              "id": 4,
+              "content": "Ground effect."
+            },
+            {
+              "id": 5,
+              "content": "Importance of weight transfer from wheels to wings."
+            },
+            {
+              "id": 6,
+              "content": "Left turning tendencies."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Selection of runway based on pilot capability, airplane performance and limitations, available distance, and wind."
+            },
+            {
+              "id": 2,
+              "content": "Effects of:",
+              "subElements": [
+                {
+                  "content": "Crosswind"
+                },
+                {
+                  "content": "Windshear"
+                },
+                {
+                  "content": "Tailwind"
+                },
+                {
+                  "content": "Wake turbulence"
+                },
+                {
+                  "content": "Takeoff surface/condition"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Abnormal operations, including planning for:",
+              "subElements": [
+                {
+                  "content": "Rejected takeoff"
+                },
+                {
+                  "content": "Potential engine failure in takeoff/climb phase of flight"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Verify assigned/correct runway."
+            },
+            {
+              "id": 4,
+              "content": "Determine wind direction with or without visible wind direction indicators."
+            },
+            {
+              "id": 5,
+              "content": "Position the flight controls for the existing wind, if applicable."
+            },
+            {
+              "id": 6,
+              "content": "Clear the area, maintain necessary flight control inputs, taxi into takeoff position and align the airplane on the runway centerline without stopping, while advancing the throttle smoothly to takeoff power."
+            },
+            {
+              "id": 7,
+              "content": "Confirm takeoff power and proper engine and flight instrument indications."
+            },
+            {
+              "id": 8,
+              "content": "Establish and maintain a pitch attitude that transfers the weight of the airplane from the wheels to the wings as rapidly as possible."
+            },
+            {
+              "id": 9,
+              "content": "Lift off at the lowest possible airspeed and remain in ground effect while accelerating to Vx or Vy, as appropriate."
+            },
+            {
+              "id": 10,
+              "content": "Establish a pitch attitude for Vx or Vy, as appropriate, and maintain selected airspeed +10/-5 knots during the climb."
+            },
+            {
+              "id": 11,
+              "content": "Configure the airplane after a positive rate of climb has been verified or in accordance with airplane manufacturer’s instructions."
+            },
+            {
+              "id": 12,
+              "content": "Maintain Vx or Vy, as appropriate, +10/-5 knots to a safe maneuvering altitude."
+            },
+            {
+              "id": 13,
+              "content": "Maintain directional control and proper wind-drift correction throughout takeoff and climb."
+            },
+            {
+              "id": 14,
+              "content": "Comply with noise abatement procedures, as applicable."
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "name": "Soft-Field Approach and Landing",
+          "appliesTo": ["ASEL"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with soft-field approach and landing with emphasis on proper use and coordination of flight controls.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "A stabilized approach, including energy management concepts."
+            },
+            {
+              "id": 2,
+              "content": "Effects of atmospheric conditions, including wind, on approach and landing performance."
+            },
+            {
+              "id": 3,
+              "content": "Wind correction techniques on approach and landing."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Selection of runway/landing surface, approach path, and touchdown area based on pilot capability, aircraft performance and limitations, available distance, and wind."
+            },
+            {
+              "id": 2,
+              "content": "Effects of:",
+              "subElements": [
+                {
+                  "content": "Crosswind"
+                },
+                {
+                  "content": "Windshear"
+                },
+                {
+                  "content": "Tailwind"
+                },
+                {
+                  "content": "Wake turbulence"
+                },
+                {
+                  "content": "Landing surface/condition"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Planning for:",
+              "subElements": [
+                {
+                  "content": "Rejected landing and go-around"
+                },
+                {
+                  "content": "Land and hold short operations (LAHSO)"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Ensure the airplane is aligned with the correct/assigned runway."
+            },
+            {
+              "id": 4,
+              "content": "Scan the landing runway and adjoining area for traffic and obstructions."
+            },
+            {
+              "id": 5,
+              "content": "Select and aim for a suitable touchdown point considering the wind conditions, landing surface, and obstructions."
+            },
+            {
+              "id": 6,
+              "content": "Establish the recommended approach and landing configuration, airspeed, and trim, and adjust pitch attitude and power as required to maintain a stabilized approach."
+            },
+            {
+              "id": 7,
+              "content": "Maintain manufacturer’s published approach airspeed or in its absence not more than 1.3 Vso, +10/-5 knots with gust factor applied."
+            },
+            {
+              "id": 8,
+              "content": "Maintain directional control and appropriate crosswind correction throughout the approach and landing."
+            },
+            {
+              "id": 9,
+              "content": "Make smooth, timely, and correct control inputs during the round out and touchdown, and, for tricycle gear airplanes, keep the nose wheel off the surface until loss of elevator effectiveness."
+            },
+            {
+              "id": 10,
+              "content": "Touch down at a proper pitch attitude with minimum sink rate, no side drift, and with the airplane’s longitudinal axis aligned with the center of the runway."
+            },
+            {
+              "id": 11,
+              "content": "Maintain elevator as recommended by manufacturer during rollout and exit the “soft” area at a speed that would preclude sinking into the surface."
+            },
+            {
+              "id": 12,
+              "content": "Execute a timely go-around if the approach cannot be made within the tolerances specified above or for any other condition that may result in an unsafe approach or landing."
+            },
+            {
+              "id": 13,
+              "content": "Maintain proper position of the flight controls and sufficient speed to taxi while on the soft surface."
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "name": "Short-Field Takeoff and Maximum Performance Climb",
+          "appliesTo": ["ASEL", "AMEL"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with short-field takeoff, maximum performance climb operations, and rejected takeoff procedures.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Effects of atmospheric conditions, including wind, on takeoff and climb performance."
+            },
+            {
+              "id": 2,
+              "content": "Best angle of climb speed (Vx) and best rate of climb speed (Vy)."
+            },
+            {
+              "id": 3,
+              "content": "Appropriate airplane configuration."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Selection of runway based on pilot capability, airplane performance and limitations, available distance, and wind."
+            },
+            {
+              "id": 2,
+              "content": "Effects of:",
+              "subElements": [
+                {
+                  "content": "Crosswind"
+                },
+                {
+                  "content": "Windshear"
+                },
+                {
+                  "content": "Tailwind"
+                },
+                {
+                  "content": "Wake turbulence"
+                },
+                {
+                  "content": "Takeoff surface/condition"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Abnormal operations, including planning for:",
+              "subElements": [
+                {
+                  "content": "Rejected takeoff"
+                },
+                {
+                  "content": "Potential engine failure in takeoff/climb phase of flight"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Verify assigned/correct runway."
+            },
+            {
+              "id": 4,
+              "content": "Determine wind direction with or without visible wind direction indicators."
+            },
+            {
+              "id": 5,
+              "content": "Position the flight controls for the existing wind, if applicable."
+            },
+            {
+              "id": 6,
+              "content": "Clear the area, taxi into takeoff position, and align the airplane on the runway centerline utilizing maximum available takeoff area."
+            },
+            {
+              "id": 7,
+              "content": "Apply brakes while setting engine power to achieve maximum performance."
+            },
+            {
+              "id": 8,
+              "content": "Confirm takeoff power prior to brake release and verify proper engine and flight instrument indications prior to rotation."
+            },
+            {
+              "id": 9,
+              "content": "Rotate and lift off at the recommended airspeed and accelerate to the recommended obstacle clearance airspeed or Vx, +10/-5 knots."
+            },
+            {
+              "id": 10,
+              "content": "Establish a pitch attitude to maintain the recommended obstacle clearance airspeed or Vx, +10/-5 knots until the obstacle is cleared or until the airplane is 50 feet above the surface."
+            },
+            {
+              "id": 11,
+              "content": "Establish a pitch attitude for Vx and accelerate to Vx +10/-5 knots after clearing the obstacle or at 50 feet AGL if simulating an obstacle."
+            },
+            {
+              "id": 12,
+              "content": "Configure the airplane in accordance with the manufacturer’s guidance after a positive rate of climb has been verified"
+            },
+            {
+              "id": 13,
+              "content": "Maintain Vy +10/-5 knots to a safe maneuvering altitude."
+            },
+            {
+              "id": 14,
+              "content": "Maintain directional control and proper wind-drift correction throughout takeoff and climb."
+            },
+            {
+              "id": 15,
+              "content": "Comply with noise abatement procedures, as applicable."
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "name": "Short-Field Approach and Landing",
+          "appliesTo": ["ASEL", "AMEL"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with short-field approach and landing with emphasis on proper use and coordination of flight controls.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "A stabilized approach, including energy management concepts."
+            },
+            {
+              "id": 2,
+              "content": "Effects of atmospheric conditions, including wind, on approach and landing performance."
+            },
+            {
+              "id": 3,
+              "content": "Wind correction techniques on approach and landing."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Selection of runway based on pilot capability, aircraft performance and limitations, available distance, and wind."
+            },
+            {
+              "id": 2,
+              "content": "Effects of:",
+              "subElements": [
+                {
+                  "content": "Crosswind"
+                },
+                {
+                  "content": "Windshear"
+                },
+                {
+                  "content": "Tailwind"
+                },
+                {
+                  "content": "Wake turbulence"
+                },
+                {
+                  "content": "Landing surface/condition"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Planning for:",
+              "subElements": [
+                {
+                  "content": "Rejected landing and go-around"
+                },
+                {
+                  "content": "Land and hold short operations (LAHSO)"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Ensure the airplane is aligned with the correct/assigned runway."
+            },
+            {
+              "id": 4,
+              "content": "Scan the landing runway and adjoining area for traffic and obstructions."
+            },
+            {
+              "id": 5,
+              "content": "Select and aim for a suitable touchdown point considering the wind conditions, landing surface, and obstructions."
+            },
+            {
+              "id": 6,
+              "content": "Establish the recommended approach and landing configuration, airspeed, and trim, and adjust pitch attitude and power as required to maintain a stabilized approach."
+            },
+            {
+              "id": 7,
+              "content": "Maintain manufacturer’s published approach airspeed or in its absence not more than 1.3 Vso, +10/-5 knots with gust factor applied."
+            },
+            {
+              "id": 8,
+              "content": "Maintain directional control and appropriate crosswind correction throughout the approach and landing."
+            },
+            {
+              "id": 9,
+              "content": "Make smooth, timely, and correct control application before, during, and after touchdown."
+            },
+            {
+              "id": 10,
+              "content": "Touch down at a proper pitch attitude within 200 feet beyond or on the specified point, threshold markings, or runway numbers, with no side drift, minimum float, and with the airplane's longitudinal axis aligned with and over the runway centerline."
+            },
+            {
+              "id": 11,
+              "content": "Use manufacturer’s recommended procedures for airplane configuration and braking."
+            },
+            {
+              "id": 12,
+              "content": "Execute a timely go-around if the approach cannot be made within the tolerances specified above or for any other condition that may result in an unsafe approach or landing."
+            },
+            {
+              "id": 13,
+              "content": "Use runway incursion avoidance procedures, if applicable."
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "name": "Forward Slip to a Landing",
+          "appliesTo": ["ASEL", "ASES"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with forward slip to a landing.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Concepts of energy management during a forward slip approach."
+            },
+            {
+              "id": 2,
+              "content": "Effects of atmospheric conditions, including wind, on approach and landing performance."
+            },
+            {
+              "id": 3,
+              "content": "Wind correction techniques during forward slip."
+            },
+            {
+              "id": 4,
+              "content": "When and why a forward slip approach is used during an approach."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Selection of runway/landing surface, approach path, and touchdown area based on pilot capability, aircraft performance and limitations, available distance, and wind."
+            },
+            {
+              "id": 2,
+              "content": "Effects of:",
+              "subElements": [
+                {
+                  "content": "Crosswind"
+                },
+                {
+                  "content": "Windshear"
+                },
+                {
+                  "content": "Tailwind"
+                },
+                {
+                  "content": "Wake turbulence"
+                },
+                {
+                  "content": "Landing surface/condition"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Planning for:",
+              "subElements": [
+                {
+                  "content": "Rejected landing and go-around"
+                },
+                {
+                  "content": "Land and hold short operations (LAHSO)"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 7,
+              "content": "Forward slip operations, including fuel flowage, tail stalls with flaps, and airspeed control."
+            },
+            {
+              "id": 8,
+              "content": "Surface contact with the airplane’s longitudinal axis misaligned."
+            },
+            {
+              "id": 9,
+              "content": "Unstable approach."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Plan and follow a flightpath to the selected landing area considering altitude, wind, terrain, and obstructions."
+            },
+            {
+              "id": 4,
+              "content": "Select the most suitable touchdown point based on wind, landing surface, obstructions, and airplane limitations."
+            },
+            {
+              "id": 5,
+              "content": "Position airplane on downwind leg, parallel to landing runway or selected landing surface."
+            },
+            {
+              "id": 6,
+              "content": "Configure the airplane correctly."
+            },
+            {
+              "id": 7,
+              "content": "As necessary, correlate crosswind with direction of forward slip and transition to side slip before touchdown."
+            },
+            {
+              "id": 8,
+              "content": "Touch down at a proper pitch attitude, within 400 feet beyond or on the specified point, with no side drift, and with the airplane’s longitudinal axis aligned with and over the runway center/landing path."
+            },
+            {
+              "id": 9,
+              "content": "Maintain a ground track aligned with the runway center/landing path."
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "name": "Go-Around/Rejected Landing",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with go-around/rejected landing with emphasis on factors that contribute to landing conditions that may require a go-around.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "A stabilized approach, including energy management concepts."
+            },
+            {
+              "id": 2,
+              "content": "Effects of atmospheric conditions, including wind and density altitude, on a go-around or rejected landing."
+            },
+            {
+              "id": 3,
+              "content": "Wind correction techniques on takeoff/departure and approach/landing."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Delayed recognition of the need for a go-around/rejected landing."
+            },
+            {
+              "id": 2,
+              "content": "Delayed performance of a go-around at low altitude."
+            },
+            {
+              "id": 3,
+              "content": "Power application."
+            },
+            {
+              "id": 4,
+              "content": "Configuring the airplane."
+            },
+            {
+              "id": 5,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 6,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 7,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 8,
+              "content": "Runway incursion."
+            },
+            {
+              "id": 9,
+              "content": "Managing a go-around/rejected landing after accepting a LAHSO clearance."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 2,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Make a timely decision to discontinue the approach to landing."
+            },
+            {
+              "id": 4,
+              "content": "Apply takeoff power immediately and transition to climb pitch attitude for Vx or Vy as appropriate +10/-5 knots."
+            },
+            {
+              "id": 5,
+              "content": "Configure the airplane after a positive rate of climb has been verified or in accordance with airplane manufacturer’s instructions."
+            },
+            {
+              "id": 6,
+              "content": "Maneuver to the side of the runway/landing area when necessary to clear and avoid conflicting traffic."
+            },
+            {
+              "id": 7,
+              "content": "Maintain VY +10/-5 knots to a safe maneuvering altitude."
+            },
+            {
+              "id": 8,
+              "content": "Maintain directional control and proper wind-drift correction throughout the climb."
+            },
+            {
+              "id": 9,
+              "content": "Use runway incursion avoidance procedures, if applicable."
             }
           ]
         }
