@@ -12,6 +12,10 @@
 
   --color-text-subtle: #777;
 
+  --heading-size-lg: 1.75rem;
+  --heading-size-md: 1.5rem;
+  --heading-size-sm: 1.25rem;
+
   --space-xs: .25em;
   --space-sm: .5em;
   --space-md: 1em;
@@ -111,11 +115,11 @@ ol, ul {
 }
 
 .page__subtitle {
-  font-size: 1.5rem;
+  font-size: var(--heading-size-sm);
 }
 
 .page__title {
-  font-size: 2.5rem;
+  font-size: var(--heading-size-lg);
 }
 
 .sub-elements {
@@ -123,7 +127,7 @@ ol, ul {
 }
 
 .task__title {
-  font-size: 1.75rem;
+  font-size: var(--heading-size-md);
   margin-bottom: var(--space-xs);
 }
 
@@ -141,4 +145,12 @@ ol, ul {
 
 .text-subtle {
   color: var(--color-text-subtle);
+}
+
+@media screen and (min-width: 740px) {
+ :root {
+   --heading-size-lg: 2.5rem;
+   --heading-size-md: 1.75rem;
+   --heading-size-sm: 1.5rem;
+  }
 }
