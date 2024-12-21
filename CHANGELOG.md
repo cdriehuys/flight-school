@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.0](https://github.com/cdriehuys/flight-school/compare/v0.3.0...v0.4.0) (2024-12-21)
+
+
+### Features
+
+* Keep element in view when voting ([#34](https://github.com/cdriehuys/flight-school/issues/34)) ([a03e1d6](https://github.com/cdriehuys/flight-school/commit/a03e1d66fab0b7b8a22b562e8dc2dac6ad150a5c))
+* Support notes for tasks ([#29](https://github.com/cdriehuys/flight-school/issues/29)) ([dcbf393](https://github.com/cdriehuys/flight-school/commit/dcbf39317d068d23b30bcfbde485d18c1aa888ae))
+* Support smaller viewports ([#28](https://github.com/cdriehuys/flight-school/issues/28)) ([2ad103a](https://github.com/cdriehuys/flight-school/commit/2ad103ac5478f85f74991d67c8e89b17ec5023d5))
+* Transcribe PA ACS through PA.IV ([#27](https://github.com/cdriehuys/flight-school/issues/27)) ([ddf63cc](https://github.com/cdriehuys/flight-school/commit/ddf63cc49c2cc53deb1b20b7bfc373fa33d68634))
+* Transcribe PA ACS through PA.VII ([#36](https://github.com/cdriehuys/flight-school/issues/36)) ([868733f](https://github.com/cdriehuys/flight-school/commit/868733f94c5af11bb25d731899eb564b38c55908))
+* Transcribe PA ACS through task PA.IV.A ([#24](https://github.com/cdriehuys/flight-school/issues/24)) ([119a98a](https://github.com/cdriehuys/flight-school/commit/119a98a88dadd042e7fc765af0851eadf9c17818))
+* Transcribe remaining portions of PA ACS ([#37](https://github.com/cdriehuys/flight-school/issues/37)) ([b1eb4b7](https://github.com/cdriehuys/flight-school/commit/b1eb4b7ec3c8b67653f02c3f122016b415dada5e))
+
 ## [0.3.0](https://github.com/cdriehuys/flight-school/compare/v0.2.0...v0.3.0) (2024-12-19)
 
 
