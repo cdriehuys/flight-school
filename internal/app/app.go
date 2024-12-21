@@ -36,6 +36,7 @@ type acsModel interface {
 	GetTaskConfidence(ctx context.Context, taskID int32) (models.Confidence, error)
 	ListAreasByACS(ctx context.Context, acs string) ([]models.AreaOfOperation, error)
 	ListTasksByArea(ctx context.Context, areaID int32) ([]models.TaskSummary, error)
+	GetElementPublicIDByID(ctx context.Context, elementID int32) (string, error)
 	SetElementConfidence(ctx context.Context, elementID int32, confidence models.ConfidenceLevel) error
 }
 

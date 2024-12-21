@@ -113,7 +113,19 @@ func (a *App) setElementConfidence(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, fmt.Sprintf("/acs/%s/%s/%s", task.Area.ACS, task.Area.PublicID, task.PublicID), http.StatusSeeOther)
+	elementPublicID, err := a.acsModel.GetElementPublicIDByID(r.Context(), int32(elementID))
+	if err != nil {
+		a.logger.ErrorContext(r.Context(), "Failed to retrieve public ID for element.", "error", err, "elementID", elementID)
+		a.serverError(w, r, err)
+		return
+	}
+
+	http.Redirect(
+		w,
+		r,
+		fmt.Sprintf("/acs/%s/%s/%s#%s", task.Area.ACS, task.Area.PublicID, task.PublicID, elementPublicID),
+		http.StatusSeeOther,
+	)
 }
 
 func getConfidenceFromForm(values url.Values) (models.ConfidenceLevel, error) {
