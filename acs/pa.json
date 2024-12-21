@@ -2682,7 +2682,11 @@
           "id": "C",
           "name": "Diversion",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with diversion.",
-          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "VFR Navigation Charts"],
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "VFR Navigation Charts"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -2746,7 +2750,11 @@
           "id": "D",
           "name": "Lost Procedures",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with lost procedures and can take appropriate steps to achieve a satisfactory outcome if lost.",
-          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "VFR Navigation Charts"],
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "VFR Navigation Charts"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -2809,7 +2817,10 @@
           "name": "Maneuvering During Slow Flight",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with maneuvering during slow flight in cruise configuration.",
           "note": "See Appendix 2: Safety of Flight and Appendix 3: Aircraft, Equipment, and Operational Requirements & Limitations for information related to this Task.",
-          "references": ["FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -2870,7 +2881,11 @@
           "name": "Power-Off Stalls",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with power-off stalls.",
           "note": "See Appendix 2: Safety of Flight and Appendix 3: Aircraft, Equipment, and Operational Requirements & Limitations for information related to this Task.",
-          "references": ["AC 61-67", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AC 61-67",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -2975,7 +2990,11 @@
           "name": "Power-On Stalls",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with power-on stalls.",
           "note": "See Appendix 2: Safety of Flight and Appendix 3: Aircraft, Equipment, and Operational Requirements & Limitations for information related to this Task.",
-          "references": ["AC 61-67", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AC 61-67",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -3079,7 +3098,11 @@
           "id": "D",
           "name": "Spin Awareness",
           "objective": "To determine the applicant exhibits satisfactory knowledge of the causes and procedures for recovery from unintentional spins and understands the risk associated with unintentional spins.",
-          "references": ["AC 61-67", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AC 61-67",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -3118,6 +3141,932 @@
             {
               "id": 6,
               "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VIII",
+      "name": "Basic Instrument Maneuvers",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Straight-and-Level Flight",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with flying during straight-and-level flight solely by reference to instruments.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-15, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Flight instruments as they relate to:",
+              "subElements": [
+                {
+                  "content": "Instrument limitations and potential errors"
+                },
+                {
+                  "content": "Indication of the aircraft attitude"
+                },
+                {
+                  "content": "Function and operation"
+                },
+                {
+                  "content": "Proper instrument cross-check techniques"
+                }
+              ]
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Instrument flying hazards, including failure to maintain visual flight rules (VFR), spatial disorientation, loss of control, fatigue, stress, and emergency off airport landings."
+            },
+            {
+              "id": 2,
+              "content": "When to seek assistance or declare an emergency in a deteriorating situation."
+            },
+            {
+              "id": 3,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 5,
+              "content": "Fixation and omission."
+            },
+            {
+              "id": 6,
+              "content": "Instrument Interpretation."
+            },
+            {
+              "id": 7,
+              "content": "Control application solely by reference to instruments."
+            },
+            {
+              "id": 8,
+              "content": "Trimming the aircraft."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Maintain straight-and-level flight using proper instrument cross-check and interpretation, and coordinated control application."
+            },
+            {
+              "id": 2,
+              "content": "Maintain straight-and-level flight using proper instrument cross-check and interpretation, and coordinated control application."
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "Constant Airspeed Climbs",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with attitude instrument flying during constant airspeed climbs solely by reference to instruments.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-15, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Flight instruments as they relate to:",
+              "subElements": [
+                {
+                  "content": "Instrument limitations and potential errors"
+                },
+                {
+                  "content": "Indication of the aircraft attitude"
+                },
+                {
+                  "content": "Function and operation"
+                },
+                {
+                  "content": "Proper instrument cross-check techniques"
+                }
+              ]
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Instrument flying hazards, including failure to maintain visual flight rules (VFR), spatial disorientation, loss of control, fatigue, stress, and emergency off airport landings."
+            },
+            {
+              "id": 2,
+              "content": "When to seek assistance or declare an emergency in a deteriorating situation."
+            },
+            {
+              "id": 3,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 5,
+              "content": "Fixation and omission."
+            },
+            {
+              "id": 6,
+              "content": "Instrument Interpretation."
+            },
+            {
+              "id": 7,
+              "content": "Control application solely by reference to instruments."
+            },
+            {
+              "id": 8,
+              "content": "Trimming the aircraft."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Transition to the climb pitch attitude and power setting on an assigned heading using proper instrument cross-check and interpretation, and coordinated flight control application."
+            },
+            {
+              "id": 2,
+              "content": "Climb at a constant airspeed to specific altitudes in straight flight and turns."
+            },
+            {
+              "id": 3,
+              "content": "Level off at the assigned altitude and maintain altitude ±200 feet, heading ±20°, and airspeed ±10 knots."
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "name": "Constant Airspeed Descents",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with attitude instrument flying during constant airspeed descents solely by reference to instruments.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-15, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Flight instruments as they relate to:",
+              "subElements": [
+                {
+                  "content": "Instrument limitations and potential errors"
+                },
+                {
+                  "content": "Indication of the aircraft attitude"
+                },
+                {
+                  "content": "Function and operation"
+                },
+                {
+                  "content": "Proper instrument cross-check techniques"
+                }
+              ]
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Instrument flying hazards, including failure to maintain visual flight rules (VFR), spatial disorientation, loss of control, fatigue, stress, and emergency off airport landings."
+            },
+            {
+              "id": 2,
+              "content": "When to seek assistance or declare an emergency in a deteriorating situation."
+            },
+            {
+              "id": 3,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 5,
+              "content": "Fixation and omission."
+            },
+            {
+              "id": 6,
+              "content": "Instrument Interpretation."
+            },
+            {
+              "id": 7,
+              "content": "Control application solely by reference to instruments."
+            },
+            {
+              "id": 8,
+              "content": "Trimming the aircraft."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Transition to the descent pitch attitude and power setting on an assigned heading using proper instrument cross-check and interpretation, and coordinated flight control application."
+            },
+            {
+              "id": 2,
+              "content": "Descend at a constant airspeed to specific altitudes in straight flight and turns."
+            },
+            {
+              "id": 3,
+              "content": "Level off at the assigned altitude and maintain altitude ±200 feet, heading ±20°, and airspeed ±10 knots."
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "name": "Turns to Headings",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with attitude instrument flying during turns to headings solely by reference to instruments.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-15, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Flight instruments as they relate to:",
+              "subElements": [
+                {
+                  "content": "Instrument limitations and potential errors"
+                },
+                {
+                  "content": "Indication of the aircraft attitude"
+                },
+                {
+                  "content": "Function and operation"
+                },
+                {
+                  "content": "Proper instrument cross-check techniques"
+                }
+              ]
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Instrument flying hazards, including failure to maintain visual flight rules (VFR), spatial disorientation, loss of control, fatigue, stress, and emergency off airport landings."
+            },
+            {
+              "id": 2,
+              "content": "When to seek assistance or declare an emergency in a deteriorating situation."
+            },
+            {
+              "id": 3,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 5,
+              "content": "Fixation and omission."
+            },
+            {
+              "id": 6,
+              "content": "Instrument Interpretation."
+            },
+            {
+              "id": 7,
+              "content": "Control application solely by reference to instruments."
+            },
+            {
+              "id": 8,
+              "content": "Trimming the aircraft."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Turn to headings, maintain altitude ±200 feet, maintain a standard rate turn, roll out on the assigned heading ±10°, and maintain airspeed ±10 knots."
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "name": "Recovery from Unusual Flight Attitudes",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with attitude instrument flying while recovering from unusual attitudes solely by reference to instruments.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-15, FAA-H-8083-25",
+            "POH/Flight Manual"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Prevention of unusual attitudes, including flight causal, physiological, and environmental factors, and system and equipment failures.",
+              "subElements": [
+                {
+                  "content": "[Archived]"
+                },
+                {
+                  "content": "[Archived]"
+                },
+                {
+                  "content": "[Archived]"
+                },
+                {
+                  "content": "[Archived]"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "content": "Procedures for recovery from unusual attitudes in flight."
+            },
+            {
+              "id": 3,
+              "content": "Procedures available to safely regain visual meteorological conditions (VMC) after flight into inadvertent instrument meteorological conditions or unintended instrument meteorological conditions (IIMC)/(UIMC)."
+            },
+            {
+              "id": 4,
+              "content": "Appropriate use of automation, if applicable."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Situations that could lead to loss of control in-flight (LOC-I) or unusual attitudes in-flight (e.g., stress, task saturation, inadequate instrument scan distractions, and spatial disorientation)."
+            },
+            {
+              "id": 2,
+              "content": "[Archived]"
+            },
+            {
+              "id": 3,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 5,
+              "content": "Interpreting flight instruments."
+            },
+            {
+              "id": 6,
+              "content": "[Archived]"
+            },
+            {
+              "id": 7,
+              "content": "Interpreting flight instruments."
+            },
+            {
+              "id": 8,
+              "content": "Interpreting flight instruments."
+            },
+            {
+              "id": 9,
+              "content": "Assessment of the unusual attitude."
+            },
+            {
+              "id": 10,
+              "content": "Control application solely by reference to instruments."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Use proper instrument cross-check and interpretation to identify an unusual attitude (including both nose-high and nose-low) in flight, and apply the appropriate flight control, power input, and aircraft configuration in the correct sequence, to return to a stabilized level flight attitude."
+            },
+            {
+              "id": 2,
+              "content": "Use single-pilot resource management (SRM) or crew resource management (CRM), as appropriate."
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "name": "Radio Communications, Navigation Systems/Facilities, and Radar Services",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with radio communications, navigation systems/facilities, and radar services available for use during flight solely by reference to instruments.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-15, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Operating communications equipment, including identifying and selecting radio frequencies, requesting and following air traffic control (ATC) instructions."
+            },
+            {
+              "id": 2,
+              "content": "Operating navigation equipment, including functions and displays, and following bearings, radials, or courses."
+            },
+            {
+              "id": 3,
+              "content": "Air traffic control facilities and services."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "When to seek assistance or declare an emergency in a deteriorating situation."
+            },
+            {
+              "id": 2,
+              "content": "Using available resources (e.g., automation, ATC, and flight deck planning aids)."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Maintain airplane control while selecting proper communications frequencies, identifying the appropriate facility, and managing navigation equipment."
+            },
+            {
+              "id": 2,
+              "content": "Comply with ATC instructions."
+            },
+            {
+              "id": 3,
+              "content": "[Archived]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "IX",
+      "name": "Emergency Operations",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Emergency Descent",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with emergency descent.",
+          "note": "See Appendix 2: Safety of Flight.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Situations that would require an emergency descent (e.g., depressurization, smoke, or engine fire)."
+            },
+            {
+              "id": 2,
+              "content": "Immediate action items and emergency procedures."
+            },
+            {
+              "id": 3,
+              "content": "Airspeed, including airspeed limitations."
+            },
+            {
+              "id": 4,
+              "content": "Aircraft performance and limitations."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Altitude, wind, terrain, obstructions, gliding distance, and available landing distance considerations."
+            },
+            {
+              "id": 2,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 3,
+              "content": "Configuring the airplane."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Clear the area."
+            },
+            {
+              "id": 2,
+              "content": "Establish and maintain the appropriate airspeed and configuration appropriate to the scenario specified by the evaluator and as covered in Pilot's Operating Handbook (POH)/Airplane Flight Manual (AFM) for the emergency descent."
+            },
+            {
+              "id": 3,
+              "content": "Maintain orientation, divide attention appropriately, and plan and execute a smooth recovery."
+            },
+            {
+              "id": 4,
+              "content": "Use bank angle between 30° and 45° to maintain positive load factors during the descent."
+            },
+            {
+              "id": 5,
+              "content": "Maintain appropriate airspeed +0/-10 knots, and level off at a specified altitude ±100 feet."
+            },
+            {
+              "id": 6,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 7,
+              "content": "Make radio calls as appropriate."
+            },
+            {
+              "id": 8,
+              "content": "Use single-pilot resource management (SRM) or crew resource management (CRM), as appropriate."
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "Emergency Approach and Landing (Simulated)",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with emergency approach and landing procedures.",
+          "note": "See Appendix 2: Safety of Flight.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Immediate action items and emergency procedures."
+            },
+            {
+              "id": 2,
+              "content": "Airspeed, including:",
+              "subElements": [
+                {
+                  "content": "Importance of best glide speed and its relationship to distance"
+                },
+                {
+                  "content": "Difference between best glide speed and minimum sink speed"
+                },
+                {
+                  "content": "Effects of wind on glide distance"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Effects of atmospheric conditions on emergency approach and landing."
+            },
+            {
+              "id": 4,
+              "content": "A stabilized approach, including energy management concepts."
+            },
+            {
+              "id": 5,
+              "content": "Emergency Locator Transmitters (ELTs) and other emergency locating devices."
+            },
+            {
+              "id": 6,
+              "content": "Air traffic control (ATC) services to aircraft in distress."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Altitude, wind, terrain, obstructions, gliding distance, and available landing distance considerations."
+            },
+            {
+              "id": 2,
+              "content": "Following or changing the planned flightpath to the selected landing area."
+            },
+            {
+              "id": 3,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 4,
+              "content": "Configuring the airplane."
+            },
+            {
+              "id": 5,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Establish and maintain the recommended best glide airspeed, ±10 knots."
+            },
+            {
+              "id": 2,
+              "content": "Configure the airplane in accordance with the Pilot's Operating Handbook (POH)\\Airplane Flight Manual (AFM) and existing conditions."
+            },
+            {
+              "id": 3,
+              "content": "Select a suitable landing area considering altitude, wind, terrain, obstructions, and available glide distance."
+            },
+            {
+              "id": 4,
+              "content": "Plan and follow a flightpath to the selected landing area considering altitude, wind, terrain, and obstructions."
+            },
+            {
+              "id": 5,
+              "content": "Prepare for landing as specified by the evaluator."
+            },
+            {
+              "id": 6,
+              "content": "Complete the appropriate checklist(s)."
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "name": "Systems and Equipment Malfunctions",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with system and equipment malfunctions appropriate to the airplane provided for the practical test.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Causes of partial or complete power loss related to the specific type of powerplant(s).",
+              "subElements": [
+                {
+                  "content": "[Archived]"
+                },
+                {
+                  "content": "[Archived]"
+                },
+                {
+                  "content": "[Archived]"
+                },
+                {
+                  "content": "[Archived]"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "content": "System and equipment malfunctions specific to the aircraft, including:",
+              "subElements": [
+                {
+                  "content": "Electrical malfunction"
+                },
+                {
+                  "content": "Vacuum/pressure and associated flight instrument malfunctions"
+                },
+                {
+                  "content": "Pitot-static system malfunction"
+                },
+                {
+                  "content": "Electronic flight deck display malfunction"
+                },
+                {
+                  "content": "Landing gear or flap malfunction"
+                },
+                {
+                  "content": "Inoperative trim"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "content": "Causes and remedies for smoke or fire onboard the aircraft."
+            },
+            {
+              "id": 4,
+              "content": "Any other system specific to the aircraft (e.g., supplemental oxygen, deicing)."
+            },
+            {
+              "id": 5,
+              "content": "Inadvertent door or window opening."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Checklist usage for a system or equipment malfunction."
+            },
+            {
+              "id": 2,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 3,
+              "content": "Undesired aircraft state."
+            },
+            {
+              "id": 4,
+              "content": "Startle response."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Determine appropriate action for simulated emergencies specified by the evaluator, from at least three of the elements or sub-elements listed in K1 through K5"
+            },
+            {
+              "id": 2,
+              "content": "Complete the appropriate checklist(s)."
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "name": "Emergency Equipment and Survival Gear",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with emergency equipment, and survival gear appropriate to the airplane and environment encountered during flight.",
+          "note": "See Appendix 3: Aircraft, Equipment, and Operational Requirements & Limitations for information related to this Task.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Emergency Locator Transmitter (ELT) operations, limitations, and testing requirements."
+            },
+            {
+              "id": 2,
+              "content": "Fire extinguisher operations and limitations."
+            },
+            {
+              "id": 3,
+              "content": "Emergency equipment and survival gear needed for:",
+              "subElements": [
+                {
+                  "content": "Climate extremes (hot/cold)"
+                },
+                {
+                  "content": "Mountainous terrain"
+                },
+                {
+                  "content": "Overwater operations"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "When to deploy a ballistic parachute and associated passenger briefings, if equipped."
+            },
+            {
+              "id": 5,
+              "content": "When to activate an emergency auto-land system and brief passengers, if equipped."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Survival gear (water, clothing, shelter) for 48 to 72 hours."
+            },
+            {
+              "id": 2,
+              "content": "Use of a ballistic parachute system."
+            },
+            {
+              "id": 3,
+              "content": "Use of an emergency auto-land system, if installed."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Identify appropriate equipment and personal gear."
+            },
+            {
+              "id": 2,
+              "content": "Brief passengers on proper use of on-board emergency equipment and survival gear."
+            },
+            {
+              "id": 3,
+              "content": "Simulate ballistic parachute deployment procedures, if equipped."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XI",
+      "name": "Night Operations",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Night Operations",
+          "objective": "To determine the applicant exhibits satisfactory knowledge and risk management associated with night operations.",
+          "note": "For applicants that reside in Alaska, refer to 14 CFR part 61, section 61.110.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Physiological aspects of vision related to night flying."
+            },
+            {
+              "id": 2,
+              "content": "Lighting systems identifying airports, runways, taxiways and obstructions, as well as pilot controlled lighting"
+            },
+            {
+              "id": 3,
+              "content": "Airplane equipment and lighting requirements for night operations."
+            },
+            {
+              "id": 4,
+              "content": "Personal equipment essential for night flight."
+            },
+            {
+              "id": 5,
+              "content": "Night orientation, navigation, chart reading techniques and methods for maintaining night vision effectiveness."
+            },
+            {
+              "id": 6,
+              "content": "Night taxi operations."
+            },
+            {
+              "id": 7,
+              "content": "Interpretation of traffic position and direction based solely on position lights."
+            },
+            {
+              "id": 8,
+              "content": "Visual illusions at night."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 2,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 3,
+              "content": "Effect of visual illusions and night adaptation during all phases of night flying."
+            },
+            {
+              "id": 4,
+              "content": "Runway incursion."
+            },
+            {
+              "id": 5,
+              "content": "Night currency versus proficiency."
+            },
+            {
+              "id": 6,
+              "content": "Weather considerations specific to night operations."
+            },
+            {
+              "id": 7,
+              "content": "Inoperative equipment."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XII",
+      "name": "Postflight Procedures",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "After Landing, Parking, and Securing",
+          "appliesTo": ["ASEL", "AMEL"],
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with after landing, parking, and securing procedures.",
+          "references": ["FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Airplane shutdown, securing, and postflight inspection."
+            },
+            {
+              "id": 2,
+              "content": "Documenting in-flight/postflight discrepancies."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Activities and distractions."
+            },
+            {
+              "id": 2,
+              "content": "[Archived]"
+            },
+            {
+              "id": 3,
+              "content": "Airport specific security procedures."
+            },
+            {
+              "id": 4,
+              "content": "Disembarking passengers safely on the ramp and monitoring passenger movement while on the ramp."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "[Archived]"
+            },
+            {
+              "id": 2,
+              "content": "Park in an appropriate area, considering the safety of nearby persons and property."
+            },
+            {
+              "id": 3,
+              "content": "Complete the appropriate checklist(s)."
+            },
+            {
+              "id": 4,
+              "content": "Conduct a postflight inspection and document discrepancies and servicing requirements, if any."
+            },
+            {
+              "id": 5,
+              "content": "Secure the airplane."
             }
           ]
         }
