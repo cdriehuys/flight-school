@@ -1670,9 +1670,15 @@
         {
           "id": "D",
           "name": "Soft-Field Approach and Landing",
-          "appliesTo": ["ASEL"],
+          "appliesTo": [
+            "ASEL"
+          ],
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with soft-field approach and landing with emphasis on proper use and coordination of flight controls.",
-          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -1796,9 +1802,16 @@
         {
           "id": "E",
           "name": "Short-Field Takeoff and Maximum Performance Climb",
-          "appliesTo": ["ASEL", "AMEL"],
+          "appliesTo": [
+            "ASEL",
+            "AMEL"
+          ],
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with short-field takeoff, maximum performance climb operations, and rejected takeoff procedures.",
-          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -1930,9 +1943,16 @@
         {
           "id": "F",
           "name": "Short-Field Approach and Landing",
-          "appliesTo": ["ASEL", "AMEL"],
+          "appliesTo": [
+            "ASEL",
+            "AMEL"
+          ],
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with short-field approach and landing with emphasis on proper use and coordination of flight controls.",
-          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -2056,9 +2076,16 @@
         {
           "id": "M",
           "name": "Forward Slip to a Landing",
-          "appliesTo": ["ASEL", "ASES"],
+          "appliesTo": [
+            "ASEL",
+            "ASES"
+          ],
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with forward slip to a landing.",
-          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -2183,7 +2210,11 @@
           "id": "N",
           "name": "Go-Around/Rejected Landing",
           "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with go-around/rejected landing with emphasis on factors that contribute to landing conditions that may require a go-around.",
-          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25", "POH/AFM"],
+          "references": [
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-23, FAA-H-8083-25",
+            "POH/AFM"
+          ],
           "knowledge": [
             {
               "id": 1,
@@ -2272,6 +2303,821 @@
             {
               "id": 9,
               "content": "Use runway incursion avoidance procedures, if applicable."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "V",
+      "name": "Performance Maneuvers and Ground Reference Maneuvers",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Steep Turns",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with steep turns.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "POH/AFM"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "How to conduct a proper steep turn."
+            },
+            {
+              "id": 2,
+              "content": "Aerodynamics associated with steep turns, including:",
+              "subElements": [
+                {
+                  "content": "Maintaining coordinated flight"
+                },
+                {
+                  "content": "Overbanking tendencies"
+                },
+                {
+                  "content": "Maneuvering speed, including the impact of weight changes"
+                },
+                {
+                  "content": "Load factor and accelerated stalls"
+                },
+                {
+                  "content": "Rate and radius of turn"
+                }
+              ]
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Division of attention between aircraft control and orientation."
+            },
+            {
+              "id": 2,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 3,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 5,
+              "content": "Uncoordinated flight."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Clear the area."
+            },
+            {
+              "id": 2,
+              "content": "Establish the manufacturer's recommended airspeed; or if one is not available, an airspeed not to exceed the maneuvering speed (Va)."
+            },
+            {
+              "id": 3,
+              "content": "Roll into a coordinated 360° steep turn with approximately a 45° bank."
+            },
+            {
+              "id": 4,
+              "content": "Perform the Task in the opposite direction, as specified by evaluator."
+            },
+            {
+              "id": 5,
+              "content": "Maintain the entry altitude ±100 feet, airspeed ±10 knots, bank ±5°, and roll out on the entry heading ±10°."
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "Ground Reference Maneuvers",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with ground reference maneuvering which may include a rectangular course, S-turns, and turns around a point.",
+          "note": "The evaluator selects at least one ground reference maneuver for the applicant to demonstrate.",
+          "references": [
+            "14 CFR part 61",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Purpose of ground reference maneuvers."
+            },
+            {
+              "id": 2,
+              "content": "Effects of wind on ground track and relation to a ground reference."
+            },
+            {
+              "id": 3,
+              "content": "Effects of bank angle and groundspeed on rate and radius of turn."
+            },
+            {
+              "id": 4,
+              "content": "Relationship of rectangular course to airport traffic pattern."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Division of attention between aircraft control and orientation."
+            },
+            {
+              "id": 2,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 3,
+              "content": "Low altitude maneuvering, including stall, spin, or controlled flight into terrain (CFIT)."
+            },
+            {
+              "id": 4,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 5,
+              "content": "Uncoordinated flight."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Clear the area."
+            },
+            {
+              "id": 2,
+              "content": "Select a suitable ground reference area, line, or point as appropriate."
+            },
+            {
+              "id": 3,
+              "content": "Plan the maneuver:",
+              "subElements": [
+                {
+                  "content": "Rectangular course: enter a left or right pattern, 600 to 1,000 feet above ground level (AGL) at an appropriate distance from the selected reference area, 45° to the downwind leg"
+                },
+                {
+                  "content": "S-turns: enter perpendicular to the selected reference line, 600 to 1,000 feet AGL at an appropriate distance from the selected reference area"
+                },
+                {
+                  "content": "Turns around a point: enter at an appropriate distance from the reference point, 600 to 1,000 feet AGL at an appropriate distance from the selected reference area"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "content": "Apply adequate wind-drift correction during straight and turning flight to maintain a constant ground track around a rectangular reference area, or to maintain a constant radius turn on each side of a selected reference line or point."
+            },
+            {
+              "id": 5,
+              "content": "If performing S-Turns, reverse the turn directly over the selected reference line; if performing turns around a point, complete turns in either direction, as specified by the evaluator."
+            },
+            {
+              "id": 6,
+              "content": "Divide attention between airplane control, traffic avoidance and the ground track while maintaining coordinated flight."
+            },
+            {
+              "id": 7,
+              "content": "Maintain altitude ±100 feet; maintain airspeed ±10 knots."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VI",
+      "name": "Navigation",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Pilotage and Dead Reckoning",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with pilotage and dead reckoning.",
+          "references": [
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25",
+            "VFR Navigation Charts"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Pilotage and dead reckoning."
+            },
+            {
+              "id": 2,
+              "content": "Magnetic compass errors."
+            },
+            {
+              "id": 3,
+              "content": "Topography."
+            },
+            {
+              "id": 4,
+              "content": "Selection of appropriate:",
+              "subElements": [
+                {
+                  "content": "Route"
+                },
+                {
+                  "content": "Altitude(s)"
+                },
+                {
+                  "content": "Checkpoints"
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "content": "Plotting a course, including:",
+              "subElements": [
+                {
+                  "content": "Determining heading, speed, and course"
+                },
+                {
+                  "content": "Wind correction angle"
+                },
+                {
+                  "content": "Estimating time, distance, and speed"
+                },
+                {
+                  "content": "True airspeed and density altitude"
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "content": "Power setting selection."
+            },
+            {
+              "id": 7,
+              "content": "Planned calculations versus actual results and required corrections."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 2,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 3,
+              "content": "Unplanned fuel/power consumption, if applicable."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Prepare and use a flight log."
+            },
+            {
+              "id": 2,
+              "content": "Navigate by pilotage."
+            },
+            {
+              "id": 3,
+              "content": "Navigate by means of pre-computed headings, groundspeeds, elapsed time, and reference to landmarks or checkpoints."
+            },
+            {
+              "id": 4,
+              "content": "Use the magnetic direction indicator in navigation, including turns to headings."
+            },
+            {
+              "id": 5,
+              "content": "Verify position within three nautical miles of the flight-planned route."
+            },
+            {
+              "id": 6,
+              "content": "Arrive at the en route checkpoints within five minutes of the initial or revised estimated time of arrival (ETA) and provide a destination estimate."
+            },
+            {
+              "id": 7,
+              "content": "Maintain the selected altitude, ±200 feet and heading, ±15°."
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "Navigation Systems and Radar Services",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with navigation systems and radar services.",
+          "note": "The evaluator should reference the manufacturer’s equipment supplement(s) as necessary for appropriate limitations, procedures, etc.",
+          "references": [
+            "AC 91-78",
+            "AIM",
+            "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25"
+          ],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Ground-based navigation (identification, orientation, course determination, equipment, tests, regulations, interference, appropriate use of navigation data, and signal integrity)."
+            },
+            {
+              "id": 2,
+              "content": "Satellite-based navigation (e.g., equipment, regulations, authorized use of databases, and Receiver Autonomous Integrity Monitoring (RAIM))."
+            },
+            {
+              "id": 3,
+              "content": "Radar assistance to visual flight rules (VFR) aircraft (e.g., operations, equipment, available services, traffic advisories)."
+            },
+            {
+              "id": 4,
+              "content": "Transponder (Mode(s) A, C, and S) and Automatic Dependent Surveillance-Broadcast (ADS-B)."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Management of automated navigation and autoflight systems."
+            },
+            {
+              "id": 2,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 3,
+              "content": "Limitations of the navigation system in use."
+            },
+            {
+              "id": 4,
+              "content": "Loss of a navigation signal."
+            },
+            {
+              "id": 5,
+              "content": "Use of an electronic flight bag (EFB), if used."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Use an airborne electronic navigation system."
+            },
+            {
+              "id": 2,
+              "content": "Determine the airplane’s position using the navigation system."
+            },
+            {
+              "id": 3,
+              "content": "Intercept and track a given course, radial, or bearing."
+            },
+            {
+              "id": 4,
+              "content": "Recognize and describe the indication of station or waypoint passage."
+            },
+            {
+              "id": 5,
+              "content": "Recognize signal loss or interference and take appropriate action, if applicable."
+            },
+            {
+              "id": 6,
+              "content": "Use proper communication procedures when utilizing radar services."
+            },
+            {
+              "id": 7,
+              "content": "Maintain the selected altitude, ±200 feet and heading, ±15°."
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "name": "Diversion",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with diversion.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "VFR Navigation Charts"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Selecting an alternate destination."
+            },
+            {
+              "id": 2,
+              "content": "Situations that require deviations from flight plan or air traffic control (ATC) instructions."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 2,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 3,
+              "content": "Circumstances that would make diversion prudent."
+            },
+            {
+              "id": 4,
+              "content": "Selecting an appropriate airport or seaplane base."
+            },
+            {
+              "id": 5,
+              "content": "Using available resources (e.g., automation, ATC, and flight deck planning aids)."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Select a suitable destination and route for diversion."
+            },
+            {
+              "id": 2,
+              "content": "Make a reasonable estimate of heading, groundspeed, arrival time, and fuel required to the “divert to” destination."
+            },
+            {
+              "id": 3,
+              "content": "Maintain the selected altitude, ±200 feet and heading, ±15°."
+            },
+            {
+              "id": 4,
+              "content": "Update/interpret weather in flight."
+            },
+            {
+              "id": 5,
+              "content": "Use displays of digital weather and aeronautical information, as applicable to maintain situational awareness."
+            },
+            {
+              "id": 6,
+              "content": "Promptly divert toward the destination."
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "name": "Lost Procedures",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with lost procedures and can take appropriate steps to achieve a satisfactory outcome if lost.",
+          "references": ["AIM", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "VFR Navigation Charts"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Methods to determine position."
+            },
+            {
+              "id": 2,
+              "content": "Assistance available if lost (e.g., radar services, communication procedures)."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 2,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            },
+            {
+              "id": 3,
+              "content": "Recording times over waypoints."
+            },
+            {
+              "id": 4,
+              "content": "When to seek assistance or declare an emergency in a deteriorating situation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Use an appropriate method to determine position."
+            },
+            {
+              "id": 2,
+              "content": "Maintain an appropriate heading and climb as necessary."
+            },
+            {
+              "id": 3,
+              "content": "Identify prominent landmarks."
+            },
+            {
+              "id": 4,
+              "content": "Use navigation systems/facilities or contact an ATC facility for assistance."
+            },
+            {
+              "id": 5,
+              "content": "Select an appropriate course of action."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VII",
+      "name": "Slow Flight and Stalls",
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Maneuvering During Slow Flight",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with maneuvering during slow flight in cruise configuration.",
+          "note": "See Appendix 2: Safety of Flight and Appendix 3: Aircraft, Equipment, and Operational Requirements & Limitations for information related to this Task.",
+          "references": ["FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Aerodynamics associated with slow flight in various airplane configurations, including the relationship between angle of attack, airspeed, load factor, power setting, airplane weight and center of gravity, airplane attitude, and yaw effects."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Inadvertent slow flight and flight with a stall warning, which could lead to loss of control."
+            },
+            {
+              "id": 2,
+              "content": "Range and limitations of stall warning indicators (e.g., aircraft buffet, stall horn, etc.)."
+            },
+            {
+              "id": 3,
+              "content": "Uncoordinated flight."
+            },
+            {
+              "id": 4,
+              "content": "Effect of environmental elements on airplane performance (e.g., turbulence, microbursts, and high-density altitude)."
+            },
+            {
+              "id": 5,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Clear the area."
+            },
+            {
+              "id": 2,
+              "content": "Select an entry altitude that allows the Task to be completed no lower than 1,500 feet above ground level (AGL) (ASEL, ASES) or 3,000 feet AGL (AMEL, AMES)."
+            },
+            {
+              "id": 3,
+              "content": "Establish and maintain an airspeed at which any further increase in angle of attack, increase in load factor, or reduction in power, would result in a stall warning (e.g., aircraft buffet, stall horn, etc.)."
+            },
+            {
+              "id": 4,
+              "content": "Accomplish coordinated straight-and-level flight, turns, climbs, and descents with the aircraft configured as specified by the evaluator without a stall warning (e.g., aircraft buffet, stall horn, etc.)."
+            },
+            {
+              "id": 5,
+              "content": "Maintain the specified altitude, ±100 feet; specified heading, ±10°; airspeed, +10/-0 knots; and specified angle of bank, ±10°."
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "Power-Off Stalls",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with power-off stalls.",
+          "note": "See Appendix 2: Safety of Flight and Appendix 3: Aircraft, Equipment, and Operational Requirements & Limitations for information related to this Task.",
+          "references": ["AC 61-67", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Aerodynamics associated with stalls in various airplane configurations, including the relationship between angle of attack, airspeed, load factor, power setting, airplane weight and center of gravity, airplane attitude, and yaw effects."
+            },
+            {
+              "id": 2,
+              "content": "Stall characteristics as they relate to airplane design, and recognition impending stall and full stall indications using sight, sound, or feel."
+            },
+            {
+              "id": 3,
+              "content": "Factors and situations that can lead to a power-off stall and actions that can be taken to prevent it."
+            },
+            {
+              "id": 4,
+              "content": "Fundamentals of stall recovery."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Factors and situations that could lead to an inadvertent power-off stall, spin, and loss of control."
+            },
+            {
+              "id": 2,
+              "content": "Range and limitations of stall warning indicators (e.g., aircraft buffet, stall horn, etc.)."
+            },
+            {
+              "id": 3,
+              "content": "Stall warning(s) during normal operations."
+            },
+            {
+              "id": 4,
+              "content": "Stall recovery procedure."
+            },
+            {
+              "id": 5,
+              "content": "Secondary stalls, accelerated stalls, and cross-control stalls."
+            },
+            {
+              "id": 6,
+              "content": "Effect of environmental elements on airplane performance related to power-off stalls (e.g., turbulence, microbursts, and high-density altitude)."
+            },
+            {
+              "id": 7,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 8,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Clear the area."
+            },
+            {
+              "id": 2,
+              "content": "Select an entry altitude that allows the Task to be completed no lower than 1,500 feet above ground level (AGL) (ASEL, ASES) or 3,000 feet AGL (AMEL, AMES)."
+            },
+            {
+              "id": 3,
+              "content": "Configure the airplane in the approach or landing configuration, as specified by the evaluator, and maintain coordinated flight throughout the maneuver."
+            },
+            {
+              "id": 4,
+              "content": "Establish a stabilized descent."
+            },
+            {
+              "id": 5,
+              "content": "Transition smoothly from the approach or landing attitude to a pitch attitude that induces a stall."
+            },
+            {
+              "id": 6,
+              "content": "Maintain a specified heading ±10° if in straight flight; maintain a specified angle of bank not to exceed 20°, ±10° if in turning flight, while inducing the stall."
+            },
+            {
+              "id": 7,
+              "content": "Acknowledge cues of the impending stall and then recover promptly after a full stall occurs."
+            },
+            {
+              "id": 8,
+              "content": "Execute a stall recovery in accordance with procedures set forth in the Pilot's Operating Handbook (POH) or Airplane Flight Manual (AFM)."
+            },
+            {
+              "id": 9,
+              "content": "Configure the airplane as recommended by the manufacturer, and accelerate to best angle of climb speed (Vx) or best rate of climb speed (Vy)."
+            },
+            {
+              "id": 10,
+              "content": "Return to the altitude, heading, and airspeed specified by the evaluator."
+            },
+            {
+              "id": 11,
+              "content": "Use single-pilot resource management (SRM) or crew resource management (CRM), as appropriate."
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "name": "Power-On Stalls",
+          "objective": "To determine the applicant exhibits satisfactory knowledge, risk management, and skills associated with power-on stalls.",
+          "note": "See Appendix 2: Safety of Flight and Appendix 3: Aircraft, Equipment, and Operational Requirements & Limitations for information related to this Task.",
+          "references": ["AC 61-67", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Aerodynamics associated with stalls in various airplane configurations, including the relationship between angle of attack, airspeed, load factor, power setting, airplane weight and center of gravity, airplane attitude, and yaw effects."
+            },
+            {
+              "id": 2,
+              "content": "Stall characteristics as they relate to airplane design, and recognition impending stall and full stall indications using sight, sound, or feel."
+            },
+            {
+              "id": 3,
+              "content": "Factors and situations that can lead to a power-on stall and actions that can be taken to prevent it."
+            },
+            {
+              "id": 4,
+              "content": "Fundamentals of stall recovery."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Factors and situations that could lead to an inadvertent power-on stall, spin, and loss of control."
+            },
+            {
+              "id": 2,
+              "content": "Range and limitations of stall warning indicators (e.g., aircraft buffet, stall horn, etc.)."
+            },
+            {
+              "id": 3,
+              "content": "Stall warning(s) during normal operations."
+            },
+            {
+              "id": 4,
+              "content": "Stall recovery procedure."
+            },
+            {
+              "id": 5,
+              "content": "Secondary stalls, accelerated stalls, elevator trim stalls, and cross-control stalls."
+            },
+            {
+              "id": 6,
+              "content": "Effect of environmental elements on airplane performance related to power-on stalls (e.g., turbulence, microbursts, and high-density altitude)."
+            },
+            {
+              "id": 7,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 8,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
+            }
+          ],
+          "skills": [
+            {
+              "id": 1,
+              "content": "Clear the area."
+            },
+            {
+              "id": 2,
+              "content": "Select an entry altitude that allows the Task to be completed no lower than 1,500 feet above ground level (AGL) (ASEL, ASES) or 3,000 feet AGL (AMEL, AMES)."
+            },
+            {
+              "id": 3,
+              "content": "Establish the takeoff, departure, or cruise configuration, as specified by the evaluator, and maintain coordinated flight throughout the maneuver."
+            },
+            {
+              "id": 4,
+              "content": "Set power (as assigned by the evaluator) to no less than 65 percent power."
+            },
+            {
+              "id": 5,
+              "content": "Transition smoothly from the takeoff or departure attitude to the pitch attitude that induces a stall."
+            },
+            {
+              "id": 6,
+              "content": "Maintain a specified heading, ±10° if in straight flight; maintain a specified angle of bank not to exceed 20°, ±10° if in turning flight, while inducing the stall."
+            },
+            {
+              "id": 7,
+              "content": "Acknowledge cues of the impending stall and then recover promptly after a full stall occurs."
+            },
+            {
+              "id": 8,
+              "content": "Execute a stall recovery in accordance with procedures set forth in the Pilot's Operating Handbook (POH)/Flight Manual (FM)."
+            },
+            {
+              "id": 9,
+              "content": "Configure the airplane as recommended by the manufacturer, and accelerate to best angle of climb speed (Vx) or best rate of climb speed (Vy)."
+            },
+            {
+              "id": 10,
+              "content": "Return to the altitude, heading, and airspeed specified by the evaluator."
+            },
+            {
+              "id": 11,
+              "content": "Use single-pilot resource management (SRM) or crew resource management (CRM), as appropriate."
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "name": "Spin Awareness",
+          "objective": "To determine the applicant exhibits satisfactory knowledge of the causes and procedures for recovery from unintentional spins and understands the risk associated with unintentional spins.",
+          "references": ["AC 61-67", "FAA-H-8083-2, FAA-H-8083-3, FAA-H-8083-25", "POH/AFM"],
+          "knowledge": [
+            {
+              "id": 1,
+              "content": "Aerodynamics associated with spins in various airplane configurations, including the relationship between angle of attack, airspeed, load factor, power setting, airplane weight and center of gravity, airplane attitude, and yaw effects."
+            },
+            {
+              "id": 2,
+              "content": "What causes a spin and how to identify the entry, incipient, and developed phases of a spin."
+            },
+            {
+              "id": 3,
+              "content": "Spin recovery procedure."
+            }
+          ],
+          "riskManagement": [
+            {
+              "id": 1,
+              "content": "Factors and situations that could lead to inadvertent spin and loss of control."
+            },
+            {
+              "id": 2,
+              "content": "Range and limitations of stall warning indicators (e.g., aircraft buffet, stall horn, etc.)."
+            },
+            {
+              "id": 3,
+              "content": "Spin recovery procedure."
+            },
+            {
+              "id": 4,
+              "content": "Effect of environmental elements on airplane performance related to spins (e.g., turbulence, microbursts, and high-density altitude)."
+            },
+            {
+              "id": 5,
+              "content": "Collision hazards."
+            },
+            {
+              "id": 6,
+              "content": "Distractions, task prioritization, loss of situational awareness, or disorientation."
             }
           ]
         }
