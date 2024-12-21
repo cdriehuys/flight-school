@@ -26,6 +26,7 @@ type ExternalTask struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
 	Objective string `json:"objective"`
+	Note      string `json:"note"`
 
 	References []string `json:"references"`
 
@@ -159,6 +160,7 @@ func (m *ACSModel) upsertTask(
 		PublicID:  task.ID,
 		Name:      task.Name,
 		Objective: task.Objective,
+		Note:      task.Note,
 	})
 	if err != nil {
 		return queries.Task{}, fmt.Errorf("failed to upsert task: %v", err)
