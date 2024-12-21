@@ -53,6 +53,7 @@ type Task struct {
 	PublicID  string
 	Name      string
 	Objective string
+	Note      string
 
 	Area       AreaOfOperation
 	Confidence Confidence
@@ -189,6 +190,7 @@ func (m *ACSModel) GetTaskByArea(ctx context.Context, acs string, areaID string,
 		PublicID:   row.Task.PublicID,
 		Name:       row.Task.Name,
 		Objective:  row.Task.Objective,
+		Note:       row.Task.Note,
 		Area:       areaOfOperationFromModel(row.AcsArea),
 		Confidence: Confidence{int(row.Votes), int(row.MaxVotes)},
 	}
@@ -214,6 +216,7 @@ func (m *ACSModel) GetTaskByElementID(ctx context.Context, elementID int32) (Tas
 		PublicID:   row.Task.PublicID,
 		Name:       row.Task.Name,
 		Objective:  row.Task.Objective,
+		Note:       row.Task.Note,
 		Area:       areaOfOperationFromModel(row.AcsArea),
 		Confidence: Confidence{int(row.Votes), int(row.MaxVotes)},
 	}

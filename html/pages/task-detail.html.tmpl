@@ -17,7 +17,11 @@
     <p class="mb-md"><strong>Objective:</strong> {{ .Task.Objective }}</p>
 
     {{ with .Task.References }}
-    <p><strong>References:</strong> {{ join . "; " }}</p>
+    <p class="mb-md"><strong>References:</strong> {{ join . "; " }}</p>
+    {{ end }}
+
+    {{ with .Task.Note }}
+    <p><em><strong>Note:</strong> {{ . }}</em></p>
     {{ end }}
   </section>
 </section>

@@ -17,10 +17,10 @@ DELETE FROM acs_areas
 WHERE acs_id = $1 AND NOT (id = ANY(sqlc.arg(known_ids)::int[]));
 
 -- name: UpsertTask :one
-INSERT INTO acs_area_tasks (area_id, public_id, name, objective)
-VALUES ($1, $2, $3, $4)
+INSERT INTO acs_area_tasks (area_id, public_id, name, objective, note)
+VALUES ($1, $2, $3, $4, $5)
 ON CONFLICT (area_id, public_id) DO UPDATE
-SET name = EXCLUDED.name, objective = EXCLUDED.objective
+SET name = EXCLUDED.name, objective = EXCLUDED.objective, note = EXCLUDED.note
 RETURNING *;
 
 -- name: ClearUnknownTasks :execrows
