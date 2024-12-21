@@ -142,6 +142,14 @@ FROM task_references
 WHERE task_id = $1
 ORDER BY "order" ASC;
 
+-- name: GetElementPublicIDByID :one
+SELECT
+    (a.acs_id || '.' || a.public_id || '.' || t.public_id || '.' || e.type || e.public_id)::text AS full_public_id
+FROM acs_elements e
+    LEFT JOIN acs_area_tasks t ON e.task_id = t.id
+    LEFT JOIN acs_areas a on t.area_id = a.id
+WHERE e.id = $1;
+
 -- name: ListElementsByTaskID :many
 SELECT
     sqlc.embed(e),

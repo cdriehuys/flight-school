@@ -3,7 +3,7 @@
   <div class="task-element-list">
     {{ range . }}
     <p class="text-subtle">{{ .FullPublicID }}</p>
-    <div class="mb-xs">
+    <div class="mb-xs" id="{{ .FullPublicID }}">
       {{ .Content }}
       {{ with .SubElements }}
       <ol class="sub-elements">

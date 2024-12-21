@@ -341,6 +341,15 @@ func (m *ACSModel) listSubElements(ctx context.Context, elementIDs []int32) (map
 	return subElementsByElementID, nil
 }
 
+func (m *ACSModel) GetElementPublicIDByID(ctx context.Context, elementID int32) (string, error) {
+	publicID, err := m.q.GetElementPublicIDByID(ctx, elementID)
+	if err != nil {
+		return "", fmt.Errorf("failed to retrieve public ID of element %d: %v", elementID, err)
+	}
+
+	return publicID, nil
+}
+
 func (m *ACSModel) SetElementConfidence(ctx context.Context, elementID int32, confidence ConfidenceLevel) error {
 	params := queries.SetElementConfidenceParams{
 		ElementID: elementID,
