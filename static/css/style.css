@@ -10,6 +10,12 @@
   --box-shadow-default: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   --box-shadow-active: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
+  --color-bad: #9e1205;
+  --color-bad-bg: #fcd3cf;
+  --color-happy: #4bd670;
+  --color-happy-bg: #e3fae9;
+  --color-meh: #d1aa1d;
+  --color-meh-bg: #fff7db;
   --color-text-subtle: #777;
 
   --heading-size-lg: 1.75rem;
@@ -70,6 +76,49 @@ ol, ul {
 
 .breadcrumb--active {
   color: var(--color-text-subtle);
+}
+
+.button-group {
+  display: flex;
+}
+
+.button-group__btn {
+  border: 1px solid var(--color-text-subtle);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 6px;
+}
+
+.button-group__btn:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.button-group__btn:last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.button-group__btn--active {
+  border-width: 2px;
+}
+
+.button-group__btn--bad {
+  background: var(--color-bad-bg);
+  border-color: var(--color-bad);
+  color: var(--color-bad);
+}
+
+.button-group__btn--happy {
+  background: var(--color-happy-bg);
+  border-color: var(--color-happy);
+  color: var(--color-happy);
+}
+
+.button-group__btn--meh {
+  background: var(--color-meh-bg);
+  border-color: var(--color-meh);
+  color: var(--color-meh);
 }
 
 .card {

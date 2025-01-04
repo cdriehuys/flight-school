@@ -14,9 +14,19 @@
       {{ end }}
     </div>
     <div class="task-element__form mb-sm">
-      <form action="/task-elements/{{ .ID }}/confidence" method="post"><button name="high" type="submit">Confident</button></form>
-      <form action="/task-elements/{{ .ID }}/confidence" method="post"><button name="medium" type="submit">Meh</button></form>
-      <form action="/task-elements/{{ .ID }}/confidence" method="post"><button name="low" type="submit">Bad</button></form>
+      <form action="/task-elements/{{ .ID }}/confidence" method="post">
+        <div class="button-group">
+          <button class="button-group__btn button-group__btn--happy" name="high" type="submit">
+            <i class="fa-regular fa-smile"></i>
+          </button>
+          <button class="button-group__btn button-group__btn--meh" name="medium" type="submit">
+            <i class="fa-regular fa-face-meh"></i>
+          </button>
+          <button class="button-group__btn button-group__btn--bad" name="low" type="submit">
+            <i class="fa-regular fa-face-frown"></i>
+          </button>
+        </div>
+      </form>
     </div>
     {{ end }}
   </div>
