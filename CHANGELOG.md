@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0](https://github.com/cdriehuys/flight-school/compare/v0.4.0...v0.5.0) (2025-01-05)
+
+
+### Features
+
+* Allow for removing a confidence vote ([118e4aa](https://github.com/cdriehuys/flight-school/commit/118e4aacfc28935c5ec1ff24e7447e3d63be0b67))
+* Improved styling for voting options ([#38](https://github.com/cdriehuys/flight-school/issues/38)) ([6d15909](https://github.com/cdriehuys/flight-school/commit/6d159090fbde0c282250dc137f0677c7b4b6d420))
+* Show current confidence ([#40](https://github.com/cdriehuys/flight-school/issues/40)) ([118e4aa](https://github.com/cdriehuys/flight-school/commit/118e4aacfc28935c5ec1ff24e7447e3d63be0b67))
+
 ## [0.4.0](https://github.com/cdriehuys/flight-school/compare/v0.3.0...v0.4.0) (2024-12-21)
 
 
