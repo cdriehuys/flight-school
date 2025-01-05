@@ -16,6 +16,8 @@
   --color-happy-bg: #e3fae9;
   --color-meh: #d1aa1d;
   --color-meh-bg: #fff7db;
+  --color-text-link: rgb(27, 117, 208);
+  --color-text-link-active: color: rgb(21, 92, 162);
   --color-text-subtle: #777;
 
   --heading-size-lg: 1.75rem;
@@ -35,11 +37,11 @@ body {
 
 a,
 a:visited {
-  color: rgb(27, 117, 208);
+  color: var(--color-text-link);
 }
 
 a:hover {
-  color: rgb(21, 92, 162);
+  color: var(--color-text-link-active);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -76,6 +78,19 @@ ol, ul {
 
 .breadcrumb--active {
   color: var(--color-text-subtle);
+}
+
+.button__link {
+  background: none;
+  border: none;
+  color: var(--color-text-link);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.button__link:focus,
+.button__link:hover {
+  color: var(--color-text-link-active);
 }
 
 .button-group {
@@ -181,6 +196,7 @@ ol, ul {
 }
 
 .task-element__form {
+  align-items: center;
   display: flex;
   gap: 0 var(--space-sm);
   grid-column: 2 / 3;

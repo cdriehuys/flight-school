@@ -1,0 +1,16 @@
+{{ define "element-confidence-form" }}
+<form action="/task-elements/{{ .ElementID }}/confidence" method="post">
+  <div class="button-group">
+    {{ confidenceButton 3 .ConfidenceLevel }}
+    {{ confidenceButton 2 .ConfidenceLevel }}
+    {{ confidenceButton 1 .ConfidenceLevel }}
+  </div>
+</form>
+
+{{ $elementID := .ElementID }}
+{{ with .ConfidenceLevel }}
+<form action="/task-elements/{{ $elementID }}/clear-confidence" method="post">
+  <button class="button__link" type="submit">Clear</button>
+</form>
+{{ end }}
+{{ end }}

@@ -84,7 +84,8 @@ type TaskElement struct {
 	PublicID int32
 	Content  string
 
-	FullPublicID string
+	FullPublicID    string
+	ConfidenceLevel *ConfidenceLevel
 
 	SubElements []SubElement
 }
@@ -291,6 +292,11 @@ func (m *ACSModel) listElementsForTask(ctx context.Context, taskID int32) (map[T
 			SubElements:  subElements[e.AcsElement.ID],
 		}
 
+		if e.ConfidenceVote.Valid {
+			level := ConfidenceLevel(e.ConfidenceVote.Int16)
+			element.ConfidenceLevel = &level
+		}
+
 		elementsByType[elementType] = append(
 			elementsByType[elementType],
 			element,
@@ -360,6 +366,16 @@ func (m *ACSModel) SetElementConfidence(ctx context.Context, elementID int32, co
 	}
 
 	m.logger.InfoContext(ctx, "Set element confidence.", "elementID", elementID, "confidence", confidence)
+
+	return nil
+}
+
+func (m *ACSModel) ClearElementConfidence(ctx context.Context, elementID int32) error {
+	if err := m.q.ClearElementConfidence(ctx, elementID); err != nil {
+		return fmt.Errorf("failed to clear confidence for element %d: %v", elementID, err)
+	}
+
+	m.logger.InfoContext(ctx, "Cleared element confidence.", "elementID", elementID)
 
 	return nil
 }

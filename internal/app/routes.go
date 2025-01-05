@@ -19,6 +19,7 @@ func (a *App) Routes() http.Handler {
 	mux.HandleFunc("GET /acs/{acs}/{areaID}/{taskID}", a.taskDetail)
 
 	mux.HandleFunc("POST /task-elements/{elementID}/confidence", a.setElementConfidence)
+	mux.HandleFunc("POST /task-elements/{elementID}/clear-confidence", a.clearElementConfidence)
 
 	middleware := alice.New(a.logRequest)
 

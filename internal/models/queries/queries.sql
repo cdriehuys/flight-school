@@ -153,10 +153,12 @@ WHERE e.id = $1;
 -- name: ListElementsByTaskID :many
 SELECT
     sqlc.embed(e),
+    c.vote AS confidence_vote,
     (a.acs_id || '.' || a.public_id || '.' || t.public_id || '.' || e.type || e.public_id)::text AS full_public_id
 FROM acs_elements e
     LEFT JOIN acs_area_tasks t ON e.task_id = t.id
-    LEFT JOIN acs_areas a on t.area_id = a.id
+    LEFT JOIN acs_areas a ON t.area_id = a.id
+    LEFT JOIN element_confidence c ON e.id = c.element_id
 WHERE e.task_id = $1
 ORDER BY e."type", e.public_id ASC;
 
@@ -165,6 +167,10 @@ INSERT INTO element_confidence (element_id, vote)
 VALUES ($1, $2)
 ON CONFLICT (element_id) DO UPDATE
 SET vote = EXCLUDED.vote;
+
+-- name: ClearElementConfidence :exec
+DELETE FROM element_confidence
+WHERE element_id = $1;
 
 -- name: ListSubElementsByElementIDs :many
 SELECT *

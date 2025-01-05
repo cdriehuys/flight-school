@@ -133,9 +133,11 @@ func (l liveTemplateLoader) Render(w io.Writer, name string, data templateData) 
 // set of functionality.
 func templateFuncs(custom template.FuncMap) template.FuncMap {
 	funcs := template.FuncMap{
-		"add":           add,
-		"fracAsPercent": fracAsPercent,
-		"join":          strings.Join,
+		"add":                add,
+		"confidenceButton":   confidenceButton,
+		"confidenceFormData": makeConfidenceFormData,
+		"fracAsPercent":      fracAsPercent,
+		"join":               strings.Join,
 	}
 
 	for k, f := range custom {
@@ -160,4 +162,50 @@ func fracAsPercent(numerator int, denominator int) int {
 	decimal := float64(numerator) / float64(denominator) * 100
 
 	return int(math.Round(decimal))
+}
+
+type confidenceFormData struct {
+	ElementID       int32
+	ConfidenceLevel *models.ConfidenceLevel
+}
+
+func makeConfidenceFormData(elementID int32, level *models.ConfidenceLevel) confidenceFormData {
+	return confidenceFormData{elementID, level}
+}
+
+func confidenceButton(rawLevel int32, current *models.ConfidenceLevel) template.HTML {
+	level := models.ConfidenceLevel(rawLevel)
+	classes := []string{"button-group__btn"}
+
+	var icon string
+	var name string
+
+	switch level {
+	case models.ConfidenceLevelLow:
+		classes = append(classes, "button-group__btn--bad")
+		icon = "fa-smile"
+		name = "low"
+
+	case models.ConfidenceLevelMedium:
+		classes = append(classes, "button-group__btn--meh")
+		icon = "fa-face-meh"
+		name = "medium"
+
+	case models.ConfidenceLevelHigh:
+		classes = append(classes, "button-group__btn--happy")
+		icon = "fa-face-frown"
+		name = "high"
+	}
+
+	if current != nil && level == *current {
+		classes = append(classes, "button-group__btn--active")
+	}
+
+	classList := strings.Join(classes, " ")
+
+	rawHTML := `<button class="` + classList + `" name="` + name + `" type="submit">
+		<i class="fa-regular ` + icon + `"></i>
+		</button>`
+
+	return template.HTML(rawHTML)
 }

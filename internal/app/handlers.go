@@ -143,3 +143,39 @@ func getConfidenceFromForm(values url.Values) (models.ConfidenceLevel, error) {
 
 	return 0, errors.New("unknown confidence level")
 }
+
+func (a *App) clearElementConfidence(w http.ResponseWriter, r *http.Request) {
+	elementID, err := strconv.ParseInt(r.PathValue("elementID"), 10, 32)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, http.StatusText(http.StatusBadRequest))
+		return
+	}
+
+	if err := a.acsModel.ClearElementConfidence(r.Context(), int32(elementID)); err != nil {
+		a.logger.ErrorContext(r.Context(), "Failed to set element confidence.", "error", err, "elementID", elementID)
+		a.serverError(w, r, err)
+		return
+	}
+
+	task, err := a.acsModel.GetTaskByElementID(r.Context(), int32(elementID))
+	if err != nil {
+		a.logger.ErrorContext(r.Context(), "Failed to retrieve parent task.", "error", err, "elementID", elementID)
+		a.serverError(w, r, err)
+		return
+	}
+
+	elementPublicID, err := a.acsModel.GetElementPublicIDByID(r.Context(), int32(elementID))
+	if err != nil {
+		a.logger.ErrorContext(r.Context(), "Failed to retrieve public ID for element.", "error", err, "elementID", elementID)
+		a.serverError(w, r, err)
+		return
+	}
+
+	http.Redirect(
+		w,
+		r,
+		fmt.Sprintf("/acs/%s/%s/%s#%s", task.Area.ACS, task.Area.PublicID, task.PublicID, elementPublicID),
+		http.StatusSeeOther,
+	)
+}
