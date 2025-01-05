@@ -38,6 +38,7 @@ type acsModel interface {
 	ListTasksByArea(ctx context.Context, areaID int32) ([]models.TaskSummary, error)
 	GetElementPublicIDByID(ctx context.Context, elementID int32) (string, error)
 	SetElementConfidence(ctx context.Context, elementID int32, confidence models.ConfidenceLevel) error
+	ClearElementConfidence(ctx context.Context, elementID int32) error
 }
 
 func New(
