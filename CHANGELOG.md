@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/cdriehuys/flight-school/compare/v0.5.0...v0.5.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* Correct reversed confidence icons ([#42](https://github.com/cdriehuys/flight-school/issues/42)) ([d216f4a](https://github.com/cdriehuys/flight-school/commit/d216f4a89ddadfd84c639414a080a14d01aada72))
+
 ## [0.5.0](https://github.com/cdriehuys/flight-school/compare/v0.4.0...v0.5.0) (2025-01-05)
 
 
