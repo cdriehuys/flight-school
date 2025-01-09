@@ -183,7 +183,7 @@ func confidenceButton(rawLevel int32, current *models.ConfidenceLevel) template.
 	switch level {
 	case models.ConfidenceLevelLow:
 		classes = append(classes, "button-group__btn--bad")
-		icon = "fa-smile"
+		icon = "fa-face-frown"
 		name = "low"
 
 	case models.ConfidenceLevelMedium:
@@ -193,7 +193,7 @@ func confidenceButton(rawLevel int32, current *models.ConfidenceLevel) template.
 
 	case models.ConfidenceLevelHigh:
 		classes = append(classes, "button-group__btn--happy")
-		icon = "fa-face-frown"
+		icon = "fa-smile"
 		name = "high"
 	}
 
